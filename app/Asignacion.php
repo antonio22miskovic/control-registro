@@ -14,4 +14,5 @@ class Asignacion extends Model
     {
     	return $this->hasMany(Empleados::class);
     }
+
 }
