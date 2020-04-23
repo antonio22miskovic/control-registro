@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Dato;
+use App\Planta;
+use App\Rol;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,11 +20,12 @@ class User extends Authenticatable implements  JWTSubject
      * @var array
      */
     protected $fillable = [
-
-        'name',
+        'username',
         'email',
         'password',
-
+        'rol_id',
+        'planta_id',
+        'dato_id',
     ];
 
     /**
@@ -51,4 +55,23 @@ class User extends Authenticatable implements  JWTSubject
         return [];
     }
     // fin funciones para jwt
+
+     // de uno a uno con plantas de procesamiento
+    public function planta(){
+
+      return $this->belongsTo(Planta::class);
+
+    }
+
+    public function rol(){
+
+      return $this->belongsTo(Rol::class);
+
+    }
+
+    public function dato(){
+
+      return $this->hasOne(Dato::class);
+
+    }
 }
