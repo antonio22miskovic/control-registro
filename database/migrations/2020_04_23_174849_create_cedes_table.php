@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlantasTable extends Migration
+class CreateCedesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePlantasTable extends Migration
      */
     public function up()
     {
-        Schema::create('plantas', function (Blueprint $table) {
+        Schema::create('cedes', function (Blueprint $table) {
             $table->id();
-            $table->string('planta');
+            $table->string('cede');
             $table->text('descripcion');
             $table->string('localidad');
-            $table->string('rif')->unique();
+            $table->string('rif');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePlantasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plantas');
+        Schema::dropIfExists('cedes');
     }
 }

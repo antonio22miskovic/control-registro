@@ -1,9 +1,8 @@
 <?php
-
 namespace App;
 
 use App\Dato;
-use App\Planta;
+use App\Cede;
 use App\Rol;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,7 +23,7 @@ class User extends Authenticatable implements  JWTSubject
         'email',
         'password',
         'rol_id',
-        'planta_id',
+        'cede_id',
         'dato_id',
     ];
 
@@ -57,9 +56,9 @@ class User extends Authenticatable implements  JWTSubject
     // fin funciones para jwt
 
      // de uno a uno con plantas de procesamiento
-    public function planta(){
+    public function cede(){
 
-      return $this->belongsTo(Planta::class);
+      return $this->belongsTo(Cede::class);
 
     }
 
@@ -71,7 +70,7 @@ class User extends Authenticatable implements  JWTSubject
 
     public function dato(){
 
-      return $this->hasOne(Dato::class);
+      return $this->belongsTo(Dato::class);
 
     }
 }

@@ -15,7 +15,7 @@ class Empleado extends Model
 
     public function dato()
     {
-    	return $this->hasOne(Dato::class);
+    	return $this->belongsTo(Dato::class);
     }
 
     public function departamento()
@@ -30,6 +30,6 @@ class Empleado extends Model
 
      public function equipos()
     {
-    	return $this->hasMany(Asignacion::class);
+    	return $this->hasMany(Equipo::class);
     }
 }

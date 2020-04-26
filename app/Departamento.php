@@ -2,8 +2,9 @@
 
 namespace App;
 
+use App\Cede;
+use App\Empleado;
 use Illuminate\Database\Eloquent\Model;
-
 class Departamento extends Model
 {
     protected $table ='departamentos';
@@ -12,15 +13,18 @@ class Departamento extends Model
 
     	'departamento',
     	'descripcion',
-        'planta_id'
+        'cede_id'
 
     ];
 
-    public function planta(){
-    	return $this->belongsTo(Planta::class);
+    public function cede(){
+    	return $this->belongsTo(Cede::class);
     }
 
     public function equipos(){
     	return $this->hasMany(Equipo::class);
+    }
+    public function empleados(){
+        return $this->hasMany(Empleado::class);
     }
 }

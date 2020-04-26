@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
                     ->constrained()
                     ->onDelete('set null');
 
-            $table->foreignId('planta_id')
+            $table->foreignId('cede_id')
                     ->nullable()
                     ->constrained()
                     ->onDelete('set null');
@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('dato_id')
                     ->nullable()
                     ->constrained()
-                    ->onDelete('set null');
+                    ->onDelete('set null')->unique();
 
             $table->timestamps();
 

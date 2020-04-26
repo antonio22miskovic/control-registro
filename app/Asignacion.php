@@ -12,7 +12,7 @@ class Asignacion extends Model
 
     public function empleados()
     {
-    	return $this->hasMany(Empleados::class);
+    	return $this->hasMany(Empleado::class);
     }
 
 }

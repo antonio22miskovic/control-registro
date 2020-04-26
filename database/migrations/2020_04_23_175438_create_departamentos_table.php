@@ -17,7 +17,7 @@ class CreateDepartamentosTable extends Migration
             $table->id();
              $table->string('departamento');
             $table->text('descripcion');
-            $table->foreignId('planta_id')
+            $table->foreignId('cede_id')
                   ->nullable()
                   ->constrained()
                   ->onDelete('set null');

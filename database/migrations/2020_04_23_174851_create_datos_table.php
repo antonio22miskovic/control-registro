@@ -19,6 +19,7 @@ class CreateDatosTable extends Migration
             $table->string('apellido');
             $table->string('cedula');
             $table->string('telefono');
+            $table->string('avatar');
             $table->timestamps();
         });
     }

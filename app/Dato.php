@@ -10,15 +10,15 @@ class Dato extends Model
 {
    protected $table = 'datos';
 
-   protected $fillable = ['nombre','apellido','cedula','telefono'];
+   protected $fillable = ['nombre','apellido','cedula','telefono','avatar'];
 
    public function user()
    {
-   		 return $this->belongsTo(User::class);
+   		 return $this->hasOne(User::class);
    }
 
    public function empleado()
    {
-   		 return $this->belongsTo(Empleado::class);
+   		 return $this->hasOne(Empleado::class);
    }
 }

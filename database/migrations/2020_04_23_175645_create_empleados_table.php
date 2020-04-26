@@ -15,14 +15,17 @@ class CreateEmpleadosTable extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('dato_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('set null')->unique();
+
             $table->foreignId('asignacion_id')
                   ->nullable()
                   ->constrained()
                   ->onDelete('set null');
+
             $table->foreignId('departamento_id')
                   ->nullable()
                   ->constrained()
