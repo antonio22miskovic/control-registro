@@ -4,34 +4,11 @@ import VueRouter from 'vue-router'
 //usamos a vur router
 Vue.use(VueRouter)
 
-
-//importando los componentes views de las rutas
-import NotFound from './components/notfound/NotFound'
-
-
-
 const routes = [
 //rutas
 	 {
     path: '/',
-    component: () => import( './views/Index'),
-    children:[
-       {
-           path: '/',
-           name: 'welcome',
-           component: () => import( './components/index/Welcome')
-       },
-       {
-           path: 'login',
-           name: 'login',
-           component: () => import( './components/layouts/auth/Login')
-       },
-       {
-           path: 'registro',
-           name: 'registro',
-           component: () => import('./components/index/Registro')
-       }
-    ]
+    component: () => import( './components/layouts/auth/Login'),
   },
   {
     path:'/home',
@@ -45,7 +22,7 @@ const routes = [
   	// rutas no encontradas
  	 path: '*',
  	 name:'404',
- 	 component:NotFound
+ 	component: () => import('./components/notfound/NotFound')
 	}
 ]
 
