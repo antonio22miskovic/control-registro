@@ -29,6 +29,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 		Route::get('get-datos','InfoController@getdatos');
 		Route::get('get-cede','InfoController@getcede');
+		Route::get('listado/{departamento}','PersonalController@pesonal');
 
 
  });

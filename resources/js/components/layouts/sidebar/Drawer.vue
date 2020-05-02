@@ -27,41 +27,55 @@
               <v-icon>mdi-account-multiple</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-               <router-link to="" tag="span">personal</router-link>
+               <router-link :to="{name: 'personal'}" tag="span">Personal</router-link>
             </v-list-item-content>
           </v-list-item>
+
+            <v-list-item link>
+            <v-list-item-icon>
+              <v-icon>mdi-desktop-classic</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+               <router-link to="/equipos" tag="span"> Equipos </router-link>
+            </v-list-item-content>
+          </v-list-item>
+
           <v-list-item link>
             <v-list-item-icon>
               <v-icon>mdi-folder-multiple</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-               <router-link to="" tag="span">categorias</router-link>
+               <router-link :to="{name: 'categorias'}" tag="span">Categorias</router-link>
             </v-list-item-content>
           </v-list-item>
+
            <v-list-item link>
             <v-list-item-icon>
               <v-icon>mdi-domain</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-                <router-link to="" tag="span"> departamentos</router-link>
+                <router-link :to="{name: 'departamentos'}" tag="span"> Departamentos </router-link>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item link>
-           <v-list-item-icon>
-              <v-icon>mdi-account-circle</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-               <router-link to="" tag="span">perfil</router-link>
-            </v-list-item-content>
-          </v-list-item>
+
            <v-list-item link>
            <v-list-item-icon>
               <v-icon>mdi-alert-circle</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-               <router-link to="" tag="span">info</router-link>
+               <router-link :to="{name: 'info'}" tag="span">Informacion</router-link>
             </v-list-item-content>
           </v-list-item>
+
+           <v-list-item link>
+           <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+               <router-link :to="{name:'perfil'}" tag="span">Perfil</router-link>
+            </v-list-item-content>
+          </v-list-item>
+
              <!-- FIN SECCION DE BOTONES DE DRAWER -->
         </v-list>
       </v-navigation-drawer>

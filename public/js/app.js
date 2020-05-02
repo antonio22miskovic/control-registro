@@ -2340,6 +2340,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Drawer',
@@ -40418,9 +40432,36 @@ var render = function() {
               _c(
                 "v-list-item-content",
                 [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v("personal")
-                  ])
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "personal" }, tag: "span" } },
+                    [_vm._v("Personal")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-item",
+            { attrs: { link: "" } },
+            [
+              _c(
+                "v-list-item-icon",
+                [_c("v-icon", [_vm._v("mdi-desktop-classic")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item-content",
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: "/equipos", tag: "span" } },
+                    [_vm._v(" Equipos ")]
+                  )
                 ],
                 1
               )
@@ -40441,9 +40482,11 @@ var render = function() {
               _c(
                 "v-list-item-content",
                 [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v("categorias")
-                  ])
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "categorias" }, tag: "span" } },
+                    [_vm._v("Categorias")]
+                  )
                 ],
                 1
               )
@@ -40460,32 +40503,11 @@ var render = function() {
               _c(
                 "v-list-item-content",
                 [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v(" departamentos")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-account-circle")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v("perfil")
-                  ])
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "departamentos" }, tag: "span" } },
+                    [_vm._v(" Departamentos ")]
+                  )
                 ],
                 1
               )
@@ -40506,9 +40528,36 @@ var render = function() {
               _c(
                 "v-list-item-content",
                 [
-                  _c("router-link", { attrs: { to: "", tag: "span" } }, [
-                    _vm._v("info")
-                  ])
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "info" }, tag: "span" } },
+                    [_vm._v("Informacion")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-item",
+            { attrs: { link: "" } },
+            [
+              _c(
+                "v-list-item-icon",
+                [_c("v-icon", [_vm._v("mdi-account-circle")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item-content",
+                [
+                  _c(
+                    "router-link",
+                    { attrs: { to: { name: "perfil" }, tag: "span" } },
+                    [_vm._v("Perfil")]
+                  )
                 ],
                 1
               )
@@ -97697,6 +97746,77 @@ var routes = [//rutas
   meta: {
     requiresAuth: true
   }
+}, {
+  path: '/perfil',
+  name: 'perfil',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/analista/Perfil */ "./resources/js/views/analista/Perfil.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/categorias',
+  name: 'categorias',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/departamentos',
+  name: 'departamentos',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/analista/Departamentos */ "./resources/js/views/analista/Departamentos.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/personal',
+  name: 'personal',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/analista/Personal */ "./resources/js/views/analista/Personal.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/informacion',
+  name: 'info',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/analista/Info */ "./resources/js/views/analista/Info.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/equipos/',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/analista/Equipos */ "./resources/js/views/analista/Equipos.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  },
+  children: [{
+    path: '/',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/layouts/equipos/HomeEquipos */ "./resources/js/components/layouts/equipos/HomeEquipos.vue"));
+    }
+  }, {
+    path: 'desincorporados',
+    name: 'desincorporados',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/layouts/equipos/Desincorporados */ "./resources/js/components/layouts/equipos/Desincorporados.vue"));
+    }
+  }, {
+    path: 'incorporados',
+    name: 'incorporados',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./components/layouts/equipos/Incorporados */ "./resources/js/components/layouts/equipos/Incorporados.vue"));
+    }
+  }]
 }, {
   // rutas no encontradas
   path: '*',
