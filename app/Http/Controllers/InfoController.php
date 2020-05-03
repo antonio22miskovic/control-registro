@@ -17,15 +17,19 @@ class InfoController extends Controller
     	$this->user = auth('api')->user();
     	$this->datos = $this->user->dato;
     	$this->cede = $this->user->cede;
-    	$this->departamento = $this->cede->departamentos;
+    	$this->departamentos = $this->cede->departamentos;
     }
 
 	public function getdatos()
 	{
-		return response()->json($this->datos);
+		return $this->datos;
 	}
     public function getcede()
     {
-        return response()->json($this->cede);
+        return $this->cede;
+    }
+    public function getdepartamentos()
+    {
+        return $this->departamentos;
     }
 }
