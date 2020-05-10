@@ -21,7 +21,7 @@ class Equipo extends Model
     	'status',
         'departamento_id',
         'categoria_id',
-        'empleado_id'
+
 
     ];
 
@@ -32,7 +32,8 @@ class Equipo extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::class);
     }
-    public function empleado(){
-        return $this->belongsTo(Empleado::class);
+    public function empleados(){
+         return $this->belongsToMany(Empleado::class);
     }
+
 }

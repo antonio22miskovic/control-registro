@@ -20,7 +20,6 @@ $factory->define(Equipo::class, function (Faker $faker) {
     	'status' => $faker->randomElement(['activo','desincorporado']),
         'departamento_id' => Departamento::all()->random()->id,
         'categoria_id' => Categoria::all()->random()->id,
-        'empleado_id' => Empleado::all()->random()->id
 
     ];
 });
