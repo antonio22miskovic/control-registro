@@ -27,7 +27,7 @@
               <v-icon>mdi-account-multiple</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-               <router-link :to="{name: 'personal'}" tag="span">Personal</router-link>
+               <router-link to="/personal" tag="span">Personal</router-link>
             </v-list-item-content>
           </v-list-item>
 

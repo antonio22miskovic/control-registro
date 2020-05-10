@@ -14,7 +14,19 @@
             </v-card-title>
             <v-form >
             <v-text-field prepend-icon="mdi-account" v-model="username" name="username" label="usuario" required type="text"></v-text-field>
-            <v-text-field prepend-icon="mdi-lock" v-model="password" name="Password" label="contaseña" type="password" required></v-text-field>
+           <v-text-field
+           prepend-icon="mdi-lock"
+            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="show2 ? 'text' : 'password'"
+            name="password"
+            label="password"
+            hint="mayor de 4 caracteres"
+            value="wqfasds"
+            v-model="password"
+            class="input-group--focused"
+            @click:append="show2 = !show2"
+          ></v-text-field>
             <v-card-actions>
               <v-btn primary large block @click="autenticacion">iniciar sesion</v-btn>
             </v-card-actions>
@@ -36,6 +48,12 @@ import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
       username:'',
       password:'',
       errors:'',
+       show2: true,
+        rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 3 || 'Min 3 caracteres',
+          emailMatch: () => ('credecinciales invalidas'),
+        },
 
     }),
 

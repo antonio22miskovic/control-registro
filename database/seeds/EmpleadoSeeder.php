@@ -25,7 +25,7 @@ class EmpleadoSeeder extends Seeder
 
         	'dato_id' => 8 ,
         	'asignacion_id' => Asignacion::all()->random()->id ,
-        	'departamento_id' => 3
+        	'departamento_id' => 2
 
         ]);
         Empleado::create([

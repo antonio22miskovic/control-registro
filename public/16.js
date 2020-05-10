@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/personal/HomePersonal.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
@@ -260,8 +260,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     addequipo: function addequipo(item) {
-      this.dialog = true;
-      axios.get('/api/personal/show/' + item).then(function (res) {});
+      dialog = true;
+      console.log('epale');
     },
     Chagepage: function Chagepage(page) {
       this.paginate.current_page = page;
@@ -468,6 +468,46 @@ var render = function() {
                                 _vm._v(" "),
                                 _c(
                                   "v-card-actions",
+                                  {
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "activator",
+                                          fn: function(ref) {
+                                            var on = ref.on
+                                            return [
+                                              _c(
+                                                "v-btn",
+                                                {
+                                                  attrs: {
+                                                    color: "blue",
+                                                    text: ""
+                                                  },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.addequipo(
+                                                        item.id
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-icon", [
+                                                    _vm._v(
+                                                      "mdi-desktop-classic"
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      true
+                                    )
+                                  },
                                   [
                                     _c(
                                       "v-btn",
@@ -480,23 +520,6 @@ var render = function() {
                                       1
                                     ),
                                     _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: { color: "blue", text: "" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.addequipo(item.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("v-icon", [
-                                          _vm._v("mdi-desktop-classic")
-                                        ])
-                                      ],
-                                      1
-                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "v-btn",
@@ -706,7 +729,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c("v-toolbar-title", [_vm._v("Equipos")]),
+                        _c("v-toolbar-title", [_vm._v("Settings")]),
                         _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
@@ -930,14 +953,15 @@ render._withStripped = true
 /*!****************************************************************************!*\
   !*** ./resources/js/components/layouts/analista/personal/HomePersonal.vue ***!
   \****************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HomePersonal_vue_vue_type_template_id_47683f82___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomePersonal.vue?vue&type=template&id=47683f82& */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue?vue&type=template&id=47683f82&");
 /* harmony import */ var _HomePersonal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HomePersonal.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HomePersonal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HomePersonal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VAlert */ "./node_modules/vuetify/lib/components/VAlert/index.js");
@@ -1018,7 +1042,7 @@ component.options.__file = "resources/js/components/layouts/analista/personal/Ho
 /*!*****************************************************************************************************!*\
   !*** ./resources/js/components/layouts/analista/personal/HomePersonal.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

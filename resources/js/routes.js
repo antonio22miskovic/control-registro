@@ -48,12 +48,28 @@ const routes = [
   },
 
    {
-    path:'/personal',
-    name:'personal',
+    path:'/personal/',
     component: () => import('./views/analista/Personal'),
     meta: {
       requiresAuth: true
     },
+     children: [
+      {
+        path:'/',
+         component: () => import('./components/layouts/analista/personal/HomePersonal'),
+      },
+      {
+        path:'new',
+        name:'newpersonal',
+         component: () => import('./components/layouts/analista/personal/NewPersonal'),
+      },
+       {
+        path:'asignar-equipos',
+        name:'asignarequipos',
+         component: () => import('./components/layouts/analista/personal/AsignacionEquipo'),
+      },
+
+    ]
   },
 
   {
@@ -74,17 +90,17 @@ const routes = [
       children: [
       {
         path:'/',
-         component: () => import('./components/layouts/equipos/HomeEquipos'),
+         component: () => import('./components/layouts/analista/equipos/HomeEquipos'),
       },
       {
         path:'desincorporados',
         name:'desincorporados',
-         component: () => import('./components/layouts/equipos/Desincorporados'),
+         component: () => import('./components/layouts/analista/equipos/Desincorporados'),
       },
       {
         path:'incorporados',
         name:'incorporados',
-         component: () => import('./components/layouts/equipos/Incorporados'),
+         component: () => import('./components/layouts/analista/equipos/Incorporados'),
       },
     ]
   },
