@@ -44,10 +44,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Equipos',
   data: function data() {
-    return {};
+    return {
+      bottomNav: false
+    };
   },
   methods: {},
   computed: {}
@@ -73,91 +79,84 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("v-container", [
+        _c(
+          "h1",
+          { staticClass: "text-center" },
+          [
+            _c("v-icon", { attrs: { large: "", color: "blue darken-2" } }, [
+              _vm._v("mdi-desktop-classic")
+            ]),
+            _vm._v(" Administracion de equipos ")
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "v-container",
         [
-          _c(
-            "h1",
-            { staticClass: "text-center" },
-            [
-              _c("v-icon", { attrs: { large: "", color: "blue darken-2" } }, [
-                _vm._v("mdi-desktop-classic")
-              ]),
-              _vm._v("\n\t\t\t administracion de equipos ")
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            [
-              _c("v-col", [
+          [
+            _c(
+              "v-container",
+              [
                 _c(
-                  "div",
-                  { staticClass: "text-center" },
+                  "v-bottom-navigation",
+                  {
+                    attrs: { shift: "" },
+                    model: {
+                      value: _vm.bottomNav,
+                      callback: function($$v) {
+                        _vm.bottomNav = $$v
+                      },
+                      expression: "bottomNav"
+                    }
+                  },
                   [
                     _c(
                       "v-btn",
-                      {
-                        staticClass: "ma-2",
-                        attrs: {
-                          to: { name: "incorporados" },
-                          outlined: "",
-                          color: "success"
-                        }
-                      },
+                      { attrs: { to: { name: "desincorporados" } } },
                       [
-                        _vm._v(
-                          "\n    \t\t\t\t\tincorporados\n    \t\t\t\t\t  "
-                        ),
-                        _c("v-icon", { attrs: { right: "" } }, [
-                          _vm._v("mdi-laptop")
-                        ])
+                        _c("span", [_vm._v("desincomporados")]),
+                        _vm._v(" "),
+                        _c("v-icon", [_vm._v("mdi-laptop-off")])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      { attrs: { to: "/equipos/" } },
+                      [
+                        _c("span", [_vm._v("nuevo")]),
+                        _vm._v(" "),
+                        _c("v-icon", [_vm._v("mdi-plus")])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-btn",
+                      { attrs: { to: { name: "incorporados" } } },
+                      [
+                        _c("span", [_vm._v("activos")]),
+                        _vm._v(" "),
+                        _c("v-icon", [_vm._v("mdi-laptop")])
                       ],
                       1
                     )
                   ],
                   1
                 )
-              ]),
-              _vm._v(" "),
-              _c("v-col", [
-                _c(
-                  "div",
-                  { staticClass: "text-center" },
-                  [
-                    _c(
-                      "v-btn",
-                      {
-                        staticClass: "ma-2",
-                        attrs: {
-                          to: { name: "desincorporados" },
-                          outlined: "",
-                          color: "warning"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n    \t\t\t\t\tdesincorporados\n    \t\t\t\t\t  "
-                        ),
-                        _c("v-icon", { attrs: { right: "" } }, [
-                          _vm._v("mdi-laptop-off")
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("router-view")
+              ],
+              1
+            )
+          ]
         ],
-        1
-      )
+        2
+      ),
+      _vm._v(" "),
+      _c("v-container", [_c("router-view")], 1)
     ],
     1
   )
@@ -183,9 +182,10 @@ __webpack_require__.r(__webpack_exports__);
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VBottomNavigation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBottomNavigation */ "./node_modules/vuetify/lib/components/VBottomNavigation/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
 
 
 
@@ -210,8 +210,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VRow"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBottomNavigation: vuetify_lib_components_VBottomNavigation__WEBPACK_IMPORTED_MODULE_4__["VBottomNavigation"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"]})
 
 
 /* hot reload */

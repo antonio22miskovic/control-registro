@@ -1,7 +1,8 @@
 <template>
-	<v-container>
-		<p >en equipos</p>
-	</v-container>
+	<div>
+
+
+	</div>
 </template>
 <script>
 

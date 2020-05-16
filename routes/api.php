@@ -31,18 +31,25 @@ Route::group(['prefix' => 'auth'], function ($router) {
 		Route::get('get-datos','InfoController@getdatos');
 		Route::get('get-cede','InfoController@getcede');
 		Route::get('get-departamentos','InfoController@getdepartamentos');
+		Route::get('get-categorias','InfoController@getcategorias');
 
 	/// CONTROLADOR DE MANEJO DEL PERSONAL
 		Route::get('listado/{departamento}','PersonalController@pesonal');
 		Route::post('personal/store','PersonalController@store');
+		Route::put('personal/update/{id}','PersonalController@update');
 		Route::delete('personal/delete/{id}','PersonalController@delete');
-		Route::delete('personal/show/{id}','PersonalController@show');
+		Route::get('personal/show/{id}','PersonalController@show');
+		Route::get('personal/asignar/equipo/{equipo}/{personal}','PersonalController@asignar');
+		Route::get('remover/equipo/{equipo}/{personal}','PersonalController@remover');
+		Route::post('asignar/equipo','PersonalController@asignar');
 
 	/// CONTROLADOR DE MANEJO DE ASIGNACIONES
 		Route::resource('asignacion', 'AsignacionController');
 
 	/// CONTROLADOR DE MANEJO DE EQUIPOS
 		Route::get('equipos/listado/{departamento}','EquipoController@getlist');
+		Route::get('equipos/show/{equipo}','EquipoController@show');
+
 
  });
 

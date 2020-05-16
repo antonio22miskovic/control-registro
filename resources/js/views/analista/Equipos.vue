@@ -1,36 +1,40 @@
 <template>
 	<div>
-	<v-container>
-		<h1 class="text-center">
-			<v-icon large color="blue darken-2">mdi-desktop-classic</v-icon>
-			 administracion de equipos </h1>
-		<v-row>
+		<v-container>
+			<h1 class="text-center"> <v-icon large color="blue darken-2" >mdi-desktop-classic</v-icon> Administracion de equipos </h1>
+		</v-container>
+		<v-container>
+			 <template>
+    		<v-container>
+  				<v-bottom-navigation
+    			v-model="bottomNav"
+    			shift
+  				>
+   	 				<v-btn
+				    :to="{name: 'desincorporados'}">
+				      <span>desincomporados</span>
+				      <v-icon>mdi-laptop-off</v-icon>
+				    </v-btn>
 
-			<v-col>
+				    <v-btn
+				    to="/equipos/">
+				      <span>nuevo</span>
+				      <v-icon>mdi-plus</v-icon>
+				    </v-btn>
 
-  			<div class="text-center">
-    				<v-btn class="ma-2" :to="{name: 'incorporados'}" outlined color="success">
-    					incorporados
-    					  <v-icon right >mdi-laptop</v-icon>
-    				</v-btn>
-  			</div>
 
-  		</v-col>
-
-			<v-col>
-
-		 		<div class="text-center">
-    				<v-btn class="ma-2" :to="{name: 'desincorporados'}" outlined color="warning">
-    					desincorporados
-    					  <v-icon right >mdi-laptop-off</v-icon>
-    				</v-btn>
-  				</div>
-
-  		</v-col>
-
-  	</v-row>
-		<router-view/>
-	</v-container>
+				    <v-btn
+				   :to="{name: 'incorporados'}">
+				      <span>activos</span>
+				      <v-icon>mdi-laptop</v-icon>
+				    </v-btn>
+				  </v-bottom-navigation>
+				</v-container>
+				</template>
+		</v-container>
+		<v-container>
+			<router-view/>
+		</v-container>
 	</div>
 </template>
 <script>
@@ -38,7 +42,7 @@
 	export default{
 		name:'Equipos',
 		data: () => ({
-
+			bottomNav: false,
 
 		}),
 		methods:{

@@ -64,7 +64,7 @@ const routes = [
          component: () => import('./components/layouts/analista/personal/NewPersonal'),
       },
        {
-        path:'asignar-equipos',
+        path:':id/:nombre/:departamento',
         name:'asignarequipos',
          component: () => import('./components/layouts/analista/personal/AsignacionEquipo'),
       },

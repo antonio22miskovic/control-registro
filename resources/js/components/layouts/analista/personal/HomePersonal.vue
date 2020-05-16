@@ -1,5 +1,112 @@
 <template>
 	<div>
+
+
+
+      <template>
+  <v-row justify="center">
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-card
+      :loading="loading"
+      class="mx-auto my-12"
+      max-width="100%"
+      raised
+      >
+   <v-card-title> Actualizar los datos </v-card-title>
+
+    <v-card-text>
+      <v-form ref="form">
+      <v-row
+        align="center"
+        class="mx-0"
+      >
+        <v-col>
+           <v-text-field label="Nombre" v-model="data.nombre"
+            prepend-icon="mdi-human-male" :rules="rules" hint="Nombre"></v-text-field>
+        </v-col>
+        <v-col>
+           <v-text-field label="Apellido" v-model="data.apellido"
+            prepend-icon="mdi-human-handsdown" :rules="rules" hint="Apellido"></v-text-field>
+        </v-col>
+      </v-row>
+       <v-row
+        align="center"
+        class="mx-0"
+      >
+        <v-col>
+           <v-text-field label="Cedula" v-model="data.cedula"
+           prepend-icon="mdi-contacts"
+           :rules="rules"  hint=" cedula de identidad"></v-text-field>
+        </v-col>
+        <v-col>
+           <v-text-field
+           prepend-icon="mdi-phone" v-model="data.telefono"
+            label="Telefono" :rules="rules"  hint=" numero telefonico"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+           <v-text-field
+          accept="image/png, image/jpeg, image/bmp"
+          placeholder="imagen de perfil"
+          prepend-icon="mdi-camera"
+          label="Avatar"
+          v-model="imageName"
+          @click='pickFile'
+        ></v-text-field>
+        <input
+        type="file"
+        :rules="file"
+        style="display: none"
+        ref="image"
+        accept="image/*"
+        @change="obtenerimagen"
+        >
+        </v-col>
+        <v-col>
+          <v-select
+              :items="asignaciones"
+               v-model="data.asignacion"
+              item-text="asignacion"
+              item-key="asignacion.id"
+              prepend-icon="mdi-shopping"
+              item-value="id"
+              label="selecione un cargo"
+          ></v-select>
+        </v-col>
+      </v-row>
+        <v-row>
+          <v-col>
+            <v-select
+                :items="departamentos"
+                v-model="data.departamento"
+                item-text="departamento"
+                item-key="departamento.id"
+                prepend-icon="mdi-domain"
+                item-value="id"
+                label="seleccione un departamento"
+
+            ></v-select>
+          </v-col>
+        </v-row>
+          <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="actualizar">Save</v-btn>
+        </v-card-actions>
+        </v-form>
+</v-card-text>
+    <v-divider class="mx-4"></v-divider>
+  </v-card>
+    </v-dialog>
+  </v-row>
+</template>
+
+
+
+
+
+
 	 <v-container>
 	 	<v-form>
 		<v-row align="center">
@@ -22,6 +129,9 @@
       			<v-icon>mdi-account-search</v-icon>
       			</v-btn>
       		</v-col>
+          <!-- <v-col>
+
+          </v-col> -->
 		</v-row>
 		</v-form>
 	 </v-container>
@@ -52,23 +162,17 @@
     				</v-card-text>
 
     				<v-card-actions>
-      					<v-btn
-        				color="blue"
-        				text >
-      					<v-icon>mdi-information-outline</v-icon>
-      					</v-btn>
 
                 <v-btn
                 color="blue"
-                text
-                @click="addequipo(item.id)">
-                <v-icon>mdi-desktop-classic</v-icon>
+                text>
+                <router-link :to="{name:'asignarequipos', params:{id:item.id_empleado,nombre:item.nombre,departamento:depa}}" tag="span">  <v-icon>mdi-desktop-classic</v-icon> </router-link>
                 </v-btn>
 
 
       					<v-btn
         				color="warning"
-        				text >
+        				text @click="mostrarmodal(item)">
         				<v-icon>mdi-account-edit</v-icon>
       					</v-btn>
 
@@ -124,70 +228,7 @@
             </v-alert>
           </v-container>
 		</template>
-    <template>
-  <v-row justify="center">
-     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <v-card>
-        <v-toolbar dark color="primary">
-          <v-btn icon dark @click="dialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Equipos</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark text @click="dialog = false">Save</v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-list three-line subheader>
-          <v-subheader>User Controls</v-subheader>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Content filtering</v-list-item-title>
-              <v-list-item-subtitle>Set the content filtering level to restrict apps that can be downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Password</v-list-item-title>
-              <v-list-item-subtitle>Require password for purchase or use password to restrict purchase</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <v-list three-line subheader>
-          <v-subheader>General</v-subheader>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="notifications"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Notifications</v-list-item-title>
-              <v-list-item-subtitle>Notify me about updates to apps or games that I downloaded</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="sound"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Sound</v-list-item-title>
-              <v-list-item-subtitle>Auto-update apps at any time. Data charges may apply</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-action>
-              <v-checkbox v-model="widgets"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Auto-add widgets</v-list-item-title>
-              <v-list-item-subtitle>Automatically add home screen widgets</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-card>
-    </v-dialog>
-  </v-row>
-</template>
+
 	</div>
 </template>
 <script>
@@ -197,19 +238,29 @@ import Swal from 'sweetalert2'
 		mounted(){
 
 			this.listardepartamentos()
+       this.getselects()
 
 		},
 		data: () => ({
-
-      dialog: false,
-      notifications: false,
-      sound: true,
-      widgets: false,
-			departamentos:[],
+      dialog:false,
 			depa:'',
 			bienvenida:true,
 			ocultar: false,
+      showdata:'',
 			personal:[],
+      equipostable:[],
+      mostrarexplorar:false,
+      imageName:'',
+      loading: false,
+          selection: 1,
+           rules: [
+            value => !!value || 'campo requerido.'
+          ],
+          file: [
+            value => !value || value.size < 2000000 || 'Su imagen de perfil no pude ser mayor 2 MB!',
+          ],
+          asignaciones:[],
+          departamentos:[],
 			 paginate:{
 
                 'total': 0,
@@ -220,9 +271,101 @@ import Swal from 'sweetalert2'
                 'to' : 0,
 
             },
+            data:{
+        'id':'',
+        'nombre':'',
+        'apellido':'',
+        'cedula':'',
+        'telefono':'',
+        'avatar':'',
+        'asignacion':'',
+        'departamento':''
+
+      },
+
+
 
 		}),
 		methods:{
+        pickFile(){
+            this.$refs.image.click()
+        },
+      getselects(){
+        axios.get('/api/asignacion').then(res =>{
+          this.asignaciones = res.data
+        })
+      },
+      obtenerimagen(e){
+        let file = e.target.files[0]
+        this.data.avatar = file
+        this.imageName = file.name
+        this.cargarimagen(file)
+      },
+
+      cargarimagen(file){
+
+        let reader = new FileReader()
+        reader.onload = (e) =>{
+          this.data.avatar = e.target.result
+        }
+        reader.readAsDataURL(file)
+
+      },
+
+      mostrarmodal(item){
+
+        this.dialog= true
+        console.log(item)
+
+        this.data.id = item.id_empleado
+        this.data.nombre = item.nombre
+        this.data.apellido = item.apellido
+        this.data.cedula=  item.cedula
+        this.data.telefono=  item.telefono
+        this.imageName=  item.avatar
+        this.data.asignacion=  item.asignacion_id
+        this.data.departamento= this.depa
+
+      },
+
+
+      actualizar(){
+
+            this.loading = true
+            axios.put('/api/personal/update/' + this.data.id,this.data).then(res =>{
+          if (res.data === true) {
+            this.loading = false
+            this.dialog = false
+            Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Actualizacion completada',
+                    showConfirmButton: false,
+            })
+            this.listar(this.paginate.current_page)
+
+          }
+
+        }).catch((error) => {
+
+                        if (error.response) {
+
+                            console.log(error.response.data)
+                            console.log(error.response.status)
+                            console.log(error.response.headers)
+
+                        } else if (error.request) {
+
+                            console.log(error.request)
+
+                          } else {
+
+                              console.log('Error', error.message)
+
+                          }
+                    })
+
+         },
 
 			listar(page){
         if (this.depa === null) {
@@ -259,18 +402,19 @@ import Swal from 'sweetalert2'
         }
 			},
 
-      addequipo(item){
-        this.dialog = true
-        axios.get('/api/personal/show/'+item).then(res =>{
-
-        })
-      },
 			Chagepage(page){
 
       			this.paginate.current_page = page
       			this.listar(page)
 
     		},
+
+        ver(equipo){
+          axios.get('/api/equipos/show/'+ equipo).then(res => {
+              console.log(res.data)
+          })
+        },
+
         eliminar(item){
 
             Swal.fire({

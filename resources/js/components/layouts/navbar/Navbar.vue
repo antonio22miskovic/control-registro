@@ -37,7 +37,7 @@
                <v-toolbar-items>
 
                       <v-btn color="primary" text small  @click="logout">
-                        <v-icon>mdi-power</v-icon>
+                        <v-icon>mdi-logout</v-icon>
                       </v-btn>
 
                 </v-toolbar-items>

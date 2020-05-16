@@ -40334,7 +40334,7 @@ var render = function() {
                     attrs: { color: "primary", text: "", small: "" },
                     on: { click: _vm.logout }
                   },
-                  [_c("v-icon", [_vm._v("mdi-power")])],
+                  [_c("v-icon", [_vm._v("mdi-logout")])],
                   1
                 )
               ],
@@ -97793,10 +97793,10 @@ var routes = [//rutas
       return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
     }
   }, {
-    path: 'asignar-equipos',
+    path: ':id/:nombre/:departamento',
     name: 'asignarequipos',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
     }
   }]
 }, {

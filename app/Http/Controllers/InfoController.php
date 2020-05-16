@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,4 +33,9 @@ class InfoController extends Controller
     {
         return $this->departamentos;
     }
+    public function getcategorias()
+    {
+        return Categoria::all();
+    }
+
 }
