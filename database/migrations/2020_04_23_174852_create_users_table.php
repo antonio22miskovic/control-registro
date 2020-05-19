@@ -25,17 +25,17 @@ class CreateUsersTable extends Migration
             $table->foreignId('rol_id')
                     ->nullable()
                     ->constrained()
-                    ->onDelete('set null');
+                    ->onDelete('cascade');
 
             $table->foreignId('cede_id')
                     ->nullable()
                     ->constrained()
-                    ->onDelete('set null');
+                    ->onDelete('cascade');
 
             $table->foreignId('dato_id')
                     ->nullable()
                     ->constrained()
-                    ->onDelete('set null')->unique();
+                    ->onDelete('cascade')->unique();
 
             $table->timestamps();
 

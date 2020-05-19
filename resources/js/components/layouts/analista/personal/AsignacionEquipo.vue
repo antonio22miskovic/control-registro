@@ -251,8 +251,8 @@
 
           </v-container>
           <v-divider></v-divider>
-
-           <v-simple-table  height="300px" fixed-header>
+          <div v-if="equipostable.length > 0">
+  <v-simple-table  height="300px" fixed-header>
     <template v-slot:default>
       <thead>
         <tr>
@@ -313,6 +313,20 @@
   </v-container>
   </div>
 </template>
+</div>
+  <template v-if="ocultar === true">
+      <v-container>
+        <v-alert
+            outlined
+            type="warning"
+            prominent
+            border="left"
+          >
+              No hay equipos en este departamento puede dirigirse al modulo de equipos para añadir equipos al departamento!
+         </v-alert>
+        </v-container>
+    </template>
+
 </v-container>
 </v-card>
   </div>
@@ -332,6 +346,7 @@ import Swal from 'sweetalert2'
       showesquipos:[],
       showasignacion:'',
       showdepartamento:'',
+      ocultar:false,
       mostrarexplorar:false,
      paginatetable:{
 
@@ -439,6 +454,11 @@ import Swal from 'sweetalert2'
 
             this.equipostable = res.data.equipo.data
             this.paginatetable = res.data.paginate
+             if (this.equipostable.length > 0) {
+                  this.ocultar = false
+              }else{
+                  this.ocultar = true
+              }
 
         }).catch((error) => {
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Asignacion;
 use App\Categoria;
 use App\User;
 use Illuminate\Http\Request;
@@ -55,6 +56,10 @@ class InfoController extends Controller
              $data[] = $push;
        }
         return $data;
+    }
+    public function getasignaciones()
+    {
+        return Asignacion::all();
     }
 
 }

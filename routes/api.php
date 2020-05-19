@@ -33,6 +33,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
 		Route::get('get-departamentos','InfoController@getdepartamentos');
 		Route::get('get-categorias','InfoController@getcategorias');
 		Route::get('get-users','InfoController@getusers');
+		Route::get('get-asignaciones','InfoController@getasignaciones');
 
 	/// CONTROLADOR DE MANEJO DEL PERSONAL
 		Route::get('listado/{departamento}','PersonalController@pesonal');

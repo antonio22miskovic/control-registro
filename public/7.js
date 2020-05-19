@@ -147,7 +147,7 @@ __webpack_require__.r(__webpack_exports__);
     getselects: function getselects() {
       var _this = this;
 
-      axios.get('/api/asignacion').then(function (res) {
+      axios.get('/api/get-asignaciones').then(function (res) {
         _this.asignaciones = res.data;
       });
       axios.get('/api/get-departamentos').then(function (res) {
@@ -233,7 +233,7 @@ var render = function() {
           _c(
             "v-card-title",
             [
-              _c("v-icon", { attrs: { large: "", color: "green" } }, [
+              _c("v-icon", { attrs: { color: "blue" } }, [
                 _vm._v("mdi-account-plus")
               ]),
               _vm._v(" Añadir Personal  ")

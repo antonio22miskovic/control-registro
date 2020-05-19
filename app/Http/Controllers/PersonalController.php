@@ -279,7 +279,7 @@ class PersonalController extends Controller
         $empleado = Empleado::find($id);
         $datos = $empleado->dato();
         $datos->delete();
-        $empleado->delete();
+
 
         return response()->json('eliminado con exito',200);
 

@@ -45,9 +45,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Equipos',
   data: function data() {
@@ -79,20 +76,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("v-container", [
-        _c(
-          "h1",
-          { staticClass: "text-center" },
-          [
-            _c("v-icon", { attrs: { large: "", color: "blue darken-2" } }, [
-              _vm._v("mdi-desktop-classic")
-            ]),
-            _vm._v(" Administracion de equipos ")
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
       _c(
         "v-container",
         [

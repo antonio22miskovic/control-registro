@@ -20,7 +20,7 @@ class CreateDepartamentosTable extends Migration
             $table->foreignId('cede_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

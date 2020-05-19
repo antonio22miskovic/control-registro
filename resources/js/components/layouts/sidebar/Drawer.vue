@@ -61,10 +61,10 @@
 
            <v-list-item link>
            <v-list-item-icon>
-              <v-icon>mdi-alert-circle</v-icon>
+              <v-icon>mdi-shopping</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-               <router-link :to="{name: 'info'}" tag="span">Informacion</router-link>
+               <router-link :to="{name: 'asignacion'}" tag="span">Asignacion</router-link>
             </v-list-item-content>
           </v-list-item>
 

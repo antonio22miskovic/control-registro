@@ -50,7 +50,7 @@ import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
       username:'',
       password:'',
       errors:'',
-       show2: true,
+       show2: false,
         rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 3 || 'Min 3 caracteres',

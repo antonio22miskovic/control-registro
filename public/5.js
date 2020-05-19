@@ -330,6 +330,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AsignacionEquipo',
@@ -343,6 +357,7 @@ __webpack_require__.r(__webpack_exports__);
       showesquipos: [],
       showasignacion: '',
       showdepartamento: '',
+      ocultar: false,
       mostrarexplorar: false,
       paginatetable: {
         'total': 0,
@@ -434,6 +449,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/equipos/listado/' + this.$route.params.departamento + '?page=' + page).then(function (res) {
         _this4.equipostable = res.data.equipo.data;
         _this4.paginatetable = res.data.paginate;
+
+        if (_this4.equipostable.length > 0) {
+          _this4.ocultar = false;
+        } else {
+          _this4.ocultar = true;
+        }
       })["catch"](function (error) {
         if (error.response) {
           console.log(error.response.data);
@@ -1259,153 +1280,193 @@ var render = function() {
               _vm._v(" "),
               _c("v-divider"),
               _vm._v(" "),
-              _c("v-simple-table", {
-                attrs: { height: "300px", "fixed-header": "" },
-                scopedSlots: _vm._u([
-                  {
-                    key: "default",
-                    fn: function() {
-                      return [
-                        _c("thead", [
-                          _c("tr", [
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("nombre")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("modelo")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("status")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("codigo")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("detallar")
-                            ]),
-                            _vm._v(" "),
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("asignar")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(_vm.equipostable, function(equipo) {
-                            return _c("tr", { key: equipo.id }, [
-                              _c("td", [_vm._v(_vm._s(equipo.equipo))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(equipo.modelo))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(equipo.status))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(equipo.codigo))]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
+              _vm.equipostable.length > 0
+                ? _c(
+                    "div",
+                    [
+                      _c("v-simple-table", {
+                        attrs: { height: "300px", "fixed-header": "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "default",
+                              fn: function() {
+                                return [
+                                  _c("thead", [
+                                    _c("tr", [
+                                      _c("th", { staticClass: "text-left" }, [
+                                        _vm._v("nombre")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { staticClass: "text-left" }, [
+                                        _vm._v("modelo")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { staticClass: "text-left" }, [
+                                        _vm._v("status")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { staticClass: "text-left" }, [
+                                        _vm._v("codigo")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { staticClass: "text-left" }, [
+                                        _vm._v("detallar")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("th", { staticClass: "text-left" }, [
+                                        _vm._v("asignar")
+                                      ])
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
                                   _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        icon: "",
-                                        color: "teal darken-2"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.verequipo(equipo.id)
-                                        }
-                                      }
-                                    },
-                                    [_c("v-icon", [_vm._v("mdi-eye")])],
-                                    1
+                                    "tbody",
+                                    _vm._l(_vm.equipostable, function(equipo) {
+                                      return _c("tr", { key: equipo.id }, [
+                                        _c("td", [
+                                          _vm._v(_vm._s(equipo.equipo))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(equipo.modelo))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(equipo.status))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(_vm._s(equipo.codigo))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          [
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  icon: "",
+                                                  color: "teal darken-2"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.verequipo(
+                                                      equipo.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("v-icon", [
+                                                  _vm._v("mdi-eye")
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          [
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                attrs: {
+                                                  icon: "",
+                                                  color: "teal darken-2"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.asignarar(
+                                                      equipo.id
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("v-icon", [
+                                                  _vm._v("mdi-plus")
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ])
+                                    }),
+                                    0
                                   )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: {
-                                        icon: "",
-                                        color: "teal darken-2"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.asignarar(equipo.id)
-                                        }
-                                      }
-                                    },
-                                    [_c("v-icon", [_vm._v("mdi-plus")])],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ])
-                          }),
-                          0
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ],
+                          null,
+                          false,
+                          4179200725
                         )
-                      ]
-                    },
-                    proxy: true
-                  }
-                ])
-              }),
-              _vm._v(" "),
-              [
-                _c(
-                  "div",
-                  { staticClass: "text-center" },
-                  [
-                    _c(
-                      "v-container",
+                      }),
+                      _vm._v(" "),
                       [
                         _c(
-                          "v-row",
-                          { attrs: { justify: "center" } },
+                          "div",
+                          { staticClass: "text-center" },
                           [
                             _c(
-                              "v-col",
-                              { attrs: { cols: "8" } },
+                              "v-container",
                               [
                                 _c(
-                                  "v-container",
-                                  { staticClass: "max-width" },
+                                  "v-row",
+                                  { attrs: { justify: "center" } },
                                   [
-                                    _c("v-pagination", {
-                                      staticClass: "my-4",
-                                      attrs: {
-                                        length: _vm.paginatetable.last_page
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.Chagepage2(
-                                            _vm.paginatetable.current_page
-                                          )
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.paginatetable.current_page,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.paginatetable,
-                                            "current_page",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "paginatetable.current_page"
-                                      }
-                                    })
+                                    _c(
+                                      "v-col",
+                                      { attrs: { cols: "8" } },
+                                      [
+                                        _c(
+                                          "v-container",
+                                          { staticClass: "max-width" },
+                                          [
+                                            _c("v-pagination", {
+                                              staticClass: "my-4",
+                                              attrs: {
+                                                length:
+                                                  _vm.paginatetable.last_page
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  return _vm.Chagepage2(
+                                                    _vm.paginatetable
+                                                      .current_page
+                                                  )
+                                                }
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.paginatetable
+                                                    .current_page,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.paginatetable,
+                                                    "current_page",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "paginatetable.current_page"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
                                   ],
                                   1
                                 )
@@ -1415,13 +1476,38 @@ var render = function() {
                           ],
                           1
                         )
+                      ]
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.ocultar === true
+                ? [
+                    _c(
+                      "v-container",
+                      [
+                        _c(
+                          "v-alert",
+                          {
+                            attrs: {
+                              outlined: "",
+                              type: "warning",
+                              prominent: "",
+                              border: "left"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n              No hay equipos en este departamento puede dirigirse al modulo de equipos para añadir equipos al departamento!\n         "
+                            )
+                          ]
+                        )
                       ],
                       1
                     )
-                  ],
-                  1
-                )
-              ]
+                  ]
+                : _vm._e()
             ],
             2
           )
@@ -1453,16 +1539,17 @@ __webpack_require__.r(__webpack_exports__);
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
-/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VPagination */ "./node_modules/vuetify/lib/components/VPagination/index.js");
-/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
+/* harmony import */ var vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VAlert */ "./node_modules/vuetify/lib/components/VAlert/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VPagination */ "./node_modules/vuetify/lib/components/VPagination/index.js");
+/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
 
 
 
@@ -1504,7 +1591,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_7__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__["VImg"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemTitle"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_12__["VPagination"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"],VSimpleTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_13__["VSimpleTable"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VSpacer"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAlert: vuetify_lib_components_VAlert__WEBPACK_IMPORTED_MODULE_4__["VAlert"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__["VImg"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemTitle"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_13__["VPagination"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSimpleTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_14__["VSimpleTable"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"]})
 
 
 /* hot reload */

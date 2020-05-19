@@ -1,8 +1,6 @@
 <template>
     <v-container fluid id="create">
-      <v-container>
-      <h1 class="text-center"> <v-icon  large color="blue darken-2">mdi-account-settings</v-icon> Administracion de Personal  </h1>
-   </v-container>
+
    <template>
     <v-container >
   <v-bottom-navigation

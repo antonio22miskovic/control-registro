@@ -25,12 +25,12 @@ class CreateEquiposTable extends Migration
             $table->foreignId('categoria_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
 
             $table->foreignId('departamento_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

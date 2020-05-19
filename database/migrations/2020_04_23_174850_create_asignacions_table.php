@@ -16,6 +16,7 @@ class CreateAsignacionsTable extends Migration
         Schema::create('asignacions', function (Blueprint $table) {
             $table->id();
             $table->string('asignacion');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }

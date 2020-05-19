@@ -68,7 +68,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       username: '',
       password: '',
       errors: '',
-      show2: true,
+      show2: false,
       rules: {
         required: function required(value) {
           return !!value || 'Required.';

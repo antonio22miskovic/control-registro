@@ -37,8 +37,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Personal',
   mounted: function mounted() {},
@@ -72,20 +70,6 @@ var render = function() {
     "v-container",
     { attrs: { fluid: "", id: "create" } },
     [
-      _c("v-container", [
-        _c(
-          "h1",
-          { staticClass: "text-center" },
-          [
-            _c("v-icon", { attrs: { large: "", color: "blue darken-2" } }, [
-              _vm._v("mdi-account-settings")
-            ]),
-            _vm._v(" Administracion de Personal  ")
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
       [
         _c(
           "v-container",

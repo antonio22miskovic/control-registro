@@ -18,16 +18,16 @@ class CreateEmpleadosTable extends Migration
             $table->foreignId('dato_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
 
             $table->foreignId('departamento_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
                   $table->foreignId('asignacion_id')
                   ->nullable()
                   ->constrained()
-                  ->onDelete('set null');
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

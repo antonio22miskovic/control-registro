@@ -8,7 +8,7 @@ class Asignacion extends Model
 {
     protected $table ='asignacions';
 
-    protected $fillable = ['asignacion'];
+    protected $fillable = ['asignacion','descripcion'];
 
     public function empleados()
     {

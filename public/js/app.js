@@ -40523,7 +40523,7 @@ var render = function() {
             [
               _c(
                 "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-alert-circle")])],
+                [_c("v-icon", [_vm._v("mdi-shopping")])],
                 1
               ),
               _vm._v(" "),
@@ -40532,8 +40532,8 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { attrs: { to: { name: "info" }, tag: "span" } },
-                    [_vm._v("Informacion")]
+                    { attrs: { to: { name: "asignacion" }, tag: "span" } },
+                    [_vm._v("Asignacion")]
                   )
                 ],
                 1
@@ -97802,10 +97802,10 @@ var routes = [//rutas
     }
   }]
 }, {
-  path: '/informacion',
-  name: 'info',
+  path: '/asignacion',
+  name: 'asignacion',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/analista/Info */ "./resources/js/views/analista/Info.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
   },
   meta: {
     requiresAuth: true

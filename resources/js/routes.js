@@ -73,9 +73,9 @@ const routes = [
   },
 
   {
-    path:'/informacion',
-    name:'info',
-    component: () => import('./views/analista/Info'),
+    path:'/asignacion',
+    name:'asignacion',
+    component: () => import('./views/analista/Asignacion'),
     meta: {
       requiresAuth: true
     },

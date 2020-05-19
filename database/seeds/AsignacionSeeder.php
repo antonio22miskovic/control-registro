@@ -12,9 +12,9 @@ class AsignacionSeeder extends Seeder
      */
     public function run()
     {
-        Asignacion::create(['asignacion' => 'secretaria']);
-        Asignacion::create(['asignacion' => 'redator']);
-        Asignacion::create(['asignacion' => 'informatico']);
-        Asignacion::create(['asignacion' => 'contador']);
+        Asignacion::create(['asignacion' => 'secretaria','descripcion' => 'descripcion']);
+        Asignacion::create(['asignacion' => 'redator','descripcion' => 'descripcion']);
+        Asignacion::create(['asignacion' => 'informatico','descripcion' => 'descripcion']);
+        Asignacion::create(['asignacion' => 'contador','descripcion' => 'descripcion']);
     }
 }

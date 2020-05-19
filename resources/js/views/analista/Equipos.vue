@@ -1,9 +1,6 @@
 <template>
 	<div>
 		<v-container>
-			<h1 class="text-center"> <v-icon large color="blue darken-2" >mdi-desktop-classic</v-icon> Administracion de equipos </h1>
-		</v-container>
-		<v-container>
 			 <template>
     		<v-container>
   				<v-bottom-navigation
