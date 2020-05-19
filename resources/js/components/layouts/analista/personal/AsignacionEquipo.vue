@@ -346,6 +346,7 @@ import Swal from 'sweetalert2'
           dialog: false,
           dialog2:false,
           empleados:[],
+
           explorarequipo:'',
           explorardepartamento:'',
           explorarcategoria:'',
