@@ -1,6 +1,14 @@
 <template>
 	<div>
 
+  <v-card
+      :loading="loading"
+      class="mx-auto"
+      max-width="100%"
+      raised
+      >
+      <v-container>
+   <v-card-title><v-icon color="blue">mdi-account-star</v-icon>Listado de Personal</v-card-title>
 
 
       <template>
@@ -228,7 +236,8 @@
             </v-alert>
           </v-container>
 		</template>
-
+  </v-container>
+</v-card>
 	</div>
 </template>
 <script>

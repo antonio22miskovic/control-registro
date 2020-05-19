@@ -2354,6 +2354,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Drawer',
@@ -40252,7 +40253,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app-bar",
-    { attrs: { color: "azul", dense: "" } },
+    { attrs: { color: "grey lighten-2", dense: "" } },
     [
       !_vm.currentUser
         ? [
@@ -40371,6 +40372,7 @@ var render = function() {
     "v-navigation-drawer",
     {
       attrs: {
+        color: "grey lighten-2",
         "expand-on-hover": _vm.expandOnHover,
         "mini-variant": _vm.miniVariant,
         letf: _vm.letf,
@@ -97735,13 +97737,13 @@ var routes = [//rutas
 {
   path: '/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/layouts/auth/Login */ "./resources/js/components/layouts/auth/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/layouts/auth/Login */ "./resources/js/components/layouts/auth/Login.vue"));
   }
 }, {
   path: '/home',
   name: 'home',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Home */ "./resources/js/views/Home.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Home */ "./resources/js/views/Home.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97759,7 +97761,7 @@ var routes = [//rutas
   path: '/categorias',
   name: 'categorias',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97768,7 +97770,7 @@ var routes = [//rutas
   path: '/departamentos',
   name: 'departamentos',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/analista/Departamentos */ "./resources/js/views/analista/Departamentos.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/analista/Departamentos */ "./resources/js/views/analista/Departamentos.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97784,19 +97786,19 @@ var routes = [//rutas
   children: [{
     path: '/',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/HomePersonal */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/HomePersonal */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue"));
     }
   }, {
     path: 'new',
     name: 'newpersonal',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
     }
   }, {
     path: ':id/:nombre/:departamento',
     name: 'asignarequipos',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
     }
   }]
 }, {
@@ -97819,19 +97821,19 @@ var routes = [//rutas
   children: [{
     path: '/',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/HomeEquipos */ "./resources/js/components/layouts/analista/equipos/HomeEquipos.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/HomeEquipos */ "./resources/js/components/layouts/analista/equipos/HomeEquipos.vue"));
     }
   }, {
     path: 'desincorporados',
     name: 'desincorporados',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Desincorporados */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Desincorporados */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue"));
     }
   }, {
     path: 'incorporados',
     name: 'incorporados',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
     }
   }]
 }, {
@@ -97839,7 +97841,7 @@ var routes = [//rutas
   path: '*',
   name: '404',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/notfound/NotFound */ "./resources/js/components/notfound/NotFound.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./components/notfound/NotFound */ "./resources/js/components/notfound/NotFound.vue"));
   }
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes);

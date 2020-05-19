@@ -46,7 +46,7 @@ class EquipoController extends Controller
                 $depar = $a->departamento;
 
                 $data1 = [
-                           'id' => $a['id'],
+                           'id' => $a['id'] ,
                            'nombre' => $d->nombre,
                            'apellido' => $d->apellido,
                            'telefono' => $d->telefono,
@@ -66,5 +66,83 @@ class EquipoController extends Controller
        } catch (Exception $e) {
            return response()->json($e,500);
        }
+    }
+    public function store(Request $request)
+    {
+        try {
+          Equipo::create($request->all());
+          return response()->json(true,201);
+        } catch (Exception $e) {
+          return response()->json($e,500);
+        }
+    }
+     public function status(Request $request, $depa, $status)
+    {
+        try {
+
+        $equipo = Equipo::orderBy('id', 'desc')->where('departamento_id',$depa)->where('status',$status)->paginate(5);
+          $data = [];
+          $push = [];
+       foreach ($equipo as $array) {
+          $cate =  $array->categoria;
+         $push =['id' => $array['id'],
+                'equipo' => $array['equipo'],
+                'codigo' => $array['codigo'],
+                'modelo' => $array['modelo'],
+                'marca' => $array['marca'],
+                'status' => $array['status'],
+                'descripcion' => $array['descripcion'],
+                'departamento_id' => $array['departamento_id'],
+                'categoria' => $cate['categoria'],
+                'categoria_id' => $cate['id'],
+              ];
+              $data[] = $push;
+
+       }
+
+        return [
+
+            'paginate' => [
+
+                'total' => $equipo->total(),
+                'current_page' => $equipo->currentPage(),
+                'per_page' => $equipo->perPage(),
+                'last_page' => $equipo->lastPage(),
+                'from' => $equipo->firstItem(),
+                'to' => $equipo->lastPage(),
+
+            ],
+
+           'equipo' => $data
+
+        ];
+
+        } catch (Exception $e) {
+          return response()->json($e,500);
+        }
+    }
+
+    public function update(Request $request,$id)
+    {
+        try {
+
+          $equipo = Equipo::find($id);
+          $equipo->update($request->all());
+          return response()->json(true,201);
+
+
+        } catch (Exception $e) {
+             return response()->json($e,201);
+        }
+    }
+    public function delete($id)
+    {
+      try {
+        $equipo = Equipo::find($id);
+        $equipo->delete();
+      return response()->json(true,200);
+      } catch (Exception $e) {
+        return response()->json($e,500);
+      }
     }
 }

@@ -14,12 +14,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Perfil',
-  data: function data() {
-    return {};
+  mounted: function mounted() {
+    this.getusers();
   },
-  methods: {},
+  data: function data() {
+    return {
+      users: [],
+      loading: false
+    };
+  },
+  methods: {
+    getusers: function getusers() {
+      var _this = this;
+
+      axios.get('/api/get-users').then(function (res) {
+        _this.users = res.data;
+      });
+    }
+  },
   computed: {}
 });
 
@@ -40,7 +113,230 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-container", [_c("p", [_vm._v("en el perfil")])])
+  return _c(
+    "div",
+    [
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-card",
+            {
+              staticClass: "mx-auto my-12",
+              attrs: { loading: _vm.loading, "max-width": "100%", raised: "" }
+            },
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-card-title",
+                    [
+                      _c("v-icon", { attrs: { color: "blue" } }, [
+                        _vm._v("mdi-account-multiple")
+                      ]),
+                      _vm._v(" usuarios encargados ")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.users, function(item) {
+                    return _c(
+                      "v-row",
+                      { key: item.id },
+                      [
+                        _c(
+                          "v-col",
+                          [
+                            _c(
+                              "v-card",
+                              {
+                                staticClass: "mx-auto",
+                                attrs: { "max-width": "434", tile: "" }
+                              },
+                              [
+                                _c(
+                                  "v-img",
+                                  {
+                                    attrs: {
+                                      height: "100%",
+                                      src:
+                                        "https://cdn.vuetifyjs.com/images/cards/server-room.jpg"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "v-row",
+                                      {
+                                        staticClass: "fill-height",
+                                        attrs: { align: "end" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-col",
+                                          {
+                                            staticClass: "pa-0",
+                                            attrs: {
+                                              "align-self": "start",
+                                              cols: "12"
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "v-avatar",
+                                              {
+                                                staticClass: "profile",
+                                                attrs: {
+                                                  color: "grey",
+                                                  size: "164",
+                                                  tile: ""
+                                                }
+                                              },
+                                              [
+                                                _c("v-img", {
+                                                  attrs: {
+                                                    src:
+                                                      "/img/avatares/" +
+                                                      item.avatar
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          { staticClass: "py-0" },
+                                          [
+                                            _c(
+                                              "v-list-item",
+                                              {
+                                                attrs: {
+                                                  color: "rgba(0, 0, 0, .4)",
+                                                  dark: ""
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "v-list-item-content",
+                                                  [
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [_vm._v(" Analista ")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [
+                                                        _vm._v(
+                                                          "Usuario: " +
+                                                            _vm._s(
+                                                              item.username
+                                                            )
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [
+                                                        _vm._v(
+                                                          "Email: " +
+                                                            _vm._s(item.email)
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [
+                                                        _vm._v(
+                                                          "Nombre: " +
+                                                            _vm._s(item.nombre)
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [
+                                                        _vm._v(
+                                                          "Apellido: " +
+                                                            _vm._s(
+                                                              item.apellido
+                                                            )
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [
+                                                        _vm._v(
+                                                          "Cedula: " +
+                                                            _vm._s(item.cedula)
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "v-list-item-title",
+                                                      { staticClass: "title" },
+                                                      [
+                                                        _vm._v(
+                                                          "Telefono: " +
+                                                            _vm._s(
+                                                              item.telefono
+                                                            )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -63,7 +359,12 @@ __webpack_require__.r(__webpack_exports__);
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
 
 
 
@@ -85,7 +386,17 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 /* vuetify-loader */
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_4__["VContainer"]})
+
+
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_4__["VAvatar"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_8__["VImg"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItem"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemContent"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemTitle"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"]})
 
 
 /* hot reload */

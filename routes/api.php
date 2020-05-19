@@ -32,6 +32,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
 		Route::get('get-cede','InfoController@getcede');
 		Route::get('get-departamentos','InfoController@getdepartamentos');
 		Route::get('get-categorias','InfoController@getcategorias');
+		Route::get('get-users','InfoController@getusers');
 
 	/// CONTROLADOR DE MANEJO DEL PERSONAL
 		Route::get('listado/{departamento}','PersonalController@pesonal');
@@ -48,9 +49,16 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 	/// CONTROLADOR DE MANEJO DE EQUIPOS
 		Route::get('equipos/listado/{departamento}','EquipoController@getlist');
+		Route::get('equipos/listado/{departamento}/{status}','EquipoController@status');
 		Route::get('equipos/show/{equipo}','EquipoController@show');
+		Route::post('equipos/store','EquipoController@store');
+		Route::delete('equipos/delete/{id}','EquipoController@delete');
+		Route::put('equipos/update/{id}','EquipoController@update');
 
+	/// CONTROLADOR DE MANEJO DEL LAS CATEGORIAS
+		 Route::resource('categoria', 'CategoriaController');
+		  Route::resource('departamento', 'DepartamentoController');
 
  });
 
- Route::middleware('jwt.refresh')->get('/token/refresh', 'AuthController@refresh');
+ Route::middleware('jwt.refresh')->get('token/refresh', 'AuthController@refresh');

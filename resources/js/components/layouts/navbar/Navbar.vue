@@ -1,6 +1,6 @@
 <template>
     <v-app-bar
-        color="azul"
+        color="grey lighten-2"
         dense
          >
          <!-- NAV PARA USUARIO NO LOGUEADO -->

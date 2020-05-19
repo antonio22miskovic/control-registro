@@ -2,35 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
+use App\Departamento;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class DepartamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $user;
+    protected $cede;
+    function __construct()
+    {
+        $this->user = auth('api')->user();
+    }
     public function index(Request $request)
     {
-        $categoria = Categoria::orderBy('id', 'desc')->paginate(5);
-
+        $departamento = Departamento::orderBy('id', 'desc')->where('cede_id',$this->user->cede_id)->paginate(5);
 
         return [
 
             'paginate' => [
 
-                'total' => $categoria->total(),
-                'current_page' => $categoria->currentPage(),
-                'per_page' => $categoria->perPage(),
-                'last_page' => $categoria->lastPage(),
-                'from' => $categoria->firstItem(),
-                'to' => $categoria->lastPage(),
+                'total' => $departamento->total(),
+                'current_page' => $departamento->currentPage(),
+                'per_page' => $departamento->perPage(),
+                'last_page' => $departamento->lastPage(),
+                'from' => $departamento->firstItem(),
+                'to' => $departamento->lastPage(),
 
             ],
 
-           'categoria' => $categoria
+           'departamento' => $departamento
 
         ];
     }
@@ -46,7 +46,11 @@ class CategoriaController extends Controller
     {
        try {
 
-            Categoria::create($request->all());
+            Departamento::create([
+                'departamento' => $request['departamento'],
+                'descripcion' => $request['descripcion'],
+                'cede_id' => $this->user->cede_id
+            ]);
             return response()->json(true,201);
 
        } catch (Exception $e) {
@@ -69,8 +73,8 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
        try {
-            $categoria = Categoria::find($id);
-            $categoria->update($request->all());
+            $departamento = Departamento::find($id);
+            $departamento->update($request->all());
             return response()->json(true,201);
        } catch (Exception $e) {
            return response()->json($e,500);
@@ -86,8 +90,8 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         try {
-            $categoria = Categoria::find($id);
-            $categoria->delete();
+            $departamento = Departamento::find($id);
+            $departamento->delete();
             return response()->json(true,201);
        } catch (Exception $e) {
            return response()->json($e,500);

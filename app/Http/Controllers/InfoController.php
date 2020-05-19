@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,24 @@ class InfoController extends Controller
     public function getcategorias()
     {
         return Categoria::all();
+    }
+    public function getusers()
+    {
+       $users = User::where('cede_id',$this->cede->id)->get();
+       $data = [];
+       foreach ($users as $user) {
+            $datos = $user->dato;
+          $push = ['username' => $user['username'],
+                    'email' => $user['email'],
+                    'nombre' => $datos->nombre,
+                    'apellido' => $datos->apellido,
+                    'cedula' => $datos->cedula,
+                    'telefono' => $datos->telefono,
+                    'avatar' => $datos->avatar ];
+
+             $data[] = $push;
+       }
+        return $data;
     }
 
 }

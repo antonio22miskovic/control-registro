@@ -1,13 +1,12 @@
 <template>
-    <v-container>
-      <h1 class="text-center"><v-icon  large color="green">mdi-account-plus</v-icon> Añadir Personal </h1>
+    <div>
       <v-card
     	:loading="loading"
-    	class="mx-auto my-12"
+    	class="mx-auto"
     	max-width="100%"
     	raised
   	  >
-   <v-card-title> Ingrese los datos </v-card-title>
+   <v-card-title><v-icon  large color="green">mdi-account-plus</v-icon> Añadir Personal  </v-card-title>
 
     <v-card-text>
     	<v-form ref="form">
@@ -96,7 +95,7 @@
     <v-divider class="mx-4"></v-divider>
   </v-card>
 
-    </v-container>
+    </div>
 </template>
 <script>
  import Swal from 'sweetalert2'

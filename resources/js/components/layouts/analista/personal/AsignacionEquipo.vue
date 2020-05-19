@@ -1,6 +1,13 @@
 <template>
   <div>
-	<v-container>
+ <v-card
+      :loading="loading"
+      class="mx-auto"
+      max-width="100%"
+      raised
+      >
+      <v-container>
+   <v-card-title><v-icon color="blue">mdi-account-star</v-icon> Asignacion de equipos</v-card-title>
 
 
     <template>
@@ -204,10 +211,6 @@
      </v-col>
        </v-row>
        <v-row>
-        <v-alert
-          color="#2A3B4D"
-          icon="mdi-human-greeting"
-          outlined <p  color="red">!No se podran Asignar equipos de otros departamentos, ni asignar equipos ya asignados</p> </v-alert>
         </v-row>
         <v-row>
                 <v-col v-for="(ver,i) in showesquipos" :key="i">
@@ -245,6 +248,7 @@
           <v-divider></v-divider>
           <v-container>
             <p> Añadir un nuevo equipo para: {{ this.$route.params.nombre }}</p>
+
           </v-container>
           <v-divider></v-divider>
 
@@ -309,7 +313,8 @@
   </v-container>
   </div>
 </template>
-	</v-container>
+</v-container>
+</v-card>
   </div>
 </template>
 <script>
@@ -344,7 +349,7 @@ import Swal from 'sweetalert2'
           explorarequipo:'',
           explorardepartamento:'',
           explorarcategoria:'',
-
+          loading:false,
           verequipover:'',
           vercategoria:'',
           verempleados:[],
@@ -360,7 +365,24 @@ import Swal from 'sweetalert2'
              this.empleados = res.data.datos_empleados
              this.dialog = true
 
-          })
+          }).catch((error) => {
+
+                if (error.response) {
+
+                        console.log(error.response.data)
+                        console.log(error.response.status)
+                        console.log(error.response.headers)
+
+                } else if (error.request) {
+
+                        console.log(error.request)
+
+                } else {
+
+                        console.log('Error', error.message)
+
+                }
+            })
       },
       remover(ver){
          Swal.fire({

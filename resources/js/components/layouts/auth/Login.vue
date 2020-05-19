@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid >
+  <div>
+  <v-container fluid  class="my-12">
     <v-row class="text-xs-center" justify="center">
       <v-flex xs4>
         <v-card height="500px">
@@ -37,6 +38,7 @@
       </v-flex>
     </v-row>
   </v-container>
+</div>
 </template>
 <script>
 import { Auth } from '../../../helpers/auth'
