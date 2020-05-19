@@ -14,7 +14,7 @@
               <h4 >SINDONI</h4>
             </v-card-title>
             <v-form >
-            <v-text-field prepend-icon="mdi-account" v-model="username" name="username" label="usuario" required type="text"></v-text-field>
+            <v-text-field prepend-icon="mdi-account" v-model="username" name="username" label="usuario" color="blue" required type="text"></v-text-field>
            <v-text-field
            prepend-icon="mdi-lock"
             :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -22,8 +22,9 @@
             :type="show2 ? 'text' : 'password'"
             name="password"
             label="password"
-            hint="mayor de 4 caracteres"
+            hint="contraseña"
             value="wqfasds"
+            color="blue"
             v-model="password"
             class="input-group--focused"
             @click:append="show2 = !show2"
@@ -49,12 +50,11 @@ import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
 
       username:'',
       password:'',
-      errors:'',
+      error:null,
        show2: false,
         rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 3 || 'Min 3 caracteres',
-          emailMatch: () => ('credecinciales invalidas'),
         },
 
     }),
@@ -76,7 +76,7 @@ import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
                   .catch((error) => {
 
                   this.$store.commit('loginfallido', {error})
-
+                  console.log(this.auth_error)
                   })
 
         },

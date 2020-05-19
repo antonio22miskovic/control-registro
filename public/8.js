@@ -59,6 +59,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -67,7 +68,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       username: '',
       password: '',
-      errors: '',
+      error: null,
       show2: false,
       rules: {
         required: function required(value) {
@@ -75,9 +76,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         min: function min(v) {
           return v.length >= 3 || 'Min 3 caracteres';
-        },
-        emailMatch: function emailMatch() {
-          return 'credecinciales invalidas';
         }
       }
     };
@@ -100,6 +98,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$store.commit('loginfallido', {
           error: error
         });
+
+        console.log(_this.auth_error);
       });
     }
   }),
@@ -181,6 +181,7 @@ var render = function() {
                                   "prepend-icon": "mdi-account",
                                   name: "username",
                                   label: "usuario",
+                                  color: "blue",
                                   required: "",
                                   type: "text"
                                 },
@@ -204,8 +205,9 @@ var render = function() {
                                   type: _vm.show2 ? "text" : "password",
                                   name: "password",
                                   label: "password",
-                                  hint: "mayor de 4 caracteres",
-                                  value: "wqfasds"
+                                  hint: "contraseña",
+                                  value: "wqfasds",
+                                  color: "blue"
                                 },
                                 on: {
                                   "click:append": function($event) {

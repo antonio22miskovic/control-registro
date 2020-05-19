@@ -97761,7 +97761,7 @@ var routes = [//rutas
   path: '/categorias',
   name: 'categorias',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97770,7 +97770,7 @@ var routes = [//rutas
   path: '/departamentos',
   name: 'departamentos',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/analista/Departamentos */ "./resources/js/views/analista/Departamentos.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./views/analista/Departamentos */ "./resources/js/views/analista/Departamentos.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97805,7 +97805,7 @@ var routes = [//rutas
   path: '/asignacion',
   name: 'asignacion',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97813,7 +97813,7 @@ var routes = [//rutas
 }, {
   path: '/equipos/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/analista/Equipos */ "./resources/js/views/analista/Equipos.vue"));
+    return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/analista/Equipos */ "./resources/js/views/analista/Equipos.vue"));
   },
   meta: {
     requiresAuth: true
