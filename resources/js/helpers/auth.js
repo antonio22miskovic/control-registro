@@ -1,10 +1,10 @@
 
 export class Auth {
 
-	constructor(email, password){
+	constructor(username, password){
 
 		this.password = password,
-		this.email = email
+		this.username = username
 
 	}
 
@@ -12,7 +12,7 @@ export class Auth {
 
 		let credenciales = {
 
-			'email': this.email,
+			'username': this.username,
 			'password': this.password
 		}
 
@@ -47,5 +47,6 @@ export class Auth {
 	return JSON.parse(userStr)
 
 	}
+
 
 }

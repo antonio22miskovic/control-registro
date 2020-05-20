@@ -4,16 +4,18 @@ import { Auth } from './helpers/auth'
 
 const user = info.getlocaluser()
 
+
 export default {
 
 state:{
+
 	drawer:false,
 	currentUser : user,
 	isloggeadin: !!user,
+	datosusercurrent:{},
+	datocede:{},
 	loading: false,
 	auth_error: null,
-	productos:[],
-
 
 },
 
@@ -54,6 +56,7 @@ mutations:{
 		localStorage.removeItem('user')
 		state.isloggeadin = false
 		state.currentUser = null
+		state.datosusercurrent =null
 
 	},
 	draweroff(state){
@@ -62,10 +65,12 @@ mutations:{
   	updatedrawer(state, paylod){
   		state.drawer = paylod
   	},
-	// cargarproductos(state,payload){
-	// 	state.productos = payload
-	// }
-
+  	cargardatosuser(state, paylod){
+  		state.datosusercurrent = paylod
+  	},
+  	getcede(state, paylod){
+  		state.datocede = paylod
+  	},
 
 },
 getters:{},
@@ -73,14 +78,16 @@ actions:{
 	login(context){
 		context.commit('login')
 	},
-	// getproductos(context){
-
-	// 	axios.get('/api/home/productos')
-	// 	.then(res =>{
-	// 		context.commit('cargarproductos', res.data)
-	// 	})
-
-	// }
+	datosuser(context,){
+		axios.get('/api/get-datos').then(res =>{
+		context.commit('cargardatosuser', res.data)
+		})
+	},
+	datoscede(context,){
+		axios.get('/api/get-cede').then(res =>{
+		context.commit('getcede', res.data)
+		})
+	}
 
 },
 

@@ -1,8 +1,8 @@
 <template>
-		<v-app-bar
-  			color="deep-purple accent-4"
+    <v-app-bar
+        color="grey lighten-2"
         dense
-    		 >
+         >
          <!-- NAV PARA USUARIO NO LOGUEADO -->
          <template v-if="!currentUser">
               <v-toolbar-title>
@@ -23,51 +23,55 @@
 
                 </v-toolbar-items>
          </template>
-         <!-- NAV PARA USUARIO NO LOGUEADO -->
+         <!-- FIN NAV PARA USUARIO NO LOGUEADO -->
 
          <!-- NAV PARA USUARIO LOGUEADO -->
          <template v-else>
              <v-app-bar-nav-icon @click="draweroff"></v-app-bar-nav-icon>
               <v-toolbar-title>
-                  <router-link to="/home" tag="span" style="cursor:pointer">vuetify</router-link>
+                  <router-link to="/home" tag="span" style="cursor:pointer">{{datocede.cede}}</router-link>
               </v-toolbar-title>
 
                 <v-spacer></v-spacer>
 
                <v-toolbar-items>
 
-                      <v-btn color="primary" text small>
-                        <router-link to=""tag="span">{{ currentUser.name }}</router-link>
-                      </v-btn>
-
-                      <v-btn color="primary" text small>
-                        <span @click="logout"> logout </span>
+                      <v-btn color="primary" text small  @click="logout">
+                        <v-icon>mdi-logout</v-icon>
                       </v-btn>
 
                 </v-toolbar-items>
          </template>
-         <!-- NAV PARA USUARIO LOGUEADO -->
-  		</v-app-bar>
+         <!--FIN NAV PARA USUARIO LOGUEADO -->
+      </v-app-bar>
 </template>
 <script>
-	import {mapState, mapMutations} from 'vuex'
-	export default{
+  import {mapState, mapMutations} from 'vuex'
+  export default{
 
-		name:'Navbar',
+    name:'Navbar',
 
-		data: () => ({
+    data: () => ({
        activeBtn: 1,
-		}),
+    }),
 
-		computed:{
-      ...mapState(['currentUser'])
-		},
+    computed:{
+      ...mapState(['currentUser','datocede'])
+    },
     methods:{
       ...mapMutations(['draweroff']),
       logout(){
         this.$store.commit('logout')
-        this.$router.push('/login')
-      }
+        this.$router.push('/')
+      },
+       getcede()
+        {
+          this.$store.dispatch('datoscede')
+        },
+
     },
-	}
+    mounted(){
+      this.getcede()
+    },
+  }
 </script>
