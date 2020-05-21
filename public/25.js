@@ -1,9 +1,9 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12,6 +12,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -419,7 +426,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      var status = 'activo';
+      var status = 'desincorporado';
       var url = '/api/equipos/listado/' + this.depa + '/' + status + '?page=' + page;
       axios.get(url).then(function (res) {
         _this.desserts = res.data.equipo;
@@ -531,10 +538,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=template&id=571754da&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=template&id=571754da& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=template&id=45f0f0e1&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=template&id=45f0f0e1& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -549,352 +556,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "v-card",
-        {
-          staticClass: "mx-auto",
-          attrs: { loading: _vm.loading, "max-width": "100%", raised: "" }
-        },
-        [
-          _c(
-            "v-container",
-            [
-              _c(
-                "v-card-title",
-                [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
-                    _vm._v("mdi-laptop")
-                  ]),
-                  _vm._v(" Equipos Activos ")
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-form",
-                { ref: "form" },
-                [
-                  _c(
-                    "v-row",
-                    { attrs: { align: "center" } },
-                    [
-                      _c(
-                        "v-col",
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.departamentos,
-                              "item-text": "departamento",
-                              "item-key": "departamentos.id",
-                              rules: _vm.rules,
-                              "prepend-icon": "mdi-domain",
-                              "item-value": "id",
-                              label: "seleccione un departamento"
-                            },
-                            model: {
-                              value: _vm.depa,
-                              callback: function($$v) {
-                                _vm.depa = $$v
-                              },
-                              expression: "depa"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-container",
-                        { staticClass: "text-center" },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { color: "info" },
-                              on: { click: _vm.buscar }
-                            },
-                            [_vm._v("\n      \t\t\t\tbuscar\n      \t\t\t")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("v-divider"),
-          _vm._v(" "),
-          _vm.desserts.length > 0
-            ? _c("v-simple-table", {
-                attrs: { height: "300px", "fixed-header": "" },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "default",
-                      fn: function() {
-                        return [
-                          _c("thead", [
-                            _c("tr", [
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("equipo")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("modelo")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("categoria")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("codigo")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("editar")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("detallar")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("pdf")
-                              ]),
-                              _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
-                                _vm._v("eliminar")
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            _vm._l(_vm.desserts, function(item) {
-                              return _c("tr", { key: item.id }, [
-                                _c("td", [_vm._v(_vm._s(item.equipo))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.modelo))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.categoria))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.codigo))]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: { icon: "", color: "indigo" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.mostraredit(item)
-                                          }
-                                        }
-                                      },
-                                      [_c("v-icon", [_vm._v("mdi-pencil")])],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: {
-                                          icon: "",
-                                          color: "teal darken-2"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.ver(item.id)
-                                          }
-                                        }
-                                      },
-                                      [_c("v-icon", [_vm._v("mdi-eye")])],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      { attrs: { icon: "", color: "dark" } },
-                                      [_c("v-icon", [_vm._v("mdi-shredder")])],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: { icon: "", color: "pink" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.eliminar(item.id)
-                                          }
-                                        }
-                                      },
-                                      [_c("v-icon", [_vm._v("mdi-delete")])],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ])
-                            }),
-                            0
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  ],
-                  null,
-                  false,
-                  3639599604
-                )
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.desserts.length > 0
-            ? [
-                _c(
-                  "div",
-                  { staticClass: "text-center" },
-                  [
-                    _c(
-                      "v-container",
-                      [
-                        _c(
-                          "v-row",
-                          { attrs: { justify: "center" } },
-                          [
-                            _c(
-                              "v-col",
-                              { attrs: { cols: "8" } },
-                              [
-                                _c(
-                                  "v-container",
-                                  { staticClass: "max-width" },
-                                  [
-                                    _c("v-pagination", {
-                                      staticClass: "my-4",
-                                      attrs: { length: _vm.paginate.last_page },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.Chagepage(
-                                            _vm.paginate.current_page
-                                          )
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.paginate.current_page,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.paginate,
-                                            "current_page",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "paginate.current_page"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.ocultar === true
-            ? [
-                _c(
-                  "v-container",
-                  [
-                    _c(
-                      "v-alert",
-                      {
-                        attrs: {
-                          outlined: "",
-                          type: "warning",
-                          prominent: "",
-                          border: "left"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n     \t\t\t\t\tNo hay Equipos registrados en este departamento!\n   \t\t\t "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.bienvenida === true
-            ? [
-                _c(
-                  "v-container",
-                  [
-                    _c(
-                      "v-alert",
-                      {
-                        attrs: {
-                          color: "#2A3B4D",
-                          icon: "mdi-human-greeting",
-                          outlined: ""
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n      \t\t\tBienvenido al modulo de Administracion de Equipos activos, Debe seleccionar un departamento Para Facilitar La busqueda y control de los Equipos.!\n            "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            : _vm._e()
-        ],
-        2
-      ),
-      _vm._v(" "),
       [
         _c(
           "div",
@@ -1535,7 +1196,353 @@ var render = function() {
           ],
           1
         )
-      ]
+      ],
+      _vm._v(" "),
+      _c(
+        "v-card",
+        {
+          staticClass: "mx-auto",
+          attrs: { loading: _vm.loading, "max-width": "100%", raised: "" }
+        },
+        [
+          _c(
+            "v-container",
+            [
+              _c(
+                "v-card-title",
+                [
+                  _c("v-icon", { attrs: { color: "blue" } }, [
+                    _vm._v("mdi-laptop-off")
+                  ]),
+                  _vm._v(" Equipos Desincorporados ")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-form",
+                { ref: "form" },
+                [
+                  _c(
+                    "v-row",
+                    { attrs: { align: "center" } },
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.departamentos,
+                              "item-text": "departamento",
+                              "item-key": "departamentos.id",
+                              rules: _vm.rules,
+                              "prepend-icon": "mdi-domain",
+                              "item-value": "id",
+                              label: "seleccione un departamento"
+                            },
+                            model: {
+                              value: _vm.depa,
+                              callback: function($$v) {
+                                _vm.depa = $$v
+                              },
+                              expression: "depa"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-container",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "info" },
+                              on: { click: _vm.buscar }
+                            },
+                            [_vm._v("\n      \t\t\t\tbuscar\n      \t\t\t")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _vm.desserts.length > 0
+            ? _c("v-simple-table", {
+                attrs: { height: "300px", "fixed-header": "" },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "default",
+                      fn: function() {
+                        return [
+                          _c("thead", [
+                            _c("tr", [
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("equipo")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("modelo")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("categoria")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("codigo")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("editar")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("detallar")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("pdf")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("eliminar")
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.desserts, function(item) {
+                              return _c("tr", { key: item.id }, [
+                                _c("td", [_vm._v(_vm._s(item.equipo))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.modelo))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.categoria))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.codigo))]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { icon: "", color: "indigo" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.mostraredit(item)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("mdi-pencil")])],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          icon: "",
+                                          color: "teal darken-2"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.ver(item.id)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("mdi-eye")])],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      { attrs: { icon: "", color: "dark" } },
+                                      [_c("v-icon", [_vm._v("mdi-shredder")])],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { icon: "", color: "pink" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.eliminar(item.id)
+                                          }
+                                        }
+                                      },
+                                      [_c("v-icon", [_vm._v("mdi-delete")])],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ])
+                            }),
+                            0
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ],
+                  null,
+                  false,
+                  3639599604
+                )
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.desserts.length > 0
+            ? [
+                _c(
+                  "div",
+                  { staticClass: "text-center" },
+                  [
+                    _c(
+                      "v-container",
+                      [
+                        _c(
+                          "v-row",
+                          { attrs: { justify: "center" } },
+                          [
+                            _c(
+                              "v-col",
+                              { attrs: { cols: "8" } },
+                              [
+                                _c(
+                                  "v-container",
+                                  { staticClass: "max-width" },
+                                  [
+                                    _c("v-pagination", {
+                                      staticClass: "my-4",
+                                      attrs: { length: _vm.paginate.last_page },
+                                      on: {
+                                        input: function($event) {
+                                          return _vm.Chagepage(
+                                            _vm.paginate.current_page
+                                          )
+                                        }
+                                      },
+                                      model: {
+                                        value: _vm.paginate.current_page,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.paginate,
+                                            "current_page",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "paginate.current_page"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.ocultar === true
+            ? [
+                _c(
+                  "v-container",
+                  [
+                    _c(
+                      "v-alert",
+                      {
+                        attrs: {
+                          outlined: "",
+                          type: "warning",
+                          prominent: "",
+                          border: "left"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n     \t\t\t\t\tNo hay Equipos registrados en este departamento!\n   \t\t\t "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.bienvenida === true
+            ? [
+                _c(
+                  "v-container",
+                  [
+                    _c(
+                      "v-alert",
+                      {
+                        attrs: {
+                          color: "#2A3B4D",
+                          icon: "mdi-human-greeting",
+                          outlined: ""
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n      \t\t\tBienvenido al modulo de Administracion de Equipos Desincorporados, Debe seleccionar un departamento Para Facilitar La busqueda y control de los Equipos.!\n            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]
+            : _vm._e()
+        ],
+        2
+      )
     ],
     2
   )
@@ -1547,17 +1554,55 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/analista/equipos/Incorporados.vue":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/layouts/analista/equipos/Incorporados.vue ***!
-  \***************************************************************************/
+/***/ "./node_modules/vuetify/lib/components/VImg/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VImg/index.js ***!
+  \***********************************************************/
+/*! exports provided: VImg, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VImg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VImg */ "./node_modules/vuetify/lib/components/VImg/VImg.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VImg", function() { return _VImg__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VImg__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VSelect/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VSelect/index.js ***!
+  \**************************************************************/
+/*! exports provided: VSelect, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VSelect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VSelect */ "./node_modules/vuetify/lib/components/VSelect/VSelect.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSelect", function() { return _VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/layouts/analista/equipos/Desincorporados.vue ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Incorporados_vue_vue_type_template_id_571754da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Incorporados.vue?vue&type=template&id=571754da& */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=template&id=571754da&");
-/* harmony import */ var _Incorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Incorporados.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Desincorporados_vue_vue_type_template_id_45f0f0e1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Desincorporados.vue?vue&type=template&id=45f0f0e1& */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=template&id=45f0f0e1&");
+/* harmony import */ var _Desincorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Desincorporados.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
@@ -1584,9 +1629,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Incorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Incorporados_vue_vue_type_template_id_571754da___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Incorporados_vue_vue_type_template_id_571754da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Desincorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Desincorporados_vue_vue_type_template_id_45f0f0e1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Desincorporados_vue_vue_type_template_id_45f0f0e1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1628,38 +1673,38 @@ _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/layouts/analista/equipos/Incorporados.vue"
+component.options.__file = "resources/js/components/layouts/analista/equipos/Desincorporados.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************!*\
-  !*** ./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************/
+/***/ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Incorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Incorporados.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Incorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Desincorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Desincorporados.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Desincorporados_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=template&id=571754da&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=template&id=571754da& ***!
-  \**********************************************************************************************************/
+/***/ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=template&id=45f0f0e1&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=template&id=45f0f0e1& ***!
+  \*************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Incorporados_vue_vue_type_template_id_571754da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Incorporados.vue?vue&type=template&id=571754da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Incorporados.vue?vue&type=template&id=571754da&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Incorporados_vue_vue_type_template_id_571754da___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Desincorporados_vue_vue_type_template_id_45f0f0e1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Desincorporados.vue?vue&type=template&id=45f0f0e1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=template&id=45f0f0e1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Desincorporados_vue_vue_type_template_id_45f0f0e1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Incorporados_vue_vue_type_template_id_571754da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Desincorporados_vue_vue_type_template_id_45f0f0e1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

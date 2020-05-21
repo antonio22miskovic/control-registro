@@ -7,7 +7,7 @@
     	max-width="100%"
     	raised
   	  >
-   <v-card-title><v-icon color="blue">mdi-plus</v-icon> Añadir nuevo equipo </v-card-title>
+   <v-card-title><v-icon color="nav">mdi-plus</v-icon> Añadir nuevo equipo </v-card-title>
 
     <v-card-text>
     	<v-form ref="form">

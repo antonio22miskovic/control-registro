@@ -1,9 +1,9 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[32],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Asignacion.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/analista/Asignacion.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Departamentos.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/analista/Departamentos.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -224,13 +224,13 @@ __webpack_require__.r(__webpack_exports__);
       ocultar: false,
       dialog: false,
       dialog2: false,
-      fillasignacion: {
+      filldepartamento: {
         'id': '',
-        'asignacion': '',
+        'departamento': '',
         'descripcion': ''
       },
       data: {
-        'asignacion': '',
+        'departamento': '',
         'descripcion': ''
       },
       rules: [function (value) {
@@ -255,9 +255,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      var url = '/api/asignacion?page=' + page;
+      var url = '/api/departamento?page=' + page;
       axios.get(url).then(function (res) {
-        _this.desserts = res.data.asignacion.data;
+        _this.desserts = res.data.departamento.data;
         _this.paginate = res.data.paginate;
         _this.loading = false;
 
@@ -279,15 +279,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editar: function editar(item) {
-      this.fillasignacion.id = item.id;
-      this.fillasignacion.asignacion = item.asignacion;
-      this.fillasignacion.descripcion = item.descripcion;
+      this.filldepartamento.id = item.id;
+      this.filldepartamento.departamento = item.departamento;
+      this.filldepartamento.descripcion = item.descripcion;
       this.dialog = true;
     },
     actualizar: function actualizar() {
       var _this2 = this;
 
-      axios.put('/api/asignacion/' + this.fillasignacion.id, this.fillasignacion).then(function (response) {
+      axios.put('/api/departamento/' + this.filldepartamento.id, this.filldepartamento).then(function (response) {
         _this2.listado(_this2.paginate.current_page);
 
         _this2.dialog = false;
@@ -305,7 +305,7 @@ __webpack_require__.r(__webpack_exports__);
 
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
         title: 'ADVERTENCIA!!',
-        text: "si eliminas esta asignacion se perderan todos los datos vinculados a la misma !",
+        text: "si eliminas esta categoria los equipos vinculados quedaran sin categoria!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -313,7 +313,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Eliminar!'
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]('/api/asignacion/' + item).then(function (res) {
+          axios["delete"]('/api/departamento/' + item).then(function (res) {
             _this3.listado(_this3.paginate.current_page);
           });
           sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire('eliminado', 'se ah eliminado con exito.', 'success');
@@ -324,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.dialog2 = true;
-      axios.post('/api/asignacion', this.data).then(function (res) {
+      axios.post('/api/departamento', this.data).then(function (res) {
         if (res.data === true) {
           sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
             position: 'center',
@@ -358,10 +358,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Asignacion.vue?vue&type=template&id=731836ce&":
-/*!************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/analista/Asignacion.vue?vue&type=template&id=731836ce& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Departamentos.vue?vue&type=template&id=fbbbcda4&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/analista/Departamentos.vue?vue&type=template&id=fbbbcda4& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -422,21 +422,21 @@ var render = function() {
                               [
                                 _c("v-text-field", {
                                   attrs: {
-                                    label: "Asignacion",
-                                    "prepend-icon": "mdi-shopping",
+                                    label: "Departamento",
+                                    "prepend-icon": "mdi-domain",
                                     rules: _vm.rules,
-                                    hint: "Nombre de la asignacion"
+                                    hint: "Nombre del departamento"
                                   },
                                   model: {
-                                    value: _vm.fillasignacion.asignacion,
+                                    value: _vm.filldepartamento.departamento,
                                     callback: function($$v) {
                                       _vm.$set(
-                                        _vm.fillasignacion,
-                                        "asignacion",
+                                        _vm.filldepartamento,
+                                        "departamento",
                                         $$v
                                       )
                                     },
-                                    expression: "fillasignacion.asignacion"
+                                    expression: "filldepartamento.departamento"
                                   }
                                 })
                               ],
@@ -459,15 +459,15 @@ var render = function() {
                                     rules: _vm.rules
                                   },
                                   model: {
-                                    value: _vm.fillasignacion.descripcion,
+                                    value: _vm.filldepartamento.descripcion,
                                     callback: function($$v) {
                                       _vm.$set(
-                                        _vm.fillasignacion,
+                                        _vm.filldepartamento,
                                         "descripcion",
                                         $$v
                                       )
                                     },
-                                    expression: "fillasignacion.descripcion"
+                                    expression: "filldepartamento.descripcion"
                                   }
                                 })
                               ],
@@ -552,7 +552,7 @@ var render = function() {
                   },
                   [
                     _c("v-card-title", [
-                      _vm._v(" Agreaga una nueva asignacion ")
+                      _vm._v(" Agreaga un nuevo departamento ")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -571,17 +571,17 @@ var render = function() {
                               [
                                 _c("v-text-field", {
                                   attrs: {
-                                    label: "Asignacion",
-                                    "prepend-icon": "mdi-shopping",
+                                    label: "Departamento",
+                                    "prepend-icon": "mdi-domain",
                                     rules: _vm.rules,
-                                    hint: "Nombre de la asignacion"
+                                    hint: "Nombre del departamento"
                                   },
                                   model: {
-                                    value: _vm.data.asignacion,
+                                    value: _vm.data.departamento,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.data, "asignacion", $$v)
+                                      _vm.$set(_vm.data, "departamento", $$v)
                                     },
-                                    expression: "data.asignacion"
+                                    expression: "data.departamento"
                                   }
                                 })
                               ],
@@ -676,10 +676,10 @@ var render = function() {
               _c(
                 "v-card-title",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
-                    _vm._v("mdi-shopping")
+                  _c("v-icon", { attrs: { color: "blue" } }, [
+                    _vm._v("mdi-domain")
                   ]),
-                  _vm._v(" Asignaciones ")
+                  _vm._v(" departamentos ")
                 ],
                 1
               ),
@@ -719,7 +719,7 @@ var render = function() {
                               _c("thead", [
                                 _c("tr", [
                                   _c("th", { staticClass: "text-left" }, [
-                                    _vm._v("asignacion")
+                                    _vm._v("departamento")
                                   ]),
                                   _vm._v(" "),
                                   _c("th", { staticClass: "text-left" }, [
@@ -740,7 +740,9 @@ var render = function() {
                                 "tbody",
                                 _vm._l(_vm.desserts, function(item) {
                                   return _c("tr", { key: item.id }, [
-                                    _c("td", [_vm._v(_vm._s(item.asignacion))]),
+                                    _c("td", [
+                                      _vm._v(_vm._s(item.departamento))
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(_vm._s(item.descripcion))
@@ -803,7 +805,7 @@ var render = function() {
                       ],
                       null,
                       false,
-                      3100832744
+                      2725493608
                     )
                   })
                 : _vm._e(),
@@ -888,7 +890,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n     \t\t\t\t\tNo hay Asignaciones Registradas!\n   \t\t\t "
+                              "\n     \t\t\t\t\tNo hay Departamentos Registrados!\n   \t\t\t "
                             )
                           ]
                         )
@@ -914,17 +916,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/analista/Asignacion.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/views/analista/Asignacion.vue ***!
-  \****************************************************/
+/***/ "./resources/js/views/analista/Departamentos.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/views/analista/Departamentos.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Asignacion_vue_vue_type_template_id_731836ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Asignacion.vue?vue&type=template&id=731836ce& */ "./resources/js/views/analista/Asignacion.vue?vue&type=template&id=731836ce&");
-/* harmony import */ var _Asignacion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Asignacion.vue?vue&type=script&lang=js& */ "./resources/js/views/analista/Asignacion.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Departamentos_vue_vue_type_template_id_fbbbcda4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Departamentos.vue?vue&type=template&id=fbbbcda4& */ "./resources/js/views/analista/Departamentos.vue?vue&type=template&id=fbbbcda4&");
+/* harmony import */ var _Departamentos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Departamentos.vue?vue&type=script&lang=js& */ "./resources/js/views/analista/Departamentos.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
@@ -948,9 +950,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Asignacion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Asignacion_vue_vue_type_template_id_731836ce___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Asignacion_vue_vue_type_template_id_731836ce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Departamentos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Departamentos_vue_vue_type_template_id_fbbbcda4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Departamentos_vue_vue_type_template_id_fbbbcda4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -983,38 +985,38 @@ _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/analista/Asignacion.vue"
+component.options.__file = "resources/js/views/analista/Departamentos.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/analista/Asignacion.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/views/analista/Asignacion.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/views/analista/Departamentos.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/views/analista/Departamentos.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Asignacion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Asignacion.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Asignacion.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Asignacion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Departamentos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Departamentos.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Departamentos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Departamentos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/analista/Asignacion.vue?vue&type=template&id=731836ce&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/views/analista/Asignacion.vue?vue&type=template&id=731836ce& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/views/analista/Departamentos.vue?vue&type=template&id=fbbbcda4&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/views/analista/Departamentos.vue?vue&type=template&id=fbbbcda4& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Asignacion_vue_vue_type_template_id_731836ce___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Asignacion.vue?vue&type=template&id=731836ce& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Asignacion.vue?vue&type=template&id=731836ce&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Asignacion_vue_vue_type_template_id_731836ce___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Departamentos_vue_vue_type_template_id_fbbbcda4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js??ref--11-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Departamentos.vue?vue&type=template&id=fbbbcda4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/analista/Departamentos.vue?vue&type=template&id=fbbbcda4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Departamentos_vue_vue_type_template_id_fbbbcda4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Asignacion_vue_vue_type_template_id_731836ce___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Departamentos_vue_vue_type_template_id_fbbbcda4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

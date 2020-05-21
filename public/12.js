@@ -676,7 +676,7 @@ var render = function() {
               _c(
                 "v-card-title",
                 [
-                  _c("v-icon", { attrs: { color: "blue" } }, [
+                  _c("v-icon", { attrs: { color: "nav" } }, [
                     _vm._v("mdi-domain")
                   ]),
                   _vm._v(" departamentos ")

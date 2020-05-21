@@ -12,7 +12,7 @@ import StoreData from './store'
 import vuetify from './helpers/vuetify'
 
 //importacion de configuracion
-import {initialize} from './helpers/general'
+import {initialize } from './helpers/general'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
@@ -34,6 +34,7 @@ const store = new Vuex.Store(StoreData)
 
 //llamamos a la funcion de configuracion
 initialize(store, router)
+// refrescar(router)
 
 const app = new Vue({
     el: '#app',

@@ -13,24 +13,24 @@
             <v-card-title primary-title >
               <h4 >SINDONI</h4>
             </v-card-title>
-            <v-form >
-            <v-text-field prepend-icon="mdi-account" v-model="username" name="username" label="usuario" color="blue" required type="text"></v-text-field>
+            <v-form ref="form" method="post"  v-model="valid">
+            <v-text-field prepend-icon="mdi-account"  :rules="[rules.required]" v-model="username" name="username" label="usuario"  required type="text"></v-text-field>
            <v-text-field
            prepend-icon="mdi-lock"
             :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="[rules.required, rules.min]"
             :type="show2 ? 'text' : 'password'"
             name="password"
+              required
             label="password"
             hint="contraseña"
             value="wqfasds"
-            color="blue"
             v-model="password"
             class="input-group--focused"
             @click:append="show2 = !show2"
           ></v-text-field>
             <v-card-actions>
-              <v-btn primary large block @click="autenticacion">iniciar sesion</v-btn>
+              <v-btn primary large block :disabled="!valid" @click="autenticacion">iniciar sesion</v-btn>
             </v-card-actions>
             </v-form>
           </v-card>
@@ -50,10 +50,11 @@ import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
 
       username:'',
       password:'',
+      valid:false,
       error:null,
        show2: false,
         rules: {
-          required: value => !!value || 'Required.',
+          required: value => !!value || 'Requerido.',
           min: v => v.length >= 3 || 'Min 3 caracteres',
         },
 

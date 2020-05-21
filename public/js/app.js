@@ -40253,7 +40253,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app-bar",
-    { attrs: { color: "grey lighten-2", dense: "" } },
+    { attrs: { color: "nav", dense: "" } },
     [
       !_vm.currentUser
         ? [
@@ -40331,10 +40331,7 @@ var render = function() {
               [
                 _c(
                   "v-btn",
-                  {
-                    attrs: { color: "primary", text: "", small: "" },
-                    on: { click: _vm.logout }
-                  },
+                  { attrs: { text: "", small: "" }, on: { click: _vm.logout } },
                   [_c("v-icon", [_vm._v("mdi-logout")])],
                   1
                 )
@@ -40372,7 +40369,7 @@ var render = function() {
     "v-navigation-drawer",
     {
       attrs: {
-        color: "grey lighten-2",
+        color: "nav",
         "expand-on-hover": _vm.expandOnHover,
         "mini-variant": _vm.miniVariant,
         letf: _vm.letf,
@@ -97279,7 +97276,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store(_store__WEBPACK_IMPORTED_MODULE_5__["default"]); //llamamos a la funcion de configuracion
 
-Object(_helpers_general__WEBPACK_IMPORTED_MODULE_7__["initialize"])(store, router);
+Object(_helpers_general__WEBPACK_IMPORTED_MODULE_7__["initialize"])(store, router); // refrescar(router)
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: router,
@@ -97672,7 +97670,13 @@ function initialize(store, router) {
   }
 
   axios.defaults.headers.common['Authorization'] = "Bearer ".concat(store.state.currentUser.token);
-}
+} // export function refrescar(router){
+// 	router.beforeEach((to, from, next) => {
+// 	if (!to.path == '/' && !currentUser) {
+// 				next('/')
+// 	}
+// 	})
+// }
 
 /***/ }),
 
@@ -97701,7 +97705,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify_lib__WEBPACK_IMPORTED_MOD
     },
     themes: {
       light: {
-        primary: '#ee44aa',
+        nav: '#5C6BC0',
+        claroazul: '#9FA8DA',
+        primary: '#5C6BC0',
         azul: '#90CAF9',
         secondary: '#424242',
         accent: '#82B1FF',
@@ -97737,13 +97743,13 @@ var routes = [//rutas
 {
   path: '/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/layouts/auth/Login */ "./resources/js/components/layouts/auth/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/layouts/auth/Login */ "./resources/js/components/layouts/auth/Login.vue"));
   }
 }, {
   path: '/home',
   name: 'home',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Home */ "./resources/js/views/Home.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Home */ "./resources/js/views/Home.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97761,7 +97767,7 @@ var routes = [//rutas
   path: '/categorias',
   name: 'categorias',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97786,26 +97792,26 @@ var routes = [//rutas
   children: [{
     path: '/',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/HomePersonal */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/HomePersonal */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue"));
     }
   }, {
     path: 'new',
     name: 'newpersonal',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
     }
   }, {
     path: ':id/:nombre/:departamento',
     name: 'asignarequipos',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
     }
   }]
 }, {
   path: '/asignacion',
   name: 'asignacion',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97821,19 +97827,19 @@ var routes = [//rutas
   children: [{
     path: '/',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/HomeEquipos */ "./resources/js/components/layouts/analista/equipos/HomeEquipos.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/HomeEquipos */ "./resources/js/components/layouts/analista/equipos/HomeEquipos.vue"));
     }
   }, {
     path: 'desincorporados',
     name: 'desincorporados',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Desincorporados */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Desincorporados */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue"));
     }
   }, {
     path: 'incorporados',
     name: 'incorporados',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
     }
   }]
 }, {

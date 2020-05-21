@@ -115,7 +115,7 @@
     	raised
   	  	>
       		<v-container>
-      			<v-card-title><v-icon color="blue">mdi-folder-multiple</v-icon> Categorias de equipos </v-card-title>
+      			<v-card-title><v-icon color="nav">mdi-folder-multiple</v-icon> Categorias de equipos </v-card-title>
       			 <v-btn
              		 absolute
              		 small

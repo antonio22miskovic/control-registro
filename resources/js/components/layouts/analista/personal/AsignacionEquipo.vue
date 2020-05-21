@@ -7,7 +7,7 @@
       raised
       >
       <v-container>
-   <v-card-title><v-icon color="blue">mdi-account-star</v-icon> Asignacion de equipos</v-card-title>
+   <v-card-title><v-icon color="nav">mdi-account-star</v-icon> Asignacion de equipos</v-card-title>
 
 
     <template>

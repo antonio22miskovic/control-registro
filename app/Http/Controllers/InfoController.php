@@ -27,6 +27,18 @@ class InfoController extends Controller
 	{
 		return $this->datos;
 	}
+    public function getCurrentUser()
+    {
+      $array = [ 'username' => $this->user->username,
+                  'email' => $this->user->email,
+                  'nombre' => $this->datos->nombre,
+                  'apellido' => $this->datos->apellido,
+                  'cedula' => $this->datos->cedula,
+                  'telefono' => $this->datos->telefono,
+                  'avatar' => $this->datos->avatar, ];
+
+        return response()->json($array,200);
+    }
     public function getcede()
     {
         return $this->cede;

@@ -223,7 +223,7 @@
     	raised
   	  >
       <v-container>
-      	 <v-card-title><v-icon color="blue">mdi-laptop-off</v-icon> Equipos Desincorporados </v-card-title>
+      	 <v-card-title><v-icon color="nav">mdi-laptop-off</v-icon> Equipos Desincorporados </v-card-title>
       	<v-form ref="form">
     <v-row align="center">
 

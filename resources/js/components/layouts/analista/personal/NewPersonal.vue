@@ -6,7 +6,7 @@
     	max-width="100%"
     	raised
   	  >
-   <v-card-title><v-icon color="blue">mdi-account-plus</v-icon> Añadir Personal  </v-card-title>
+   <v-card-title><v-icon color="nav">mdi-account-plus</v-icon> Añadir Personal  </v-card-title>
 
     <v-card-text>
     	<v-form ref="form">

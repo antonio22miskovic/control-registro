@@ -115,7 +115,7 @@
     	raised
   	  	>
       		<v-container>
-      			<v-card-title><v-icon color="blue">mdi-shopping</v-icon> Asignaciones </v-card-title>
+      			<v-card-title><v-icon color="nav">mdi-shopping</v-icon> Asignaciones </v-card-title>
       			 <v-btn
              		 absolute
              		 small

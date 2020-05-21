@@ -8,7 +8,7 @@
     	raised
   	  >
       <v-container >
-      	 <v-card-title><v-icon color="blue">mdi-laptop</v-icon> Equipos Activos </v-card-title>
+      	 <v-card-title><v-icon color="nav">mdi-laptop</v-icon> Equipos Activos </v-card-title>
       	<v-form ref="form">
     <v-row align="center">
 

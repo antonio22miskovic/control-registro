@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer
        v-model="drawerOn"
-       color="grey lighten-2"
+       color="nav"
         :expand-on-hover="expandOnHover"
         :mini-variant="miniVariant"
         :letf="letf"

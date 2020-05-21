@@ -115,7 +115,7 @@
     	raised
   	  	>
       		<v-container>
-      			<v-card-title><v-icon color="blue">mdi-domain</v-icon> departamentos </v-card-title>
+      			<v-card-title><v-icon color="nav">mdi-domain</v-icon> departamentos </v-card-title>
       			 <v-btn
              		 absolute
              		 small
