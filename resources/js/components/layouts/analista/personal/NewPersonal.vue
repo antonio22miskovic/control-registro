@@ -63,6 +63,7 @@
           		 v-model="data.asignacion"
           		item-text="asignacion"
           		item-key="asignacion.id"
+              :rules="rules"
           		prepend-icon="mdi-shopping"
           		item-value="id"
           		label="selecione un cargo"
@@ -78,6 +79,7 @@
           			item-key="departamento.id"
           			prepend-icon="mdi-domain"
           			item-value="id"
+                :rules="rules"
           			label="seleccione un departamento"
 
         		></v-select>
@@ -159,23 +161,24 @@
 
 			},
 			guardar(){
+             if (this.$refs.form.validate()) {
 
-        		this.loading = true
-        		axios.post('/api/personal/store',this.data).then(res =>{
-					if (res.data === true) {
-						this.loading = false
-						Swal.fire({
+        	         this.loading = true
+        		        axios.post('/api/personal/store',this.data).then(res =>{
+					                 if (res.data === true) {
+						                    this.loading = false
+						                    Swal.fire({
 
-                				position: 'center',
-                				icon: 'success',
-                				title: 'solicitud registrada con exito',
-                				showConfirmButton: false,
+                				          position: 'center',
+                				          icon: 'success',
+                				          title: 'solicitud registrada con exito',
+                				          showConfirmButton: false,
 
-                		})
-                		 this.$refs.form.reset()
-					}
+                		            })
+                		            this.$refs.form.reset()
+					                 }
 
-				}).catch((error) => {
+				            }).catch((error) => {
 
                         if (error.response) {
 
@@ -193,6 +196,7 @@
 
                           }
                     })
+            }
 
      		 },
 

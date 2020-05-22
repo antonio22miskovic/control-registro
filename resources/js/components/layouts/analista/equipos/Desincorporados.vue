@@ -107,7 +107,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog2" persistent max-width="600px">
       <v-card
-      :loading="loading"
+      :loading="loading2"
       class="mx-auto"
       max-width="100%"
       raised
@@ -115,7 +115,7 @@
    <v-card-title> Actualizar los datos </v-card-title>
 
     <v-card-text>
-     <v-form ref="form">
+     <v-form ref="actualizar">
       <v-row
         align="center"
         class="mx-0"
@@ -370,6 +370,7 @@ import {mapState, mapMutations} from 'vuex'
 
         desserts: [],
         loading:false,
+        loading2:false,
         bienvenida:true,
         ocultar:false,
         categoria:'',
@@ -433,6 +434,7 @@ import {mapState, mapMutations} from 'vuex'
              			this.ocultar = true
              		}
           }).catch((error) => {
+              this.loading = false
                 if (error.response) {
 
                         console.log(error.response.data);
@@ -469,9 +471,9 @@ import {mapState, mapMutations} from 'vuex'
     },
 
     buscar(){
-
-    	this.getequipos()
-
+         if (this.$refs.form.validate()) {
+    	     this.getequipos()
+        }
     },
 
     eliminar(item){
@@ -528,6 +530,7 @@ import {mapState, mapMutations} from 'vuex'
           })
       },
       actualizar(){
+          if (this.$refs.actualizar.validate()) {
       	axios.put('/api/equipos/update/'+ this.fillequipo.id, this.fillequipo).then(res =>{
       		if (res.data === true) {
       			this.dialog2 = false
@@ -539,7 +542,24 @@ import {mapState, mapMutations} from 'vuex'
                 		})
       			this.getequipos()
       		}
-      	})
+      	}).catch((error) => {
+                if (error.response) {
+
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+
+                } else if (error.request) {
+
+                        console.log(error.request);
+
+                } else {
+
+                        console.log('Error', error.message);
+
+                }
+            })
+      }
       },
       mostraredit(item){
       			this.fillequipo.id =  item.id,

@@ -97608,7 +97608,7 @@ var Auth = /*#__PURE__*/function () {
         axios.post('/api/auth/login', credenciales).then(function (response) {
           res(response.data);
         })["catch"](function (error) {
-          rej(" verifique los datos por favor ");
+          rej(" credenciales invalidas por favor verifique ");
         });
       });
     }
@@ -97743,13 +97743,13 @@ var routes = [//rutas
 {
   path: '/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/layouts/auth/Login */ "./resources/js/components/layouts/auth/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/layouts/auth/Login */ "./resources/js/components/layouts/auth/Login.vue"));
   }
 }, {
   path: '/home',
   name: 'home',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Home */ "./resources/js/views/Home.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Home */ "./resources/js/views/Home.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97767,7 +97767,7 @@ var routes = [//rutas
   path: '/categorias',
   name: 'categorias',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/analista/Categorias */ "./resources/js/views/analista/Categorias.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97792,26 +97792,26 @@ var routes = [//rutas
   children: [{
     path: '/',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/HomePersonal */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/HomePersonal */ "./resources/js/components/layouts/analista/personal/HomePersonal.vue"));
     }
   }, {
     path: 'new',
     name: 'newpersonal',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/NewPersonal */ "./resources/js/components/layouts/analista/personal/NewPersonal.vue"));
     }
   }, {
     path: ':id/:nombre/:departamento',
     name: 'asignarequipos',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/personal/AsignacionEquipo */ "./resources/js/components/layouts/analista/personal/AsignacionEquipo.vue"));
     }
   }]
 }, {
   path: '/asignacion',
   name: 'asignacion',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/analista/Asignacion */ "./resources/js/views/analista/Asignacion.vue"));
   },
   meta: {
     requiresAuth: true
@@ -97827,19 +97827,19 @@ var routes = [//rutas
   children: [{
     path: '/',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/HomeEquipos */ "./resources/js/components/layouts/analista/equipos/HomeEquipos.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/HomeEquipos */ "./resources/js/components/layouts/analista/equipos/HomeEquipos.vue"));
     }
   }, {
     path: 'desincorporados',
     name: 'desincorporados',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Desincorporados */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Desincorporados */ "./resources/js/components/layouts/analista/equipos/Desincorporados.vue"));
     }
   }, {
     path: 'incorporados',
     name: 'incorporados',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
     }
   }]
 }, {

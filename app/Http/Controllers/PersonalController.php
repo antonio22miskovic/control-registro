@@ -81,6 +81,7 @@ class PersonalController extends Controller
 
     	}
 
+
       $dato = Dato::create([
 
         	'nombre' => $request['nombre'],

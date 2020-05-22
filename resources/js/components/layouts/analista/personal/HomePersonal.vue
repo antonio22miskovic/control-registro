@@ -304,7 +304,7 @@ import Swal from 'sweetalert2'
             this.$refs.image.click()
         },
       getselects(){
-        axios.get('/api/asignacion').then(res =>{
+        axios.get('/api/get-asignaciones').then(res =>{
           this.asignaciones = res.data
         })
       },

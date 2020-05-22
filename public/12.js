@@ -221,6 +221,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       desserts: [],
       loading: false,
+      loading2: false,
+      loading3: false,
       ocultar: false,
       dialog: false,
       dialog2: false,
@@ -267,6 +269,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.ocultar = true;
         }
       })["catch"](function (error) {
+        _this.loading = false;
+
         if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);
@@ -287,18 +291,34 @@ __webpack_require__.r(__webpack_exports__);
     actualizar: function actualizar() {
       var _this2 = this;
 
-      axios.put('/api/departamento/' + this.filldepartamento.id, this.filldepartamento).then(function (response) {
-        _this2.listado(_this2.paginate.current_page);
+      if (this.$refs.actualizar.validate()) {
+        this.loading2 = true;
+        axios.put('/api/departamento/' + this.filldepartamento.id, this.filldepartamento).then(function (response) {
+          _this2.listado(_this2.paginate.current_page);
 
-        _this2.dialog = false;
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-          position: 'center',
-          icon: 'success',
-          title: ' se ah actualizado con exito',
-          showConfirmButton: false,
-          timer: 1500
+          _this2.loading2 = false;
+          _this2.dialog = false;
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+            position: 'center',
+            icon: 'success',
+            title: ' se ah actualizado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        })["catch"](function (error) {
+          _this2.loading2 = false;
+
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
         });
-      });
+      }
     },
     eliminar: function eliminar(item) {
       var _this3 = this;
@@ -323,34 +343,40 @@ __webpack_require__.r(__webpack_exports__);
     agregar: function agregar() {
       var _this4 = this;
 
-      this.dialog2 = true;
-      axios.post('/api/departamento', this.data).then(function (res) {
-        if (res.data === true) {
-          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-            position: 'center',
-            icon: 'success',
-            title: ' se ah agredado con exito',
-            showConfirmButton: false,
-            timer: 1500
-          });
+      if (this.$refs.form.validate()) {
+        this.dialog2 = true;
+        this.loading3 = true;
+        axios.post('/api/departamento', this.data).then(function (res) {
+          if (res.data === true) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+              position: 'center',
+              icon: 'success',
+              title: ' se ah agredado con exito',
+              showConfirmButton: false,
+              timer: 1500
+            });
 
-          _this4.listado(_this4.paginate.current_page);
+            _this4.listado(_this4.paginate.current_page);
 
-          _this4.$refs.form.reset();
+            _this4.$refs.form.reset();
 
-          _this4.dialog2 = false;
-        }
-      })["catch"](function (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log('Error', error.message);
-        }
-      });
+            _this4.loading3 = false;
+            _this4.dialog2 = false;
+          }
+        })["catch"](function (error) {
+          _this4.loading3 = false;
+
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+        });
+      }
     }
   },
   computed: {}
@@ -399,7 +425,7 @@ var render = function() {
                   {
                     staticClass: "mx-auto",
                     attrs: {
-                      loading: _vm.loading,
+                      loading: _vm.loading2,
                       "max-width": "100%",
                       raised: ""
                     }
@@ -412,6 +438,7 @@ var render = function() {
                       [
                         _c(
                           "v-form",
+                          { ref: "actualizar" },
                           [
                             _c(
                               "v-row",
@@ -545,7 +572,7 @@ var render = function() {
                   {
                     staticClass: "mx-auto",
                     attrs: {
-                      loading: _vm.loading,
+                      loading: _vm.loading3,
                       "max-width": "100%",
                       raised: ""
                     }
