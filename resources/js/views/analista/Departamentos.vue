@@ -8,7 +8,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card
-      :loading="loading"
+      :loading="loading2"
       class="mx-auto"
       max-width="100%"
       raised
@@ -16,7 +16,7 @@
    <v-card-title> Actualizar los datos </v-card-title>
 
     <v-card-text>
-     <v-form >
+     <v-form ref="actualizar">
       <v-row
         align="center"
         class="mx-0"
@@ -57,7 +57,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog2" persistent max-width="600px">
       <v-card
-      :loading="loading"
+      :loading="loading3"
       class="mx-auto"
       max-width="100%"
       raised
@@ -115,7 +115,7 @@
     	raised
   	  	>
       		<v-container>
-      			<v-card-title><v-icon color="blue">mdi-domain</v-icon> departamentos </v-card-title>
+      			<v-card-title><v-icon color="nav">mdi-domain</v-icon> departamentos </v-card-title>
       			 <v-btn
              		 absolute
              		 small
@@ -209,6 +209,8 @@ import Swal from 'sweetalert2'
 		data: () => ({
 		desserts: [],
         loading:false,
+         loading2:false,
+          loading3:false,
         ocultar:false,
         dialog:false,
 		dialog2:false,
@@ -257,6 +259,7 @@ import Swal from 'sweetalert2'
         }
 
   }).catch((error) => {
+     this.loading = false
                       if (error.response) {
 
                              console.log(error.response.data);
@@ -284,11 +287,13 @@ import Swal from 'sweetalert2'
          },
 
     actualizar(){
-
+      if (this.$refs.actualizar.validate()) {
+        this.loading2 = true
       axios.put('/api/departamento/'+this.filldepartamento.id, this.filldepartamento).
       then(response =>{
 
         this.listado(this.paginate.current_page);
+        this.loading2 = false
         this.dialog = false
         Swal.fire({
         position: 'center',
@@ -298,7 +303,23 @@ import Swal from 'sweetalert2'
         timer: 1500
 		})
 
-      })
+      }).catch((error) => {
+         this.loading2 = false
+                      if (error.response) {
+
+                             console.log(error.response.data);
+                             console.log(error.response.status);
+                             console.log(error.response.headers);
+
+                     } else if (error.request) {
+
+                            console.log(error.request);
+                     } else {
+
+                            console.log('Error', error.message);
+                     }
+                 })
+    }
 
     },
 
@@ -330,7 +351,9 @@ import Swal from 'sweetalert2'
 
     },
     agregar(){
+      if (this.$refs.form.validate()) {
     	this.dialog2 = true
+      this.loading3 = true
     	axios.post('/api/departamento', this.data).then(res => {
     		if (res.data === true) {
     			Swal.fire({
@@ -342,9 +365,11 @@ import Swal from 'sweetalert2'
 				})
 				this.listado(this.paginate.current_page)
 				this.$refs.form.reset()
+        this.loading3 = false
 				this.dialog2 = false
     		}
     	}).catch((error) => {
+         this.loading3 = false
                       if (error.response) {
 
                              console.log(error.response.data);
@@ -359,6 +384,7 @@ import Swal from 'sweetalert2'
                             console.log('Error', error.message);
                      }
                  })
+    }
     },
 
   },

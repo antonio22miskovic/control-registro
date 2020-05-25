@@ -40253,7 +40253,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-app-bar",
-    { attrs: { color: "grey lighten-2", dense: "" } },
+    { attrs: { color: "nav", dense: "" } },
     [
       !_vm.currentUser
         ? [
@@ -40331,10 +40331,7 @@ var render = function() {
               [
                 _c(
                   "v-btn",
-                  {
-                    attrs: { color: "primary", text: "", small: "" },
-                    on: { click: _vm.logout }
-                  },
+                  { attrs: { text: "", small: "" }, on: { click: _vm.logout } },
                   [_c("v-icon", [_vm._v("mdi-logout")])],
                   1
                 )
@@ -40372,7 +40369,7 @@ var render = function() {
     "v-navigation-drawer",
     {
       attrs: {
-        color: "grey lighten-2",
+        color: "nav",
         "expand-on-hover": _vm.expandOnHover,
         "mini-variant": _vm.miniVariant,
         letf: _vm.letf,
@@ -97279,7 +97276,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store(_store__WEBPACK_IMPORTED_MODULE_5__["default"]); //llamamos a la funcion de configuracion
 
-Object(_helpers_general__WEBPACK_IMPORTED_MODULE_7__["initialize"])(store, router);
+Object(_helpers_general__WEBPACK_IMPORTED_MODULE_7__["initialize"])(store, router); // refrescar(router)
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: router,
@@ -97610,7 +97608,7 @@ var Auth = /*#__PURE__*/function () {
         axios.post('/api/auth/login', credenciales).then(function (response) {
           res(response.data);
         })["catch"](function (error) {
-          rej(" verifique los datos por favor ");
+          rej(" credenciales invalidas por favor verifique ");
         });
       });
     }
@@ -97672,7 +97670,13 @@ function initialize(store, router) {
   }
 
   axios.defaults.headers.common['Authorization'] = "Bearer ".concat(store.state.currentUser.token);
-}
+} // export function refrescar(router){
+// 	router.beforeEach((to, from, next) => {
+// 	if (!to.path == '/' && !currentUser) {
+// 				next('/')
+// 	}
+// 	})
+// }
 
 /***/ }),
 
@@ -97701,7 +97705,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify_lib__WEBPACK_IMPORTED_MOD
     },
     themes: {
       light: {
-        primary: '#ee44aa',
+        nav: '#5C6BC0',
+        claroazul: '#9FA8DA',
+        primary: '#5C6BC0',
         azul: '#90CAF9',
         secondary: '#424242',
         accent: '#82B1FF',

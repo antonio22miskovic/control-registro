@@ -8,14 +8,14 @@
       raised
       >
       <v-container>
-   <v-card-title><v-icon color="blue">mdi-account-star</v-icon>Listado de Personal</v-card-title>
+   <v-card-title><v-icon color="nav">mdi-account-star</v-icon>Listado de Personal</v-card-title>
 
 
       <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card
-      :loading="loading"
+      :loading="loading1"
       class="mx-auto my-12"
       max-width="100%"
       raised
@@ -23,7 +23,7 @@
    <v-card-title> Actualizar los datos </v-card-title>
 
     <v-card-text>
-      <v-form ref="form">
+      <v-form ref="form" v-model="valid1">
       <v-row
         align="center"
         class="mx-0"
@@ -100,7 +100,7 @@
           <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="actualizar">Save</v-btn>
+          <v-btn color="blue darken-1" :disabled="!valid1" text @click="actualizar">Save</v-btn>
         </v-card-actions>
         </v-form>
 </v-card-text>
@@ -116,7 +116,7 @@
 
 
 	 <v-container>
-	 	<v-form>
+	 	<v-form ref="bus">
 		<v-row align="center">
 			<v-col class="d-flex" cols="12" sm="6">
 
@@ -124,6 +124,7 @@
           			:items="departamentos"
           			item-text="departamento"
           			item-key="id"
+                :rules = "rules"
           			prepend-icon="mdi-domain"
           			v-model="depa"
           			item-value="id"
@@ -133,7 +134,7 @@
 			<v-col class="d-flex" cols="12" sm="6">
       			<v-btn
         		 color="blue"
-        	     @click="listar">
+        	     @click="buscar">
       			<v-icon>mdi-account-search</v-icon>
       			</v-btn>
       		</v-col>
@@ -256,11 +257,14 @@ import Swal from 'sweetalert2'
 			bienvenida:true,
 			ocultar: false,
       showdata:'',
+      valid:false,
+      valid1:false,
 			personal:[],
       equipostable:[],
       mostrarexplorar:false,
       imageName:'',
       loading: false,
+      loading1: false,
           selection: 1,
            rules: [
             value => !!value || 'campo requerido.'
@@ -300,7 +304,7 @@ import Swal from 'sweetalert2'
             this.$refs.image.click()
         },
       getselects(){
-        axios.get('/api/asignacion').then(res =>{
+        axios.get('/api/get-asignaciones').then(res =>{
           this.asignaciones = res.data
         })
       },
@@ -340,10 +344,10 @@ import Swal from 'sweetalert2'
 
       actualizar(){
 
-            this.loading = true
+            this.loading1 = true
             axios.put('/api/personal/update/' + this.data.id,this.data).then(res =>{
           if (res.data === true) {
-            this.loading = false
+            this.loading1 = false
             this.dialog = false
             Swal.fire({
                     position: 'center',
@@ -375,8 +379,15 @@ import Swal from 'sweetalert2'
                     })
 
          },
+         buscar(){
+          if (this.$refs.bus.validate()) {
+            this.listar()
+          }
+
+         },
 
 			listar(page){
+        this.loading = true
         if (this.depa === null) {
             // this.mensaje.listar
         }else{
@@ -384,8 +395,10 @@ import Swal from 'sweetalert2'
 				axios.get('/api/listado/'+ this.depa +'?page='+page).then(res => {
 						this.personal = res.data.personal
              this.paginate = res.data.paginate
+               this.loading = false
              				if (this.personal.length > 0) {
              					this.ocultar = false
+
              				}else{
              					this.ocultar = true
              				}

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[21],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/personal/HomePersonal.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
@@ -11,7 +11,6 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
-//
 //
 //
 //
@@ -268,14 +267,11 @@ __webpack_require__.r(__webpack_exports__);
       bienvenida: true,
       ocultar: false,
       showdata: '',
-      valid: false,
-      valid1: false,
       personal: [],
       equipostable: [],
       mostrarexplorar: false,
       imageName: '',
       loading: false,
-      loading1: false,
       selection: 1,
       rules: [function (value) {
         return !!value || 'campo requerido.';
@@ -312,7 +308,7 @@ __webpack_require__.r(__webpack_exports__);
     getselects: function getselects() {
       var _this = this;
 
-      axios.get('/api/get-asignaciones').then(function (res) {
+      axios.get('/api/asignacion').then(function (res) {
         _this.asignaciones = res.data;
       });
     },
@@ -348,10 +344,10 @@ __webpack_require__.r(__webpack_exports__);
     actualizar: function actualizar() {
       var _this3 = this;
 
-      this.loading1 = true;
+      this.loading = true;
       axios.put('/api/personal/update/' + this.data.id, this.data).then(function (res) {
         if (res.data === true) {
-          _this3.loading1 = false;
+          _this3.loading = false;
           _this3.dialog = false;
           sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
             position: 'center',
@@ -374,15 +370,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    buscar: function buscar() {
-      if (this.$refs.bus.validate()) {
-        this.listar();
-      }
-    },
     listar: function listar(page) {
       var _this4 = this;
-
-      this.loading = true;
 
       if (this.depa === null) {// this.mensaje.listar
       } else {
@@ -390,7 +379,6 @@ __webpack_require__.r(__webpack_exports__);
         axios.get('/api/listado/' + this.depa + '?page=' + page).then(function (res) {
           _this4.personal = res.data.personal;
           _this4.paginate = res.data.paginate;
-          _this4.loading = false;
 
           if (_this4.personal.length > 0) {
             _this4.ocultar = false;
@@ -504,7 +492,7 @@ var render = function() {
               _c(
                 "v-card-title",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
+                  _c("v-icon", { attrs: { color: "blue" } }, [
                     _vm._v("mdi-account-star")
                   ]),
                   _vm._v("Listado de Personal")
@@ -535,7 +523,7 @@ var render = function() {
                           {
                             staticClass: "mx-auto my-12",
                             attrs: {
-                              loading: _vm.loading1,
+                              loading: _vm.loading,
                               "max-width": "100%",
                               raised: ""
                             }
@@ -550,16 +538,7 @@ var render = function() {
                               [
                                 _c(
                                   "v-form",
-                                  {
-                                    ref: "form",
-                                    model: {
-                                      value: _vm.valid1,
-                                      callback: function($$v) {
-                                        _vm.valid1 = $$v
-                                      },
-                                      expression: "valid1"
-                                    }
-                                  },
+                                  { ref: "form" },
                                   [
                                     _c(
                                       "v-row",
@@ -817,7 +796,6 @@ var render = function() {
                                           {
                                             attrs: {
                                               color: "blue darken-1",
-                                              disabled: !_vm.valid1,
                                               text: ""
                                             },
                                             on: { click: _vm.actualizar }
@@ -851,7 +829,6 @@ var render = function() {
                 [
                   _c(
                     "v-form",
-                    { ref: "bus" },
                     [
                       _c(
                         "v-row",
@@ -869,7 +846,6 @@ var render = function() {
                                   items: _vm.departamentos,
                                   "item-text": "departamento",
                                   "item-key": "id",
-                                  rules: _vm.rules,
                                   "prepend-icon": "mdi-domain",
                                   "item-value": "id",
                                   label: "seleccione un departamento"
@@ -897,7 +873,7 @@ var render = function() {
                                 "v-btn",
                                 {
                                   attrs: { color: "blue" },
-                                  on: { click: _vm.buscar }
+                                  on: { click: _vm.listar }
                                 },
                                 [_c("v-icon", [_vm._v("mdi-account-search")])],
                                 1
@@ -1228,6 +1204,222 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VForm/VForm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VForm/VForm.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/mixins */ "./node_modules/vuetify/lib/util/mixins.js");
+/* harmony import */ var _mixins_binds_attrs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/binds-attrs */ "./node_modules/vuetify/lib/mixins/binds-attrs/index.js");
+/* harmony import */ var _mixins_registrable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/registrable */ "./node_modules/vuetify/lib/mixins/registrable/index.js");
+// Mixins
+
+
+
+/* @vue/component */
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_0__["default"])(_mixins_binds_attrs__WEBPACK_IMPORTED_MODULE_1__["default"], Object(_mixins_registrable__WEBPACK_IMPORTED_MODULE_2__["provide"])('form')
+/* @vue/component */
+).extend({
+  name: 'v-form',
+  inheritAttrs: false,
+  props: {
+    lazyValidation: Boolean,
+    value: Boolean
+  },
+  data: () => ({
+    inputs: [],
+    watchers: [],
+    errorBag: {}
+  }),
+  watch: {
+    errorBag: {
+      handler(val) {
+        const errors = Object.values(val).includes(true);
+        this.$emit('input', !errors);
+      },
+
+      deep: true,
+      immediate: true
+    }
+  },
+  methods: {
+    watchInput(input) {
+      const watcher = input => {
+        return input.$watch('hasError', val => {
+          this.$set(this.errorBag, input._uid, val);
+        }, {
+          immediate: true
+        });
+      };
+
+      const watchers = {
+        _uid: input._uid,
+        valid: () => {},
+        shouldValidate: () => {}
+      };
+
+      if (this.lazyValidation) {
+        // Only start watching inputs if we need to
+        watchers.shouldValidate = input.$watch('shouldValidate', val => {
+          if (!val) return; // Only watch if we're not already doing it
+
+          if (this.errorBag.hasOwnProperty(input._uid)) return;
+          watchers.valid = watcher(input);
+        });
+      } else {
+        watchers.valid = watcher(input);
+      }
+
+      return watchers;
+    },
+
+    /** @public */
+    validate() {
+      return this.inputs.filter(input => !input.validate(true)).length === 0;
+    },
+
+    /** @public */
+    reset() {
+      this.inputs.forEach(input => input.reset());
+      this.resetErrorBag();
+    },
+
+    resetErrorBag() {
+      if (this.lazyValidation) {
+        // Account for timeout in validatable
+        setTimeout(() => {
+          this.errorBag = {};
+        }, 0);
+      }
+    },
+
+    /** @public */
+    resetValidation() {
+      this.inputs.forEach(input => input.resetValidation());
+      this.resetErrorBag();
+    },
+
+    register(input) {
+      this.inputs.push(input);
+      this.watchers.push(this.watchInput(input));
+    },
+
+    unregister(input) {
+      const found = this.inputs.find(i => i._uid === input._uid);
+      if (!found) return;
+      const unwatch = this.watchers.find(i => i._uid === found._uid);
+
+      if (unwatch) {
+        unwatch.valid();
+        unwatch.shouldValidate();
+      }
+
+      this.watchers = this.watchers.filter(i => i._uid !== found._uid);
+      this.inputs = this.inputs.filter(i => i._uid !== found._uid);
+      this.$delete(this.errorBag, found._uid);
+    }
+
+  },
+
+  render(h) {
+    return h('form', {
+      staticClass: 'v-form',
+      attrs: {
+        novalidate: true,
+        ...this.attrs$
+      },
+      on: {
+        submit: e => this.$emit('submit', e)
+      }
+    }, this.$slots.default);
+  }
+
+}));
+//# sourceMappingURL=VForm.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VForm/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VForm/index.js ***!
+  \************************************************************/
+/*! exports provided: VForm, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VForm */ "./node_modules/vuetify/lib/components/VForm/VForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VForm", function() { return _VForm__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VImg/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VImg/index.js ***!
+  \***********************************************************/
+/*! exports provided: VImg, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VImg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VImg */ "./node_modules/vuetify/lib/components/VImg/VImg.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VImg", function() { return _VImg__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VImg__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VSelect/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VSelect/index.js ***!
+  \**************************************************************/
+/*! exports provided: VSelect, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VSelect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VSelect */ "./node_modules/vuetify/lib/components/VSelect/VSelect.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSelect", function() { return _VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VTextField/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VTextField/index.js ***!
+  \*****************************************************************/
+/*! exports provided: VTextField, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VTextField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VTextField */ "./node_modules/vuetify/lib/components/VTextField/VTextField.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTextField", function() { return _VTextField__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VTextField__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 

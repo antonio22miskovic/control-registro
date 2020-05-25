@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[22],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/personal/NewPersonal.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************************************************!*\
@@ -11,8 +11,6 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
 //
 //
 //
@@ -176,32 +174,30 @@ __webpack_require__.r(__webpack_exports__);
     guardar: function guardar() {
       var _this3 = this;
 
-      if (this.$refs.form.validate()) {
-        this.loading = true;
-        axios.post('/api/personal/store', this.data).then(function (res) {
-          if (res.data === true) {
-            _this3.loading = false;
-            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'solicitud registrada con exito',
-              showConfirmButton: false
-            });
+      this.loading = true;
+      axios.post('/api/personal/store', this.data).then(function (res) {
+        if (res.data === true) {
+          _this3.loading = false;
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'solicitud registrada con exito',
+            showConfirmButton: false
+          });
 
-            _this3.$refs.form.reset();
-          }
-        })["catch"](function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-        });
-      }
+          _this3.$refs.form.reset();
+        }
+      })["catch"](function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
+      });
     }
   },
   computed: {}
@@ -237,7 +233,7 @@ var render = function() {
           _c(
             "v-card-title",
             [
-              _c("v-icon", { attrs: { color: "nav" } }, [
+              _c("v-icon", { attrs: { color: "blue" } }, [
                 _vm._v("mdi-account-plus")
               ]),
               _vm._v(" Añadir Personal  ")
@@ -399,7 +395,6 @@ var render = function() {
                               items: _vm.asignaciones,
                               "item-text": "asignacion",
                               "item-key": "asignacion.id",
-                              rules: _vm.rules,
                               "prepend-icon": "mdi-shopping",
                               "item-value": "id",
                               label: "selecione un cargo"
@@ -432,7 +427,6 @@ var render = function() {
                               "item-key": "departamento.id",
                               "prepend-icon": "mdi-domain",
                               "item-value": "id",
-                              rules: _vm.rules,
                               label: "seleccione un departamento"
                             },
                             model: {
@@ -490,6 +484,203 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VForm/VForm.js":
+/*!************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VForm/VForm.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/mixins */ "./node_modules/vuetify/lib/util/mixins.js");
+/* harmony import */ var _mixins_binds_attrs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/binds-attrs */ "./node_modules/vuetify/lib/mixins/binds-attrs/index.js");
+/* harmony import */ var _mixins_registrable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/registrable */ "./node_modules/vuetify/lib/mixins/registrable/index.js");
+// Mixins
+
+
+
+/* @vue/component */
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_0__["default"])(_mixins_binds_attrs__WEBPACK_IMPORTED_MODULE_1__["default"], Object(_mixins_registrable__WEBPACK_IMPORTED_MODULE_2__["provide"])('form')
+/* @vue/component */
+).extend({
+  name: 'v-form',
+  inheritAttrs: false,
+  props: {
+    lazyValidation: Boolean,
+    value: Boolean
+  },
+  data: () => ({
+    inputs: [],
+    watchers: [],
+    errorBag: {}
+  }),
+  watch: {
+    errorBag: {
+      handler(val) {
+        const errors = Object.values(val).includes(true);
+        this.$emit('input', !errors);
+      },
+
+      deep: true,
+      immediate: true
+    }
+  },
+  methods: {
+    watchInput(input) {
+      const watcher = input => {
+        return input.$watch('hasError', val => {
+          this.$set(this.errorBag, input._uid, val);
+        }, {
+          immediate: true
+        });
+      };
+
+      const watchers = {
+        _uid: input._uid,
+        valid: () => {},
+        shouldValidate: () => {}
+      };
+
+      if (this.lazyValidation) {
+        // Only start watching inputs if we need to
+        watchers.shouldValidate = input.$watch('shouldValidate', val => {
+          if (!val) return; // Only watch if we're not already doing it
+
+          if (this.errorBag.hasOwnProperty(input._uid)) return;
+          watchers.valid = watcher(input);
+        });
+      } else {
+        watchers.valid = watcher(input);
+      }
+
+      return watchers;
+    },
+
+    /** @public */
+    validate() {
+      return this.inputs.filter(input => !input.validate(true)).length === 0;
+    },
+
+    /** @public */
+    reset() {
+      this.inputs.forEach(input => input.reset());
+      this.resetErrorBag();
+    },
+
+    resetErrorBag() {
+      if (this.lazyValidation) {
+        // Account for timeout in validatable
+        setTimeout(() => {
+          this.errorBag = {};
+        }, 0);
+      }
+    },
+
+    /** @public */
+    resetValidation() {
+      this.inputs.forEach(input => input.resetValidation());
+      this.resetErrorBag();
+    },
+
+    register(input) {
+      this.inputs.push(input);
+      this.watchers.push(this.watchInput(input));
+    },
+
+    unregister(input) {
+      const found = this.inputs.find(i => i._uid === input._uid);
+      if (!found) return;
+      const unwatch = this.watchers.find(i => i._uid === found._uid);
+
+      if (unwatch) {
+        unwatch.valid();
+        unwatch.shouldValidate();
+      }
+
+      this.watchers = this.watchers.filter(i => i._uid !== found._uid);
+      this.inputs = this.inputs.filter(i => i._uid !== found._uid);
+      this.$delete(this.errorBag, found._uid);
+    }
+
+  },
+
+  render(h) {
+    return h('form', {
+      staticClass: 'v-form',
+      attrs: {
+        novalidate: true,
+        ...this.attrs$
+      },
+      on: {
+        submit: e => this.$emit('submit', e)
+      }
+    }, this.$slots.default);
+  }
+
+}));
+//# sourceMappingURL=VForm.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VForm/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VForm/index.js ***!
+  \************************************************************/
+/*! exports provided: VForm, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VForm */ "./node_modules/vuetify/lib/components/VForm/VForm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VForm", function() { return _VForm__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VSelect/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VSelect/index.js ***!
+  \**************************************************************/
+/*! exports provided: VSelect, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VSelect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VSelect */ "./node_modules/vuetify/lib/components/VSelect/VSelect.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSelect", function() { return _VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VTextField/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VTextField/index.js ***!
+  \*****************************************************************/
+/*! exports provided: VTextField, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VTextField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VTextField */ "./node_modules/vuetify/lib/components/VTextField/VTextField.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTextField", function() { return _VTextField__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VTextField__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 

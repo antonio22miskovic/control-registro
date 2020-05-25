@@ -30,6 +30,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
  	/////// INFO CONTROLLER CONTROLADOR DE RETORNO DE INFO BASICA
 		Route::get('get-datos','InfoController@getdatos');
 		Route::get('get-cede','InfoController@getcede');
+		Route::get('get-currentuser','InfoController@getCurrentUser');
 		Route::get('get-departamentos','InfoController@getdepartamentos');
 		Route::get('get-categorias','InfoController@getcategorias');
 		Route::get('get-users','InfoController@getusers');

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[2],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[25],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/Desincorporados.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************************************************!*\
@@ -377,7 +377,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       desserts: [],
       loading: false,
-      loading2: false,
       bienvenida: true,
       ocultar: false,
       categoria: '',
@@ -441,8 +440,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.ocultar = true;
         }
       })["catch"](function (error) {
-        _this.loading = false;
-
         if (error.response) {
           console.log(error.response.data);
           console.log(error.response.status);
@@ -469,9 +466,7 @@ __webpack_require__.r(__webpack_exports__);
       this.getequipos(page);
     },
     buscar: function buscar() {
-      if (this.$refs.form.validate()) {
-        this.getequipos();
-      }
+      this.getequipos();
     },
     eliminar: function eliminar(item) {
       var _this3 = this;
@@ -520,31 +515,19 @@ __webpack_require__.r(__webpack_exports__);
     actualizar: function actualizar() {
       var _this5 = this;
 
-      if (this.$refs.actualizar.validate()) {
-        axios.put('/api/equipos/update/' + this.fillequipo.id, this.fillequipo).then(function (res) {
-          if (res.data === true) {
-            _this5.dialog2 = false;
-            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Equipo actualizado con exito',
-              showConfirmButton: false
-            });
+      axios.put('/api/equipos/update/' + this.fillequipo.id, this.fillequipo).then(function (res) {
+        if (res.data === true) {
+          _this5.dialog2 = false;
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Equipo actualizado con exito',
+            showConfirmButton: false
+          });
 
-            _this5.getequipos();
-          }
-        })["catch"](function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-        });
-      }
+          _this5.getequipos();
+        }
+      });
     },
     mostraredit: function mostraredit(item) {
       this.fillequipo.id = item.id, this.fillequipo.equipo = item.equipo, this.fillequipo.codigo = item.codigo, this.fillequipo.modelo = item.modelo, this.fillequipo.marca = item.marca, this.fillequipo.status = item.status, this.fillequipo.descripcion = item.descripcion, this.fillequipo.departamento_id = item.departamento_id, this.fillequipo.categoria_id = item.categoria_id, this.dialog2 = true;
@@ -906,7 +889,7 @@ var render = function() {
                   {
                     staticClass: "mx-auto",
                     attrs: {
-                      loading: _vm.loading2,
+                      loading: _vm.loading,
                       "max-width": "100%",
                       raised: ""
                     }
@@ -919,7 +902,7 @@ var render = function() {
                       [
                         _c(
                           "v-form",
-                          { ref: "actualizar" },
+                          { ref: "form" },
                           [
                             _c(
                               "v-row",
@@ -1228,7 +1211,7 @@ var render = function() {
               _c(
                 "v-card-title",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
+                  _c("v-icon", { attrs: { color: "blue" } }, [
                     _vm._v("mdi-laptop-off")
                   ]),
                   _vm._v(" Equipos Desincorporados ")
@@ -1568,6 +1551,44 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VImg/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VImg/index.js ***!
+  \***********************************************************/
+/*! exports provided: VImg, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VImg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VImg */ "./node_modules/vuetify/lib/components/VImg/VImg.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VImg", function() { return _VImg__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VImg__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VSelect/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VSelect/index.js ***!
+  \**************************************************************/
+/*! exports provided: VSelect, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VSelect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VSelect */ "./node_modules/vuetify/lib/components/VSelect/VSelect.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSelect", function() { return _VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 

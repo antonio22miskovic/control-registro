@@ -1,6 +1,6 @@
 <template>
     <v-app-bar
-        color="grey lighten-2"
+        color="nav"
         dense
          >
          <!-- NAV PARA USUARIO NO LOGUEADO -->
@@ -36,8 +36,8 @@
 
                <v-toolbar-items>
 
-                      <v-btn color="primary" text small  @click="logout">
-                        <v-icon>mdi-logout</v-icon>
+                      <v-btn  text small  @click="logout">
+                        <v-icon >mdi-logout</v-icon>
                       </v-btn>
 
                 </v-toolbar-items>

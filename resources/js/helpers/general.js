@@ -42,3 +42,11 @@ export function initialize(store, router){
 		axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.currentUser.token}`
 
 }
+// export function refrescar(router){
+// 	router.beforeEach((to, from, next) => {
+// 	if (!to.path == '/' && !currentUser) {
+
+// 				next('/')
+// 	}
+// 	})
+// }

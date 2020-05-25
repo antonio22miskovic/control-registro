@@ -26,7 +26,7 @@ export class Auth {
 		})
 		.catch((error) => {
 
-			rej(" verifique los datos por favor ")
+			rej(" credenciales invalidas por favor verifique ")
 
 		})
 

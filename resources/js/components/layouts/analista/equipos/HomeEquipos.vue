@@ -7,7 +7,7 @@
     	max-width="100%"
     	raised
   	  >
-   <v-card-title><v-icon color="blue">mdi-plus</v-icon> Añadir nuevo equipo </v-card-title>
+   <v-card-title><v-icon color="nav">mdi-plus</v-icon> Añadir nuevo equipo </v-card-title>
 
     <v-card-text>
     	<v-form ref="form">
@@ -148,6 +148,7 @@
 				})
 			},
 			guardar(){
+        if (this.$refs.form.validate()) {
 				this.loading = true
 				axios.post('/api/equipos/store',this.data).then(res =>{
 					if (res.data === true) {
@@ -160,9 +161,25 @@
                 		})
 							 this.$refs.form.reset()
 					}
-				})
-			},
+				}).catch((error) => {
+                if (error.response) {
 
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+
+                } else if (error.request) {
+
+                        console.log(error.request);
+
+                } else {
+
+                        console.log('Error', error.message);
+
+                }
+            })
+      }
+			},
 		},
 		computed:{
 

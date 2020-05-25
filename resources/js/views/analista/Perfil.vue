@@ -7,7 +7,7 @@
     	max-width="100%"
     	raised>
       		<v-container>
-      			<v-card-title><v-icon color="blue">mdi-account-multiple</v-icon> usuarios encargados </v-card-title>
+      			<v-card-title><v-icon color="nav">mdi-account-multiple</v-icon> usuarios encargados </v-card-title>
       					<v-container>
       <template v-if="users.length > 0">
       <v-row  dense>

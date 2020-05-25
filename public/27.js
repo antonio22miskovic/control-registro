@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[3],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[27],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/analista/equipos/HomeEquipos.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
@@ -164,32 +164,20 @@ __webpack_require__.r(__webpack_exports__);
     guardar: function guardar() {
       var _this2 = this;
 
-      if (this.$refs.form.validate()) {
-        this.loading = true;
-        axios.post('/api/equipos/store', this.data).then(function (res) {
-          if (res.data === true) {
-            _this2.loading = false;
-            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Equipo registrado con exito',
-              showConfirmButton: false
-            });
+      this.loading = true;
+      axios.post('/api/equipos/store', this.data).then(function (res) {
+        if (res.data === true) {
+          _this2.loading = false;
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Equipo registrado con exito',
+            showConfirmButton: false
+          });
 
-            _this2.$refs.form.reset();
-          }
-        })["catch"](function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-        });
-      }
+          _this2.$refs.form.reset();
+        }
+      });
     }
   },
   computed: {}
@@ -228,7 +216,7 @@ var render = function() {
               _c(
                 "v-card-title",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
+                  _c("v-icon", { attrs: { color: "blue" } }, [
                     _vm._v("mdi-plus")
                   ]),
                   _vm._v(" Añadir nuevo equipo ")
@@ -502,6 +490,25 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vuetify/lib/components/VSelect/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/vuetify/lib/components/VSelect/index.js ***!
+  \**************************************************************/
+/*! exports provided: VSelect, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VSelect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VSelect */ "./node_modules/vuetify/lib/components/VSelect/VSelect.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSelect", function() { return _VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_VSelect__WEBPACK_IMPORTED_MODULE_0__["default"]);
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
