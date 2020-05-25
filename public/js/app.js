@@ -97949,8 +97949,8 @@ var user = info.getlocaluser();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/heavy/app/sindoni/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/heavy/app/sindoni/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/heavy/app/control-registro/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/heavy/app/control-registro/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
