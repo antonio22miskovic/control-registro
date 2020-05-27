@@ -223,7 +223,24 @@
     	raised
   	  >
       <v-container>
-      	 <v-card-title><v-icon color="nav">mdi-laptop-off</v-icon> Equipos Desincorporados </v-card-title>
+        <v-row>
+          <v-col>
+             <v-card-title><v-icon color="nav">mdi-laptop-off</v-icon> Equipos Desincorporados </v-card-title>
+          </v-col>
+          <v-col>
+             <v-form ref="filtro">
+                 <v-text-field label="Buscar"
+                    v-model="datafiltro"
+                    :append-icon="b ? 'mdi-magnify' : 'mdi-restart'"
+                    :rules="rules"
+                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de equipos'"
+                    :error="ocultarbuscador"
+                    @click:append="buscarfiltro">
+                </v-text-field>
+              </v-form>
+          </v-col>
+        </v-row>
+
       	<v-form ref="form">
     <v-row align="center">
 
@@ -374,14 +391,17 @@ import {mapState, mapMutations} from 'vuex'
         bienvenida:true,
         ocultar:false,
         categoria:'',
+        b:true,
          empleados:[],
          explorarequipo:'',
          explorardepartamento:'',
          explorarcategoria:'',
-		dialog:false,
-		dialog2:false,
-        departamentos:[],
-        categorias:[],
+		     dialog:false,
+		     dialog2:false,
+         departamentos:[],
+         ocultarbuscador:false,
+         datafiltro:'',
+         categorias:[],
         rules: [
         		value => !!value || 'campo requerido.'
       			],
@@ -419,19 +439,36 @@ import {mapState, mapMutations} from 'vuex'
     methods:{
 
       getequipos(page){
+
       	this.loading = true
-      		let status = 'desincorporado'
-         let url = '/api/equipos/listado/'+ this.depa+'/'+ status +'?page='+page
+        this.datafiltro = null
+        let status = 'desincorporado'
+
+        if(this.depa !== 0) {
+
+           var url = '/api/equipos/listado/'+this.depa+'/'+ status +'?page='+page
+
+         }else{
+
+           url = '/api/equipos/listado/'+ this.fillequipo.departamento_id +'/'+ status +'?page='+page
+         }
+
           axios.get(url)
           .then(res =>{
-            this.desserts = res.data.equipo
-             this.paginate = res.data.paginate
-             this.loading = false
-             this.bienvenida = false
-				if (this.desserts.length > 0) {
-             			this.ocultar = false
-             		}else{
+            if (res.data.equipo.length > 0) {
+
+                  this.desserts = res.data.equipo
+                  this.paginate = res.data.paginate
+                  this.loading = false
+                  this.bienvenida = false
+                  this.ocultar = false
+
+             }else{
+
+                  this.desserts = []
              			this.ocultar = true
+                  this.loading = false
+
              		}
           }).catch((error) => {
               this.loading = false
@@ -492,11 +529,17 @@ import {mapState, mapMutations} from 'vuex'
             axios.delete('/api/equipos/delete/'+item)
             .then(res=>{
             	if (res.data === true) {
-            		 this.getequipos(this.paginate.current_page)
+
                 Swal.fire(
                  'eliminado',
                   'se ah eliminado con exito.',
                   'success')
+                if(this.depa !== null){
+                   this.getequipos(this.paginate.current_page)
+                }else{
+                   this.desserts = []
+                   this.buscarfiltro()
+               }
             	}
 
             }).catch((error) => {
@@ -540,7 +583,13 @@ import {mapState, mapMutations} from 'vuex'
                 			title: 'Equipo actualizado con exito',
                 			showConfirmButton: false,
                 		})
-      			this.getequipos()
+            if(this.depa !== null){
+                this.getequipos(this.paginate.current_page)
+            }else{
+               this.desserts = []
+                   this.buscarfiltro()
+               }
+
       		}
       	}).catch((error) => {
                 if (error.response) {
@@ -572,6 +621,54 @@ import {mapState, mapMutations} from 'vuex'
                 this.fillequipo.departamento_id =  item.departamento_id,
                 this.fillequipo.categoria_id =  item.categoria_id,
                 this.dialog2 = true
+      },
+      buscarfiltro()
+      {
+       if (this.$refs.filtro.validate()){
+            this.loading = true
+            this.b = false
+            let status = 'desincorporado'
+          axios.get('/api/filtro/equipos/'+ status +'/'+this.datafiltro).then(res => {
+
+              if (res.data.equipo.length > 0){
+
+                  this.desserts = res.data.equipo
+                  this.paginate = res.data.paginate
+                  this.b = true
+                  this.loading = false
+                  this.ocultarbuscador = false
+                  this.depa = null
+                  this.bienvenida = false
+                  this.ocultar = false
+
+              }else{
+
+                  this.ocultarbuscador = true
+                  this.ocultar = false
+                  this.loading = false
+
+              }
+
+          }).catch((error) => {
+              this.b = false
+              this.loading = false
+                if (error.response) {
+
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+
+                } else if (error.request) {
+
+                        console.log(error.request);
+
+                } else {
+
+                        console.log('Error', error.message);
+
+                }
+            })
+        }
       }
     },
     computed:{

@@ -8,7 +8,26 @@
       raised
       >
       <v-container>
-   <v-card-title><v-icon color="nav">mdi-account-star</v-icon>Listado de Personal</v-card-title>
+        <v-container>
+          <v-row>
+            <v-col>
+              <v-card-title><v-icon color="nav">mdi-account-star</v-icon>Listado de Personal</v-card-title>
+            </v-col>
+            <v-col>
+              <v-form ref="filtro">
+                 <v-text-field label="Buscar"
+                    v-model="datafiltro"
+                    :append-icon="b ? 'mdi-magnify' : 'mdi-restart'"
+                    :rules="rules"
+                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de personal'"
+                    :error="ocultarbuscador"
+                    @click:append="buscarfiltro">
+                </v-text-field>
+              </v-form>
+            </v-col>
+          </v-row>
+        </v-container>
+
 
 
       <template>
@@ -164,6 +183,7 @@
 
     				<v-card-text class="text--primary">
               <div> Cargo: {{ item.asignacion }}</div>
+              <div> Departamento: {{ item.departamento }}</div>
     					<div>Nombre: {{ item.nombre }}</div>
       					<div>Apellido: {{ item.apellido }}</div>
      					<div>Cedula: {{ item.cedula }}</div>
@@ -175,7 +195,7 @@
                 <v-btn
                 color="blue"
                 text>
-                <router-link :to="{name:'asignarequipos', params:{id:item.id_empleado,nombre:item.nombre,departamento:depa}}" tag="span">  <v-icon>mdi-desktop-classic</v-icon> </router-link>
+                <router-link :to="{name:'asignarequipos', params:{id:item.id_empleado,nombre:item.nombre,departamento:item.departamento_id}}" tag="span">  <v-icon>mdi-desktop-classic</v-icon> </router-link>
                 </v-btn>
 
 
@@ -259,11 +279,13 @@ import Swal from 'sweetalert2'
       showdata:'',
       valid:false,
       valid1:false,
+      b:true,
 			personal:[],
       equipostable:[],
       mostrarexplorar:false,
       imageName:'',
       loading: false,
+      ocultarbuscador:false,
       loading1: false,
           selection: 1,
            rules: [
@@ -295,6 +317,7 @@ import Swal from 'sweetalert2'
         'departamento':''
 
       },
+      datafiltro:'',
 
 
 
@@ -328,16 +351,14 @@ import Swal from 'sweetalert2'
       mostrarmodal(item){
 
         this.dialog= true
-        console.log(item)
-
         this.data.id = item.id_empleado
         this.data.nombre = item.nombre
         this.data.apellido = item.apellido
-        this.data.cedula=  item.cedula
-        this.data.telefono=  item.telefono
-        this.imageName=  item.avatar
-        this.data.asignacion=  item.asignacion_id
-        this.data.departamento= this.depa
+        this.data.cedula = item.cedula
+        this.data.telefono = item.telefono
+        this.imageName = item.avatar
+        this.data.asignacion = item.asignacion_id
+        this.data.departamento = item.departamento_id
 
       },
 
@@ -381,6 +402,7 @@ import Swal from 'sweetalert2'
          },
          buscar(){
           if (this.$refs.bus.validate()) {
+             this.ocultarbuscador = false
             this.listar()
           }
 
@@ -388,23 +410,29 @@ import Swal from 'sweetalert2'
 
 			listar(page){
         this.loading = true
-        if (this.depa === null) {
-            // this.mensaje.listar
+        if (this.depa !== null) {
+            this.datafiltro = null
+            var url = '/api/listado/'+ this.depa +'?page='+page
         }else{
+            url = '/api/listado/'+ this.data.departamento +'?page='+page
+        }
 				this.bienvenida = false
-				axios.get('/api/listado/'+ this.depa +'?page='+page).then(res => {
+				axios.get(url).then(res => {
+          if (res.data.personal.length > 0) {
+
 						this.personal = res.data.personal
-             this.paginate = res.data.paginate
-               this.loading = false
-             				if (this.personal.length > 0) {
-             					this.ocultar = false
+            this.paginate = res.data.paginate
+            this.loading = false
+            this.ocultar = false
 
-             				}else{
-             					this.ocultar = true
-             				}
+          }else{
 
+            this.personal = []
+            this.loading = false
+           this.ocultar = true
+          }
 				}).catch((error) => {
-
+          this.loading = false
                 if (error.response) {
 
                         console.log(error.response.data)
@@ -421,7 +449,7 @@ import Swal from 'sweetalert2'
 
                 }
             })
-        }
+
 			},
 
 			Chagepage(page){
@@ -500,6 +528,50 @@ import Swal from 'sweetalert2'
                 }
             })
     		},
+        buscarfiltro(){
+          if (this.$refs.filtro.validate()){
+            this.loading = true
+            this.b = false
+          axios.get('/api/filtro/empleados/'+this.datafiltro).then(res => {
+
+              if (res.data.empleado.length > 0){
+              this.personal = res.data.empleado
+              this.paginate = res.data.paginate
+              this.b = true
+              this.loading = false
+                    if (this.personal.length > 0) {
+                      this.ocultarbuscador = false
+                        this.bienvenida = false
+                        this.ocultar = false
+                    }else{
+                      this.ocultarbuscador = true
+                        this.ocultar = false
+                    }
+            }else{
+                this.ocultarbuscador = true
+                this.loading = false
+            }
+          }).catch((error) => {
+              this.b = false
+              this.loading = false
+                if (error.response) {
+
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+
+                } else if (error.request) {
+
+                        console.log(error.request);
+
+                } else {
+
+                        console.log('Error', error.message);
+
+                }
+            })
+        }
+        }
 		},
 		computed:{
 

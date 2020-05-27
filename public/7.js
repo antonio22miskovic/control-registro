@@ -135,6 +135,16 @@ __webpack_require__.r(__webpack_exports__);
       rules: [function (value) {
         return !!value || 'campo requerido.';
       }],
+      rulesci: [function (value) {
+        return !!value || 'campo requerido.';
+      }, function (value) {
+        return /(?=.*\d)/.test(value) || 'favor introducir valores Numericos';
+      }],
+      rulestelefono: [function (value) {
+        return !!value || 'campo requerido.';
+      }, function (value) {
+        return /(?=.*\d)/.test(value) || 'favor introducir valores Numericos';
+      }],
       file: [function (value) {
         return !value || value.size < 2000000 || 'Su imagen de perfil no pude ser mayor 2 MB!';
       }],
@@ -314,7 +324,7 @@ var render = function() {
                             attrs: {
                               label: "Cedula",
                               "prepend-icon": "mdi-contacts",
-                              rules: _vm.rules,
+                              rules: _vm.rulesci,
                               hint: " cedula de identidad"
                             },
                             model: {
@@ -336,7 +346,7 @@ var render = function() {
                             attrs: {
                               "prepend-icon": "mdi-phone",
                               label: "Telefono",
-                              rules: _vm.rules,
+                              rules: _vm.rulestelefono,
                               hint: " numero telefonico"
                             },
                             model: {

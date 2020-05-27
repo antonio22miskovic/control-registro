@@ -19,13 +19,16 @@ class PersonalController extends Controller
 
         	foreach ($personal as $p) {
 
-                $id = $p['id'];
-        		$datos = $p->dato;
-        		$asignacion = $p->asignacion;
-        		$datos['asignacion'] = $asignacion['asignacion'];
-                $datos['asignacion_id'] = $asignacion['id'];
-                $datos['id_empleado'] = $id;
-        		$arraydatos[] = $datos;
+                    $id = $p['id'];
+                    $datos = $p->dato;
+                    $asignacion = $p->asignacion;
+                    $departamento = $p->departamento;
+                    $datos['asignacion'] = $asignacion['asignacion'];
+                    $datos['asignacion_id'] = $asignacion['id'];
+                    $datos['departamento'] = $departamento['departamento'];
+                    $datos['departamento_id'] = $departamento['id'];
+                    $datos['id_empleado'] = $id;
+                    $arraydatos[] = $datos;
 
         	}
 

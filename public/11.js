@@ -211,6 +211,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Categorias',
@@ -226,6 +243,9 @@ __webpack_require__.r(__webpack_exports__);
       ocultar: false,
       dialog: false,
       dialog2: false,
+      b: true,
+      ocultarbuscador: false,
+      datafiltro: '',
       fillcategoria: {
         'id': '',
         'categoria': '',
@@ -365,6 +385,44 @@ __webpack_require__.r(__webpack_exports__);
           }
         })["catch"](function (error) {
           _this4.loading3 = false;
+
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+        });
+      }
+    },
+    buscarfiltro: function buscarfiltro() {
+      var _this5 = this;
+
+      if (this.$refs.filtro.validate()) {
+        this.loading = true;
+        this.b = false;
+        var status = 'desincorporado';
+        axios.get('/api/filtro/categoria/' + this.datafiltro).then(function (res) {
+          if (res.data.categoria.data.length > 0) {
+            _this5.desserts = res.data.categoria.data;
+            _this5.paginate = res.data.paginate;
+            _this5.b = true;
+            _this5.loading = false;
+            _this5.ocultarbuscador = false;
+            _this5.depa = null;
+            _this5.bienvenida = false;
+            _this5.ocultar = false;
+          } else {
+            _this5.ocultarbuscador = true;
+            _this5.ocultar = false;
+            _this5.loading = false;
+          }
+        })["catch"](function (error) {
+          _this5.b = false;
+          _this5.loading = false;
 
           if (error.response) {
             console.log(error.response.data);
@@ -701,12 +759,59 @@ var render = function() {
             "v-container",
             [
               _c(
-                "v-card-title",
+                "v-row",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
-                    _vm._v("mdi-folder-multiple")
-                  ]),
-                  _vm._v(" Categorias de equipos ")
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-card-title",
+                        [
+                          _c("v-icon", { attrs: { color: "nav" } }, [
+                            _vm._v("mdi-folder-multiple")
+                          ]),
+                          _vm._v(" Categorias de equipos ")
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-form",
+                        { ref: "filtro" },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Buscar",
+                              "append-icon": _vm.b
+                                ? "mdi-magnify"
+                                : "mdi-restart",
+                              rules: _vm.rules,
+                              hint: _vm.ocultarbuscador
+                                ? "no hubo resultados en la busqueda verifique sus datos por favor"
+                                : "Busqueda de equipos",
+                              error: _vm.ocultarbuscador
+                            },
+                            on: { "click:append": _vm.buscarfiltro },
+                            model: {
+                              value: _vm.datafiltro,
+                              callback: function($$v) {
+                                _vm.datafiltro = $$v
+                              },
+                              expression: "datafiltro"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               ),

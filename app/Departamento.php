@@ -27,4 +27,19 @@ class Departamento extends Model
     public function empleados(){
         return $this->hasMany(Empleado::class);
     }
+
+// Scope
+public function scopeDepartamento($query, $departamento)
+{
+   if($departamento){
+     return $query->where('departamento', 'LIKE', "%$departamento%");
+  }
+
+}
+public function scopeDescripcion($query, $descripcion)
+{
+   if($descripcion){
+     return $query->where('descripcion', 'LIKE', "%$descripcion%");
+  }
+}
 }

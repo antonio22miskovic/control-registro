@@ -115,7 +115,24 @@
     	raised
   	  	>
       		<v-container>
-      			<v-card-title><v-icon color="nav">mdi-domain</v-icon> departamentos </v-card-title>
+            <v-row>
+              <v-col>
+                <v-card-title><v-icon color="nav">mdi-domain</v-icon> departamentos </v-card-title>
+              </v-col>
+              <v-col>
+                 <v-form ref="filtro">
+                 <v-text-field label="Buscar"
+                    v-model="datafiltro"
+                    :append-icon="b ? 'mdi-magnify' : 'mdi-restart'"
+                    :rules="rules"
+                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de equipos'"
+                    :error="ocultarbuscador"
+                    @click:append="buscarfiltro">
+                </v-text-field>
+              </v-form>
+              </v-col>
+            </v-row>
+
       			 <v-btn
              		 absolute
              		 small
@@ -213,6 +230,9 @@ import Swal from 'sweetalert2'
           loading3:false,
         ocultar:false,
         dialog:false,
+         b:true,
+        ocultarbuscador:false,
+        datafiltro:'',
 		dialog2:false,
 		filldepartamento:{
             'id': '',
@@ -386,6 +406,54 @@ import Swal from 'sweetalert2'
                  })
     }
     },
+
+     buscarfiltro()
+      {
+       if (this.$refs.filtro.validate()){
+            this.loading = true
+            this.b = false
+          axios.get('/api/filtro/departamento/'+this.datafiltro).then(res => {
+            console.log(res.data)
+              if (res.data.departamento.data.length > 0){
+
+                  this.desserts = res.data.departamento.data
+                  this.paginate = res.data.paginate
+                  this.b = true
+                  this.loading = false
+                  this.ocultarbuscador = false
+                  this.depa = null
+                  this.bienvenida = false
+                  this.ocultar = false
+
+              }else{
+
+                  this.ocultarbuscador = true
+                  this.ocultar = false
+                  this.loading = false
+
+              }
+
+          }).catch((error) => {
+              this.b = false
+              this.loading = false
+                if (error.response) {
+
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+
+                } else if (error.request) {
+
+                        console.log(error.request);
+
+                } else {
+
+                        console.log('Error', error.message);
+
+                }
+            })
+        }
+      }
 
   },
 		computed:{

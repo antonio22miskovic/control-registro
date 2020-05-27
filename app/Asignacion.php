@@ -15,4 +15,20 @@ class Asignacion extends Model
     	return $this->hasMany(Empleado::class);
     }
 
+
+// Scope
+public function scopeAsignacion($query, $asignacion)
+{
+   if($asignacion){
+     return $query->where('asignacion', 'LIKE', "%$asignacion%");
+  }
+
+}
+public function scopeDescripcion($query, $descripcion)
+{
+   if($descripcion){
+     return $query->where('descripcion', 'LIKE', "%$descripcion%");
+  }
+}
+
 }

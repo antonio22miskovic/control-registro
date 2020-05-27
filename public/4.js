@@ -361,6 +361,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -378,6 +396,9 @@ __webpack_require__.r(__webpack_exports__);
       explorarequipo: '',
       explorardepartamento: '',
       explorarcategoria: '',
+      datafiltro: '',
+      b: true,
+      ocultarbuscador: false,
       dialog: false,
       dialog2: false,
       departamentos: [],
@@ -421,17 +442,24 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loading = true;
       var status = 'activo';
-      var url = '/api/equipos/listado/' + this.depa + '/' + status + '?page=' + page;
-      axios.get(url).then(function (res) {
-        _this.desserts = res.data.equipo;
-        _this.paginate = res.data.paginate;
-        _this.loading = false;
-        _this.bienvenida = false;
 
-        if (_this.desserts.length > 0) {
+      if (this.depa !== 0) {
+        var url = '/api/equipos/listado/' + this.depa + '/' + status + '?page=' + page;
+      } else {
+        url = '/api/equipos/listado/' + this.fillequipo.departamento_id + '/' + status + '?page=' + page;
+      }
+
+      axios.get(url).then(function (res) {
+        if (res.data.equipo.length > 0) {
+          _this.desserts = res.data.equipo;
+          _this.paginate = res.data.paginate;
+          _this.loading = false;
+          _this.bienvenida = false;
           _this.ocultar = false;
         } else {
+          _this.desserts = [];
           _this.ocultar = true;
+          _this.loading = false;
         }
       })["catch"](function (error) {
         _this.loading = false;
@@ -481,9 +509,15 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           axios["delete"]('/api/equipos/delete/' + item).then(function (res) {
             if (res.data === true) {
-              _this3.getequipos(_this3.paginate.current_page);
-
               sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire('eliminado', 'se ah eliminado con exito.', 'success');
+
+              if (_this3.depa !== null) {
+                _this3.getequipos(_this3.paginate.current_page);
+              } else {
+                _this3.desserts = [];
+
+                _this3.buscarfiltro();
+              }
             }
           })["catch"](function (error) {
             if (error.response) {
@@ -525,7 +559,16 @@ __webpack_require__.r(__webpack_exports__);
               showConfirmButton: false
             });
 
-            _this5.getequipos();
+            if (_this5.depa !== null) {
+              _this5.loading2 = false;
+
+              _this5.getequipos(_this5.paginate.current_page);
+            } else {
+              _this5.loading2 = false;
+              _this5.desserts = [];
+
+              _this5.buscarfiltro();
+            }
 
             _this5.loading2 = false;
           }
@@ -546,6 +589,44 @@ __webpack_require__.r(__webpack_exports__);
     },
     mostraredit: function mostraredit(item) {
       this.fillequipo.id = item.id, this.fillequipo.equipo = item.equipo, this.fillequipo.codigo = item.codigo, this.fillequipo.modelo = item.modelo, this.fillequipo.marca = item.marca, this.fillequipo.status = item.status, this.fillequipo.descripcion = item.descripcion, this.fillequipo.departamento_id = item.departamento_id, this.fillequipo.categoria_id = item.categoria_id, this.dialog2 = true;
+    },
+    buscarfiltro: function buscarfiltro() {
+      var _this6 = this;
+
+      if (this.$refs.filtro.validate()) {
+        this.loading = true;
+        this.b = false;
+        var status = 'activo';
+        axios.get('/api/filtro/equipos/' + status + '/' + this.datafiltro).then(function (res) {
+          if (res.data.equipo.length > 0) {
+            _this6.desserts = res.data.equipo;
+            _this6.paginate = res.data.paginate;
+            _this6.b = true;
+            _this6.loading = false;
+            _this6.ocultarbuscador = false;
+            _this6.depa = null;
+            _this6.bienvenida = false;
+            _this6.ocultar = false;
+          } else {
+            _this6.ocultarbuscador = true;
+            _this6.ocultar = false;
+            _this6.loading = false;
+          }
+        })["catch"](function (error) {
+          _this6.b = false;
+          _this6.loading = false;
+
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+        });
+      }
     }
   },
   computed: {}
@@ -582,12 +663,59 @@ var render = function() {
             "v-container",
             [
               _c(
-                "v-card-title",
+                "v-row",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
-                    _vm._v("mdi-laptop")
-                  ]),
-                  _vm._v(" Equipos Activos ")
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-card-title",
+                        [
+                          _c("v-icon", { attrs: { color: "nav" } }, [
+                            _vm._v("mdi-laptop")
+                          ]),
+                          _vm._v(" Equipos Activos ")
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c(
+                        "v-form",
+                        { ref: "filtro" },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Buscar",
+                              "append-icon": _vm.b
+                                ? "mdi-magnify"
+                                : "mdi-restart",
+                              rules: _vm.rules,
+                              hint: _vm.ocultarbuscador
+                                ? "no hubo resultados en la busqueda verifique sus datos por favor"
+                                : "Busqueda de equipos",
+                              error: _vm.ocultarbuscador
+                            },
+                            on: { "click:append": _vm.buscarfiltro },
+                            model: {
+                              value: _vm.datafiltro,
+                              callback: function($$v) {
+                                _vm.datafiltro = $$v
+                              },
+                              expression: "datafiltro"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               ),

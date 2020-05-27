@@ -59,7 +59,14 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 	/// CONTROLADOR DE MANEJO DEL LAS CATEGORIAS
 		 Route::resource('categoria', 'CategoriaController');
-		  Route::resource('departamento', 'DepartamentoController');
+		 Route::resource('departamento', 'DepartamentoController');
+
+	/// CONTROLADOR DE FILTROS
+		Route::get('filtro/empleados/{dato}','FiltroController@FiltroEmpleados');
+		Route::get('filtro/equipos/{status}/{dato}','FiltroController@filtroEquipos');
+		Route::get('filtro/categoria/{dato}','FiltroController@filtarCategoria');
+		Route::get('filtro/departamento/{dato}','FiltroController@filtarDepartamento');
+		Route::get('filtro/asignacion/{dato}','FiltroController@filtarAsignacion');
 
  });
 

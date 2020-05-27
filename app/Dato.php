@@ -21,4 +21,32 @@ class Dato extends Model
    {
    		 return $this->hasOne(Empleado::class);
    }
+// Scope
+public function scopeNombre($query, $nombre)
+{
+   if($nombre){
+     return $query->where('nombre', 'LIKE', "%$nombre%");
+  }
+
+}
+public function scopeApellido($query, $apellido)
+{
+   if($apellido){
+     return $query->where('apellido', 'LIKE', "%$apellido%");
+  }
+
+}
+public function scopeCedula($query, $cedula)
+{
+   if($cedula){
+     return $query->where('cedula', 'LIKE', "%$cedula%");
+  }
+}
+public function scopeTelefono($query, $telefono)
+{
+   if($telefono){
+     return $query->where('telefono', 'LIKE', "%$telefono%");
+  }
+
+}
 }

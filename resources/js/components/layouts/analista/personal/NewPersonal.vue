@@ -30,12 +30,12 @@
         <v-col>
         	 <v-text-field label="Cedula" v-model="data.cedula"
         	 prepend-icon="mdi-contacts"
-        	 :rules="rules"  hint=" cedula de identidad"></v-text-field>
+        	 :rules="rulesci"  hint=" cedula de identidad"></v-text-field>
         </v-col>
         <v-col>
         	 <v-text-field
         	 prepend-icon="mdi-phone" v-model="data.telefono"
-        	  label="Telefono" :rules="rules"  hint=" numero telefonico"></v-text-field>
+        	  label="Telefono" :rules="rulestelefono"  hint=" numero telefonico"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -124,6 +124,14 @@
       		 rules: [
         		value => !!value || 'campo requerido.'
       		],
+           rulesci: [
+            value => !!value || 'campo requerido.',
+            value => /(?=.*\d)/.test(value) || 'favor introducir valores Numericos',
+          ],
+          rulestelefono: [
+            value => !!value || 'campo requerido.',
+            value => /(?=.*\d)/.test(value) || 'favor introducir valores Numericos',
+          ],
       		file: [
         		value => !value || value.size < 2000000 || 'Su imagen de perfil no pude ser mayor 2 MB!',
       		],

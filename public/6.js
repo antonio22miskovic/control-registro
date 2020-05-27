@@ -254,6 +254,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Personal',
@@ -270,11 +290,13 @@ __webpack_require__.r(__webpack_exports__);
       showdata: '',
       valid: false,
       valid1: false,
+      b: true,
       personal: [],
       equipostable: [],
       mostrarexplorar: false,
       imageName: '',
       loading: false,
+      ocultarbuscador: false,
       loading1: false,
       selection: 1,
       rules: [function (value) {
@@ -302,7 +324,8 @@ __webpack_require__.r(__webpack_exports__);
         'avatar': '',
         'asignacion': '',
         'departamento': ''
-      }
+      },
+      datafiltro: ''
     };
   },
   methods: {
@@ -335,7 +358,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     mostrarmodal: function mostrarmodal(item) {
       this.dialog = true;
-      console.log(item);
       this.data.id = item.id_empleado;
       this.data.nombre = item.nombre;
       this.data.apellido = item.apellido;
@@ -343,7 +365,7 @@ __webpack_require__.r(__webpack_exports__);
       this.data.telefono = item.telefono;
       this.imageName = item.avatar;
       this.data.asignacion = item.asignacion_id;
-      this.data.departamento = this.depa;
+      this.data.departamento = item.departamento_id;
     },
     actualizar: function actualizar() {
       var _this3 = this;
@@ -376,6 +398,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     buscar: function buscar() {
       if (this.$refs.bus.validate()) {
+        this.ocultarbuscador = false;
         this.listar();
       }
     },
@@ -384,31 +407,38 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loading = true;
 
-      if (this.depa === null) {// this.mensaje.listar
+      if (this.depa !== null) {
+        this.datafiltro = null;
+        var url = '/api/listado/' + this.depa + '?page=' + page;
       } else {
-        this.bienvenida = false;
-        axios.get('/api/listado/' + this.depa + '?page=' + page).then(function (res) {
+        url = '/api/listado/' + this.data.departamento + '?page=' + page;
+      }
+
+      this.bienvenida = false;
+      axios.get(url).then(function (res) {
+        if (res.data.personal.length > 0) {
           _this4.personal = res.data.personal;
           _this4.paginate = res.data.paginate;
           _this4.loading = false;
+          _this4.ocultar = false;
+        } else {
+          _this4.personal = [];
+          _this4.loading = false;
+          _this4.ocultar = true;
+        }
+      })["catch"](function (error) {
+        _this4.loading = false;
 
-          if (_this4.personal.length > 0) {
-            _this4.ocultar = false;
-          } else {
-            _this4.ocultar = true;
-          }
-        })["catch"](function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-        });
-      }
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
+      });
     },
     Chagepage: function Chagepage(page) {
       this.paginate.current_page = page;
@@ -466,6 +496,47 @@ __webpack_require__.r(__webpack_exports__);
           console.log('Error', error.message);
         }
       });
+    },
+    buscarfiltro: function buscarfiltro() {
+      var _this7 = this;
+
+      if (this.$refs.filtro.validate()) {
+        this.loading = true;
+        this.b = false;
+        axios.get('/api/filtro/empleados/' + this.datafiltro).then(function (res) {
+          if (res.data.empleado.length > 0) {
+            _this7.personal = res.data.empleado;
+            _this7.paginate = res.data.paginate;
+            _this7.b = true;
+            _this7.loading = false;
+
+            if (_this7.personal.length > 0) {
+              _this7.ocultarbuscador = false;
+              _this7.bienvenida = false;
+              _this7.ocultar = false;
+            } else {
+              _this7.ocultarbuscador = true;
+              _this7.ocultar = false;
+            }
+          } else {
+            _this7.ocultarbuscador = true;
+            _this7.loading = false;
+          }
+        })["catch"](function (error) {
+          _this7.b = false;
+          _this7.loading = false;
+
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+        });
+      }
     }
   },
   computed: {}
@@ -502,12 +573,65 @@ var render = function() {
             "v-container",
             [
               _c(
-                "v-card-title",
+                "v-container",
                 [
-                  _c("v-icon", { attrs: { color: "nav" } }, [
-                    _vm._v("mdi-account-star")
-                  ]),
-                  _vm._v("Listado de Personal")
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-card-title",
+                            [
+                              _c("v-icon", { attrs: { color: "nav" } }, [
+                                _vm._v("mdi-account-star")
+                              ]),
+                              _vm._v("Listado de Personal")
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-form",
+                            { ref: "filtro" },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Buscar",
+                                  "append-icon": _vm.b
+                                    ? "mdi-magnify"
+                                    : "mdi-restart",
+                                  rules: _vm.rules,
+                                  hint: _vm.ocultarbuscador
+                                    ? "no hubo resultados en la busqueda verifique sus datos por favor"
+                                    : "Busqueda de personal",
+                                  error: _vm.ocultarbuscador
+                                },
+                                on: { "click:append": _vm.buscarfiltro },
+                                model: {
+                                  value: _vm.datafiltro,
+                                  callback: function($$v) {
+                                    _vm.datafiltro = $$v
+                                  },
+                                  expression: "datafiltro"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               ),
@@ -967,6 +1091,13 @@ var render = function() {
                                             _vm._v(" "),
                                             _c("div", [
                                               _vm._v(
+                                                " Departamento: " +
+                                                  _vm._s(item.departamento)
+                                              )
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", [
+                                              _vm._v(
                                                 "Nombre: " + _vm._s(item.nombre)
                                               )
                                             ]),
@@ -1014,7 +1145,8 @@ var render = function() {
                                                         params: {
                                                           id: item.id_empleado,
                                                           nombre: item.nombre,
-                                                          departamento: _vm.depa
+                                                          departamento:
+                                                            item.departamento_id
                                                         }
                                                       },
                                                       tag: "span"

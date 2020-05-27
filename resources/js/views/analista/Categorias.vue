@@ -115,7 +115,24 @@
     	raised
   	  	>
       		<v-container>
-      			<v-card-title><v-icon color="nav">mdi-folder-multiple</v-icon> Categorias de equipos </v-card-title>
+            <v-row>
+              <v-col>
+                <v-card-title><v-icon color="nav">mdi-folder-multiple</v-icon> Categorias de equipos </v-card-title>
+              </v-col>
+              <v-col>
+                <v-form ref="filtro">
+                 <v-text-field label="Buscar"
+                    v-model="datafiltro"
+                    :append-icon="b ? 'mdi-magnify' : 'mdi-restart'"
+                    :rules="rules"
+                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de equipos'"
+                    :error="ocultarbuscador"
+                    @click:append="buscarfiltro">
+                </v-text-field>
+              </v-form>
+              </v-col>
+            </v-row>
+
       			 <v-btn
              		 absolute
              		 small
@@ -207,14 +224,17 @@ import Swal from 'sweetalert2'
        this.listado()
     	},
 		data: () => ({
-		desserts: [],
-        loading:false,
-         loading2:false,
-          loading3:false,
-        ocultar:false,
-        dialog:false,
-		dialog2:false,
-		fillcategoria:{
+		  desserts: [],
+      loading:false,
+      loading2:false,
+      loading3:false,
+      ocultar:false,
+      dialog:false,
+		  dialog2:false,
+      b:true,
+      ocultarbuscador:false,
+      datafiltro:'',
+		  fillcategoria:{
             'id': '',
 			'categoria':'',
 			'descripcion':''
@@ -384,6 +404,55 @@ import Swal from 'sweetalert2'
                  })
     }
     },
+
+     buscarfiltro()
+      {
+       if (this.$refs.filtro.validate()){
+            this.loading = true
+            this.b = false
+            let status = 'desincorporado'
+          axios.get('/api/filtro/categoria/'+this.datafiltro).then(res => {
+
+              if (res.data.categoria.data.length > 0){
+
+                  this.desserts = res.data.categoria.data
+                  this.paginate = res.data.paginate
+                  this.b = true
+                  this.loading = false
+                  this.ocultarbuscador = false
+                  this.depa = null
+                  this.bienvenida = false
+                  this.ocultar = false
+
+              }else{
+
+                  this.ocultarbuscador = true
+                  this.ocultar = false
+                  this.loading = false
+
+              }
+
+          }).catch((error) => {
+              this.b = false
+              this.loading = false
+                if (error.response) {
+
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+
+                } else if (error.request) {
+
+                        console.log(error.request);
+
+                } else {
+
+                        console.log('Error', error.message);
+
+                }
+            })
+        }
+      }
 
   },
 		computed:{
