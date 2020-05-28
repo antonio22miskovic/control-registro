@@ -24,11 +24,21 @@ class DatosRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'nombre' => 'required',
-            // 'apellido' => 'required',
-            // 'cedula' => 'required',
-            // 'telefono' => 'required',
-            // 'avatar' =>
+
+            'nombre' => 'required|string',
+            'apellido' => 'required|string',
+            'cedula' => 'required|unique:datos',
+            'telefono' => 'required',
+            'asignacion' => 'required|integer',
+            'departamento' => 'required|integer',
+
         ];
     }
+    public function messages()
+    {
+        return [
+            'cedula.unique' => 'la cedula ya se encuentra en uso',
+        ];
+    }
+
 }

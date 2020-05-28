@@ -105,6 +105,31 @@ const routes = [
     ]
   },
 
+
+  ///// RUTAS ADMINISTRADOR
+
+    {
+      path:'/usuarios/',
+      component: () => import('./views/admin/Usuarios'),
+      name:'usuarios',
+      meta: {
+        requiresAuth: true
+      },
+      children: [
+        {
+          path:'/',
+          component: () => import('./components/layouts/admin/users/New'),
+        },
+        {
+          path:'list-user',
+          name:'listuser',
+          component: () => import('./components/layouts/admin/users/List'),
+        },
+      ]
+
+    },
+
+
 	{
   	// rutas no encontradas
  	 path: '*',

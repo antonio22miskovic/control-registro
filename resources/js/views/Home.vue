@@ -48,18 +48,18 @@
                   <v-img
                     class="dark--text align-end"
                     height="320px"
-                    :src="'/img/avatares/' + user.avatar" >
+                    :src="'/img/avatares/' + datosusercurrent.avatar" >
                 </v-img>
 
                 <v-card-subtitle class="pb-0"></v-card-subtitle>
 
                <v-card-text class="text--primary">
-                  <div>Username: {{ user.username }}</div>
-                  <div>Email: {{ user.email }}</div>
-                  <div>Nombre: {{ user.nombre }}</div>
-                  <div>Apellido: {{ user.apellido }}</div>
-                  <div>Cedula: {{ user.cedula }}</div>
-                  <div>Telefono: {{ user.telefono }}</div>
+                  <div>Username: {{ datosusercurrent.username }}</div>
+                  <div>Email: {{ datosusercurrent.email }}</div>
+                  <div>Nombre: {{ datosusercurrent.nombre }}</div>
+                  <div>Apellido: {{ datosusercurrent.apellido }}</div>
+                  <div>Cedula: {{ datosusercurrent.cedula }}</div>
+                  <div>Telefono: {{ datosusercurrent.telefono }}</div>
             </v-card-text>
           </v-card>
 
@@ -77,39 +77,21 @@ import { mapState , mapGetters , mapActions , mapMutations } from 'vuex'
 	export default{
 		name:'Home',
     mounted(){
-      this.getinfo()
+
     },
 		data:() => ({
 			  tab: null,
-        user:'',
+
         items: [
           'bienvenida', 'Equipos', 'Cede', 'personal',
         ],
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		}),
 		methods:{
-      getinfo(){
-        axios.get('/api/get-currentuser').then(res =>{
-          this.user = res.data
-        }).catch((error) => {
-                      if (error.response) {
 
-                             console.log(error.response.data);
-                             console.log(error.response.status);
-                             console.log(error.response.headers);
-
-                     } else if (error.request) {
-
-                            console.log(error.request);
-                     } else {
-
-                            console.log('Error', error.message);
-                     }
-                 })
-      },
 			},
 		computed:{
-
+      ...mapState(['datosusercurrent']),
 		}
 		}
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dato;
 use App\Empleado;
 use App\EmpleadoEquipo;
+use App\Http\Requests\DatosRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

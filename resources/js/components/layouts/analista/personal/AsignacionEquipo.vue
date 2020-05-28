@@ -322,7 +322,7 @@
             prominent
             border="left"
           >
-              No hay equipos en este departamento puede dirigirse al modulo de equipos para añadir equipos al departamento!
+              No hay equipos en este departamento puede dirigirse al modulo de equipos para añadir equipos al departamento! <router-link to="/equipos"> ir </router-link>
          </v-alert>
         </v-container>
     </template>

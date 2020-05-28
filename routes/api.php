@@ -28,9 +28,10 @@ Route::group(['prefix' => 'auth'], function ($router) {
  Route::group(['middleware' => 'jwt.auth'], function ($router) {
 
  	/////// INFO CONTROLLER CONTROLADOR DE RETORNO DE INFO BASICA
+
 		Route::get('get-datos','InfoController@getdatos');
 		Route::get('get-cede','InfoController@getcede');
-		Route::get('get-currentuser','InfoController@getCurrentUser');
+		Route::get('get-cede-all','InfoController@getAllCedes');
 		Route::get('get-departamentos','InfoController@getdepartamentos');
 		Route::get('get-categorias','InfoController@getcategorias');
 		Route::get('get-users','InfoController@getusers');
@@ -68,6 +69,9 @@ Route::group(['prefix' => 'auth'], function ($router) {
 		Route::get('filtro/departamento/{dato}','FiltroController@filtarDepartamento');
 		Route::get('filtro/asignacion/{dato}','FiltroController@filtarAsignacion');
 
+		/// CONTROLADOR DE MANEJO DE USUARIOS
+		Route::resource('users', 'UserController');
+
  });
 
- Route::middleware('jwt.refresh')->get('token/refresh', 'AuthController@refresh');
+ 		Route::middleware('jwt.refresh')->get('token/refresh', 'AuthController@refresh');

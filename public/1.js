@@ -10,6 +10,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -87,37 +93,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
-  mounted: function mounted() {
-    this.getinfo();
-  },
+  mounted: function mounted() {},
   data: function data() {
     return {
       tab: null,
-      user: '',
       items: ['bienvenida', 'Equipos', 'Cede', 'personal'],
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     };
   },
-  methods: {
-    getinfo: function getinfo() {
-      var _this = this;
-
-      axios.get('/api/get-currentuser').then(function (res) {
-        _this.user = res.data;
-      })["catch"](function (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log('Error', error.message);
-        }
-      });
-    }
-  },
-  computed: {}
+  methods: {},
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(['datosusercurrent']))
 });
 
 /***/ }),
@@ -134,7 +119,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n.basil {\n  background-color: #FFFBE6 !important;\n}\n.basil--text {\n  color: #356859 !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Helper classes */\n.basil {\n  background-color: #FFFBE6 !important;\n}\n.basil--text {\n  color: #356859 !important;\n}\n", ""]);
 
 // exports
 
@@ -291,7 +276,7 @@ var render = function() {
                         staticClass: "dark--text align-end",
                         attrs: {
                           height: "320px",
-                          src: "/img/avatares/" + _vm.user.avatar
+                          src: "/img/avatares/" + _vm.datosusercurrent.avatar
                         }
                       }),
                       _vm._v(" "),
@@ -299,25 +284,37 @@ var render = function() {
                       _vm._v(" "),
                       _c("v-card-text", { staticClass: "text--primary" }, [
                         _c("div", [
-                          _vm._v("Username: " + _vm._s(_vm.user.username))
-                        ]),
-                        _vm._v(" "),
-                        _c("div", [_vm._v("Email: " + _vm._s(_vm.user.email))]),
-                        _vm._v(" "),
-                        _c("div", [
-                          _vm._v("Nombre: " + _vm._s(_vm.user.nombre))
+                          _vm._v(
+                            "Username: " + _vm._s(_vm.datosusercurrent.username)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", [
-                          _vm._v("Apellido: " + _vm._s(_vm.user.apellido))
+                          _vm._v("Email: " + _vm._s(_vm.datosusercurrent.email))
                         ]),
                         _vm._v(" "),
                         _c("div", [
-                          _vm._v("Cedula: " + _vm._s(_vm.user.cedula))
+                          _vm._v(
+                            "Nombre: " + _vm._s(_vm.datosusercurrent.nombre)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", [
-                          _vm._v("Telefono: " + _vm._s(_vm.user.telefono))
+                          _vm._v(
+                            "Apellido: " + _vm._s(_vm.datosusercurrent.apellido)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "Cedula: " + _vm._s(_vm.datosusercurrent.cedula)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [
+                          _vm._v(
+                            "Telefono: " + _vm._s(_vm.datosusercurrent.telefono)
+                          )
                         ])
                       ])
                     ],

@@ -4,48 +4,47 @@ namespace App\Http\Controllers;
 
 use App\Asignacion;
 use App\Categoria;
+use App\Cede;
+use App\Departamento;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class InfoController extends Controller
 {
-	protected $user;
+	  protected $user;
     protected $datos;
     protected $cede;
-    protected $departamentos;
 
     public function __construct()
     {
     	$this->user = auth('api')->user();
     	$this->datos = $this->user->dato;
-    	$this->cede = $this->user->cede;
-    	$this->departamentos = $this->cede->departamentos;
+
     }
 
 	public function getdatos()
-	{
-		return $this->datos;
-	}
-    public function getCurrentUser()
-    {
-      $array = [ 'username' => $this->user->username,
+	{  $array = [ 'username' => $this->user->username,
                   'email' => $this->user->email,
                   'nombre' => $this->datos->nombre,
                   'apellido' => $this->datos->apellido,
                   'cedula' => $this->datos->cedula,
                   'telefono' => $this->datos->telefono,
-                  'avatar' => $this->datos->avatar, ];
+                  'avatar' => $this->datos->avatar,
+                  'rol_id' => $this->user->rol_id ];
 
         return response()->json($array,200);
-    }
+	}
+
     public function getcede()
     {
-        return $this->cede;
+       $cede = Cede::where('id',$this->user->cede_id)->first();
+        return response()->json($cede,200);
     }
     public function getdepartamentos()
     {
-        return $this->departamentos;
+        $departamentos = Departamento::where('cede_id',$this->user->cede_id)->get();
+        return response()->json($departamentos,200);
     }
     public function getcategorias()
     {
@@ -53,7 +52,7 @@ class InfoController extends Controller
     }
     public function getusers()
     {
-       $users = User::where('cede_id',$this->cede->id)->get();
+       $users = User::where('cede_id',$this->user->cede_id)->get();
        $data = [];
        foreach ($users as $user) {
             $datos = $user->dato;
@@ -72,6 +71,10 @@ class InfoController extends Controller
     public function getasignaciones()
     {
         return Asignacion::all();
+    }
+    public function getAllCedes()
+    {
+      return Cede::all();
     }
 
 }

@@ -2228,9 +2228,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Navbar',
@@ -2355,6 +2352,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Drawer',
@@ -2384,6 +2430,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.getdatos();
+    console.log(this.datosusercurrent);
   }
 });
 
@@ -40255,8 +40302,10 @@ var render = function() {
     "v-app-bar",
     { attrs: { color: "nav", dense: "" } },
     [
-      !_vm.currentUser
+      _vm.currentUser.rol_id === 1
         ? [
+            _c("v-app-bar-nav-icon", { on: { click: _vm.draweroff } }),
+            _vm._v(" "),
             _c(
               "v-toolbar-title",
               [
@@ -40266,7 +40315,7 @@ var render = function() {
                     staticStyle: { cursor: "pointer" },
                     attrs: { to: "/", tag: "span" }
                   },
-                  [_vm._v("vuetify")]
+                  [_vm._v("Administrador")]
                 )
               ],
               1
@@ -40279,27 +40328,8 @@ var render = function() {
               [
                 _c(
                   "v-btn",
-                  { attrs: { color: "primary", text: "", small: "" } },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: { name: "login" }, tag: "span" } },
-                      [_vm._v("login")]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "v-btn",
-                  { attrs: { color: "primary", text: "", small: "" } },
-                  [
-                    _c(
-                      "router-link",
-                      { attrs: { to: { name: "registro" }, tag: "span" } },
-                      [_vm._v("registrate")]
-                    )
-                  ],
+                  { attrs: { text: "", small: "" }, on: { click: _vm.logout } },
+                  [_c("v-icon", [_vm._v("mdi-logout")])],
                   1
                 )
               ],
@@ -40418,153 +40448,299 @@ var render = function() {
           _vm._v(" "),
           _c("v-divider"),
           _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-account-multiple")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "/personal", tag: "span" } },
-                    [_vm._v("Personal")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-desktop-classic")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: "/equipos", tag: "span" } },
-                    [_vm._v(" Equipos ")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-folder-multiple")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "categorias" }, tag: "span" } },
-                    [_vm._v("Categorias")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c("v-list-item-icon", [_c("v-icon", [_vm._v("mdi-domain")])], 1),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "departamentos" }, tag: "span" } },
-                    [_vm._v(" Departamentos ")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-shopping")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "asignacion" }, tag: "span" } },
-                    [_vm._v("Asignacion")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-item",
-            { attrs: { link: "" } },
-            [
-              _c(
-                "v-list-item-icon",
-                [_c("v-icon", [_vm._v("mdi-account-circle")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item-content",
-                [
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: "perfil" }, tag: "span" } },
-                    [_vm._v("Perfil")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _vm.datosusercurrent.rol_id === 2
+            ? [
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-account-multiple")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/personal", tag: "span" } },
+                          [_vm._v("Personal")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-desktop-classic")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/equipos", tag: "span" } },
+                          [_vm._v(" Equipos ")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-folder-multiple")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: { to: { name: "categorias" }, tag: "span" }
+                          },
+                          [_vm._v("Categorias")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-domain")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: { name: "departamentos" },
+                              tag: "span"
+                            }
+                          },
+                          [_vm._v(" Departamentos ")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-shopping")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: { to: { name: "asignacion" }, tag: "span" }
+                          },
+                          [_vm._v("Asignacion")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-account-circle")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "perfil" }, tag: "span" } },
+                          [_vm._v("Perfil")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            : [
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-account-supervisor-circle")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "usuarios" }, tag: "span" } },
+                          [_vm._v("Usuarios")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-factory")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/equipos", tag: "span" } },
+                          [_vm._v(" Cedes ")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-folder-multiple")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: { to: { name: "categorias" }, tag: "span" }
+                          },
+                          [_vm._v("Categorias")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-shopping")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: { to: { name: "asignacion" }, tag: "span" }
+                          },
+                          [_vm._v("Asignacion")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-list-item",
+                  { attrs: { link: "" } },
+                  [
+                    _c(
+                      "v-list-item-icon",
+                      [_c("v-icon", [_vm._v("mdi-account-circle")])],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-item-content",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "perfil" }, tag: "span" } },
+                          [_vm._v("Perfil")]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
         ],
-        1
+        2
       )
     ],
     1
@@ -97842,6 +98018,28 @@ var routes = [//rutas
       return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./components/layouts/analista/equipos/Incorporados */ "./resources/js/components/layouts/analista/equipos/Incorporados.vue"));
     }
   }]
+}, ///// RUTAS ADMINISTRADOR
+{
+  path: '/usuarios/',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/admin/Usuarios */ "./resources/js/views/admin/Usuarios.vue"));
+  },
+  name: 'usuarios',
+  meta: {
+    requiresAuth: true
+  },
+  children: [{
+    path: '/',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./components/layouts/admin/users/New */ "./resources/js/components/layouts/admin/users/New.vue"));
+    }
+  }, {
+    path: 'list-user',
+    name: 'listuser',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./components/layouts/admin/users/List */ "./resources/js/components/layouts/admin/users/List.vue"));
+    }
+  }]
 }, {
   // rutas no encontradas
   path: '*',
@@ -97925,6 +98123,16 @@ var user = info.getlocaluser();
     datosuser: function datosuser(context) {
       axios.get('/api/get-datos').then(function (res) {
         context.commit('cargardatosuser', res.data);
+      })["catch"](function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
       });
     },
     datoscede: function datoscede(context) {

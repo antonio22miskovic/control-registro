@@ -794,7 +794,7 @@ var render = function() {
                               rules: _vm.rules,
                               hint: _vm.ocultarbuscador
                                 ? "no hubo resultados en la busqueda verifique sus datos por favor"
-                                : "Busqueda de equipos",
+                                : "Busqueda de categorias",
                               error: _vm.ocultarbuscador
                             },
                             on: { "click:append": _vm.buscarfiltro },

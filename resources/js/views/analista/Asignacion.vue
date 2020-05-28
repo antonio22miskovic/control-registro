@@ -125,7 +125,7 @@
                     v-model="datafiltro"
                     :append-icon="b ? 'mdi-magnify' : 'mdi-restart'"
                     :rules="rules"
-                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de equipos'"
+                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de asignaciones'"
                     :error="ocultarbuscador"
                     @click:append="buscarfiltro">
                 </v-text-field>
@@ -411,7 +411,7 @@ import Swal from 'sweetalert2'
             this.loading = true
             this.b = false
           axios.get('/api/filtro/asignacion/'+this.datafiltro).then(res => {
-            console.log(res.data)
+
               if (res.data.asignacion.data.length > 0){
 
                   this.desserts = res.data.asignacion.data

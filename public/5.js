@@ -1499,9 +1499,13 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n              No hay equipos en este departamento puede dirigirse al modulo de equipos para añadir equipos al departamento!\n         "
-                            )
-                          ]
+                              "\n              No hay equipos en este departamento puede dirigirse al modulo de equipos para añadir equipos al departamento! "
+                            ),
+                            _c("router-link", { attrs: { to: "/equipos" } }, [
+                              _vm._v(" ir ")
+                            ])
+                          ],
+                          1
                         )
                       ],
                       1

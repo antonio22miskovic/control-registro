@@ -125,7 +125,7 @@
                     v-model="datafiltro"
                     :append-icon="b ? 'mdi-magnify' : 'mdi-restart'"
                     :rules="rules"
-                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de equipos'"
+                    :hint="ocultarbuscador ? 'no hubo resultados en la busqueda verifique sus datos por favor' : 'Busqueda de categorias'"
                     :error="ocultarbuscador"
                     @click:append="buscarfiltro">
                 </v-text-field>

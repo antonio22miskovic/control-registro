@@ -405,8 +405,6 @@ __webpack_require__.r(__webpack_exports__);
         this.loading = true;
         this.b = false;
         axios.get('/api/filtro/asignacion/' + this.datafiltro).then(function (res) {
-          console.log(res.data);
-
           if (res.data.asignacion.data.length > 0) {
             _this5.desserts = res.data.asignacion.data;
             _this5.paginate = res.data.paginate;
@@ -795,7 +793,7 @@ var render = function() {
                               rules: _vm.rules,
                               hint: _vm.ocultarbuscador
                                 ? "no hubo resultados en la busqueda verifique sus datos por favor"
-                                : "Busqueda de equipos",
+                                : "Busqueda de asignaciones",
                               error: _vm.ocultarbuscador
                             },
                             on: { "click:append": _vm.buscarfiltro },
