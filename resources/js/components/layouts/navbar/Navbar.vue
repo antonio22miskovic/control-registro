@@ -59,7 +59,7 @@
       ...mapMutations(['draweroff']),
       logout(){
         this.$store.commit('logout')
-        this.$router.push('/')
+        this.$router.push('/login')
       },
        getcede()
         {

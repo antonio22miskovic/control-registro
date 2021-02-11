@@ -32,7 +32,7 @@ const router = new VueRouter({
 // instacia de vuex
 const store = new Vuex.Store(StoreData)
 
-//llamamos a la funcion de configuracion
+// //llamamos a la funcion de configuracion
 initialize(store, router)
 // refrescar(router)
 
